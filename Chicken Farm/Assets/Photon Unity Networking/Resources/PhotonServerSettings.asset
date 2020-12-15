@@ -31,8 +31,11 @@ MonoBehaviour:
   - Chat
   - ColorRpc
   - DestroyRpc
+  - Die
   - DoJump
   - Flash
+  - FlipFalse
+  - FlipTrue
   - InstantiateRpc
   - Marco
   - PickupItemInit
@@ -43,7 +46,4 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - TaggedPlayer
-  - FlipFalse
-  - FlipTrue
-  - Die
   DisableAutoOpenWizard: 1
