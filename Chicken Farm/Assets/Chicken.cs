@@ -8,17 +8,11 @@ public class Chicken : Creature
     // base chicken status
     public float hunger;
     public int type;
-    private bool isDead;
-
-    public ParticleSystem bloodEffect;
-    public ParticleSystem smokeEffect;
 
     // variables for this chicken if it is named
     private bool isNamed;
     private string name;
     public Text nametag;
-
-    //public BoxCollider2D cautionRange;
 
     public void Awake()
     {
@@ -30,46 +24,8 @@ public class Chicken : Creature
     // Update is called once per frame
     void Update()
     {
-        if (!isDead)
-        {
-            Move();
-            UpdateType();
-            if (Input.GetKey(KeyCode.K))
-            {
-                Butcher();
-            }
-
-            CheckPlayerInteraction();
-        }
-        else
-        {
-            if(!bloodEffect.isPlaying && !smokeEffect.isPlaying)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    private void CheckPlayerInteraction()
-    {
-        
-    }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if(collision.gameObject.name == "Player")
-    //    {
-    //        Debug.Log("Entered");
-    //    }
-        
-    //}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            Debug.Log("Entered");
-        }
+        Move();
+        UpdateType();
     }
 
     private void UpdateType()
@@ -156,13 +112,5 @@ public class Chicken : Creature
             randomDirection = Random.onUnitSphere;
             status = "move";
         }
-    }
-
-    // fate
-    public void Butcher()
-    {
-        bloodEffect.Play();
-        smokeEffect.Play();
-        isDead = true;
     }
 }
