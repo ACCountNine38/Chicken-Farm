@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameCanvas;
     public GameObject SceneCamera;
     public Text PingText;
+
     public GameObject OptionsMenu;
     public GameObject PlayerFeed;
     public GameObject FeedGrid;
@@ -30,23 +31,28 @@ public class GameManager : MonoBehaviour
 
     private void CheckInput()
     {
-        if(options && Input.GetKeyDown(KeyCode.Escape))
+        ActivateOptions();
+    }
+
+    public void ActivateOptions()
+    {
+        if (options && Input.GetKeyDown(KeyCode.Escape))
         {
             OptionsMenu.SetActive(false);
             options = false;
         }
-        else if(!options && Input.GetKeyDown(KeyCode.Escape))
+        else if (!options && Input.GetKeyDown(KeyCode.Escape))
         {
             OptionsMenu.SetActive(true);
             options = true;
         }
+
     }
 
     // method that creates a new Player Prefab
     public void SpawnPlayer()
     {
-        float randomValue = Random.Range(-1f, 1f);
-        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector2(this.transform.position.x * randomValue, this.transform.position.y), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity, 0);
 
         GameCanvas.SetActive(false);
         SceneCamera.SetActive(false);
