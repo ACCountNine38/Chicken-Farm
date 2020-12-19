@@ -107,7 +107,7 @@ public class MenuScript : MonoBehaviour
 
         if (option_on)
         {
-            if (Option_Menu.transform.localPosition.y <= -10)
+            if (Option_Menu.transform.localPosition.y <= 0)
             {
                 Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y + 10);
                 Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y + 25);
@@ -117,14 +117,13 @@ public class MenuScript : MonoBehaviour
         else
         {
 
-            if (Option_Menu.transform.localPosition.y > -440)
+            if (Option_Menu.transform.localPosition.y > -450)
             {
                 Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 10);
                 Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y - 25);
             }
         }
     }
-
 
     // turn to Create_Enter_Menu with slide effect
     private void UpdateStart()
@@ -149,35 +148,23 @@ public class MenuScript : MonoBehaviour
         }
     }
 
-
-    // Username validation
-    public void ChangeUsernameInput()
-    {
-        /*
-        if(UsernameInput.text.Length >= 1) {
-    		StartButton.SetActive(true);
-    	} else {
-    		StartButton.SetActive(false);
-    	}
-        */
-    }
-
     // method that sets the username of the player
     public void SetUsername()
     {
-        Welcome_Menu.SetActive(false);
         PhotonNetwork.playerName = UsernameInput.text;
     }
 
     // method that enables the user to host, given the server ip
     public void CreateGame()
     {
+        
         PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() { maxPlayers = 5 }, null);
     }
 
     // method that enables the user to join a room
     public void JoinGame()
     {
+        Welcome_Menu.SetActive(false);
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.maxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom(JoinGameInput.text, roomOptions, TypedLobby.Default);

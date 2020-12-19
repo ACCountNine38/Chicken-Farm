@@ -1,9 +1,9 @@
 <<<<<<< HEAD
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":168.53506469726563,"y":-47.977455139160159,"z":-113.14190673828125},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":699.224365234375,"orthographic":true}
+=======
 <<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":false,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":0.0,"y":0.0,"z":-27.5},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":10.0,"orthographic":true}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":0.0473114550113678,"y":-0.3781880736351013,"z":-10.540157318115235},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":5.417097091674805,"orthographic":true}
 >>>>>>> parent of f235183... join/create game
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":0.0473114550113678,"y":-0.3781880736351013,"z":-10.540157318115235},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":5.417097091674805,"orthographic":true}
->>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
