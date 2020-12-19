@@ -9,16 +9,21 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private string version = "0.1";
     [SerializeField] private GameObject Welcome_Menu;
     [SerializeField] private GameObject Welcome_Menu_items; // does not contain character preview items
+
     [SerializeField] private GameObject Character_Preview_Section;
     [SerializeField] private GameObject customize_Button;
+
     [SerializeField] private GameObject Option_Menu;
     [SerializeField] private GameObject option_Button;
+
     [SerializeField] private GameObject Create_Enter_Menu;
     [SerializeField] private GameObject Start_Button;
 
     [SerializeField] private InputField UsernameInput;
     [SerializeField] private InputField CreateGameInput;
     [SerializeField] private InputField JoinGameInput;
+    [SerializeField] private GameObject username_Invalid_Waring;
+    [SerializeField] private GameObject roomname_Invalid_Waring;
 
     private bool customize_on = false;
     private bool option_on = false;
@@ -50,6 +55,7 @@ public class MenuScript : MonoBehaviour
         UpdateCustomizeCharacter();
         UpdateOption();
         UpdateStart();
+        UpdateUserNameValidation();
 
     }
 
@@ -132,11 +138,19 @@ public class MenuScript : MonoBehaviour
 
         if (start_on)
         {
-            if (Welcome_Menu.transform.localPosition.x < 1920)
+            if (UsernameInput.text.Length >= 1)
             {
-                Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x + 20, Create_Enter_Menu.transform.localPosition.y);
-                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x + 20, Welcome_Menu.transform.localPosition.y);
+                if (Welcome_Menu.transform.localPosition.x < 1920)
+                {
+                    Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x + 20, Create_Enter_Menu.transform.localPosition.y);
+                    Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x + 20, Welcome_Menu.transform.localPosition.y);
+                }
             }
+            else
+            {
+                username_Invalid_Waring.GetComponent<Text>().color = Color.yellow;
+            }
+
 
         }
         else
@@ -149,17 +163,43 @@ public class MenuScript : MonoBehaviour
         }
     }
 
-
-    // Username validation
-    public void ChangeUsernameInput()
+    // update if player entered a valid user name
+    private void UpdateUserNameValidation()
     {
-        /*
-        if(UsernameInput.text.Length >= 1) {
-    		StartButton.SetActive(true);
-    	} else {
-    		StartButton.SetActive(false);
-    	}
-        */
+        if (UsernameInput.text.Length >= 1)
+        {
+            username_Invalid_Waring.SetActive(false);
+        }
+        else
+        {
+            username_Invalid_Waring.SetActive(true);
+        }
+    }
+
+    // check the name input is vaild
+    private bool checkCreateRoomNameValidation()
+    {
+        if (CreateGameInput.text.Length >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // check the name input is vaild
+    private bool checkEnterRoomNameValidation()
+    {
+        if (JoinGameInput.text.Length >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     // method that sets the username of the player
@@ -171,15 +211,31 @@ public class MenuScript : MonoBehaviour
     // method that enables the user to host, given the server ip
     public void CreateGame()
     {
-        PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() { maxPlayers = 5 }, null);
+        if (checkCreateRoomNameValidation())
+        {
+            roomname_Invalid_Waring.SetActive(false);
+            PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() { maxPlayers = 5 }, null);
+        }
+        else
+        {
+            roomname_Invalid_Waring.SetActive(true);
+        }
+
     }
 
     // method that enables the user to join a room
     public void JoinGame()
     {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.maxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom(JoinGameInput.text, roomOptions, TypedLobby.Default);
+        if (checkEnterRoomNameValidation())
+        {
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.maxPlayers = 4;
+            PhotonNetwork.JoinOrCreateRoom(JoinGameInput.text, roomOptions, TypedLobby.Default);
+        }
+        else
+        {
+            roomname_Invalid_Waring.SetActive(true);
+        }
     }
 
     // Photon built in function, loads the game scene after joining a host
