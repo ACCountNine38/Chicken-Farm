@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     // variables that are displayed on the Inspector
-    [SerializeField] private string version = "0.2";
+    [SerializeField] private string version = "0.1";
     [SerializeField] private GameObject Welcome_Menu;
     [SerializeField] private GameObject Welcome_Menu_items; // does not contain character preview items
     [SerializeField] private GameObject Character_Preview_Section;
