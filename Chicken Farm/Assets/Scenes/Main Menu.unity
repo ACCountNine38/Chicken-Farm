@@ -1494,8 +1494,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.87, y: 10.77, z: -10}
-  m_LocalScale: {x: 1.0746673, y: 1.0582116, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1852,7 +1852,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -441.04004}
+  m_AnchoredPosition: {x: 0, y: -450}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624587123
@@ -3446,8 +3446,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -251, y: -45.302}
-  m_SizeDelta: {x: 218.36438, y: 289.17725}
+  m_AnchoredPosition: {x: -253, y: -50.2}
+  m_SizeDelta: {x: 218.36438, y: 257.86053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1456219186
 MonoBehaviour:
@@ -3828,6 +3828,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1665000394}
+        m_MethodName: SetUsername
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1541185608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3897,10 +3908,10 @@ RectTransform:
   m_Father: {fileID: 1835274743}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00030518, y: -0.00082397}
-  m_SizeDelta: {x: 799.99976, y: 441.0418}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543345953
 MonoBehaviour:
@@ -4639,7 +4650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00af99fb3a93d40d28d3a29e58283bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 0.2
+  version: 0.1
   Welcome_Menu: {fileID: 1483690381}
   Welcome_Menu_items: {fileID: 646210678}
   Character_Preview_Section: {fileID: 1720832293}
@@ -6108,7 +6119,7 @@ Canvas:
   m_GameObject: {fileID: 2033401213}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
