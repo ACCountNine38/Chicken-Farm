@@ -14,14 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 51
     width: 1904
     height: 981
+=======
+    x: 0
+    y: 22
+    width: 1280
+    height: 756
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
@@ -110,12 +117,28 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
     width: 1904
     height: 931
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
   controlID: 145
+=======
+    width: 1280
+    height: 706
+<<<<<<< HEAD
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
+  vertical: 0
+  controlID: 123
+=======
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
+  vertical: 0
+  controlID: 145106
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,12 +158,25 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1447
     height: 931
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 52
+=======
+    width: 973
+    height: 706
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 10001, y: 14042}
+  vertical: 1
+<<<<<<< HEAD
+  controlID: 124
+=======
+  controlID: 145107
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +201,15 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 53
+=======
+<<<<<<< HEAD
+  controlID: 46
+=======
+  controlID: 145108
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,10 +227,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 358
     height: 565
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    width: 241
+    height: 429
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -220,7 +271,7 @@ MonoBehaviour:
   - {fileID: 16}
   - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 3
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -237,9 +288,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 565
     width: 1447
     height: 366
+=======
+    y: 429
+    width: 973
+    height: 277
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 18}
@@ -267,10 +324,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1447
     y: 0
+<<<<<<< HEAD
     width: 457
     height: 931
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
+=======
+    width: 307
+    height: 706
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -412,10 +476,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 366
     y: 81
     width: 1087
     height: 544
+=======
+    x: 241
+    y: 52
+    width: 730
+    height: 408
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -504,14 +575,22 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 81
     width: 357
     height: 544
+=======
+    x: 0
+    y: 52
+    width: 240
+    height: 408
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 4afbffff
@@ -519,13 +598,40 @@ MonoBehaviour:
         m_UserAcceptedRename: 0
         m_Name: 
         m_OriginalName: 
+=======
+<<<<<<< HEAD
+      m_SelectedIDs: 3cac0000
+      m_LastClickedID: 44092
+      m_ExpandedIDs: 4497ffffaaab0000b8ab0000baab0000caab00003cac000064ac000066ac000076ac000096ac0000aaac0000b0ac0000
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: Front Arm
+        m_OriginalName: Front Arm
+=======
+      m_SelectedIDs: 78770500
+      m_LastClickedID: 358264
+      m_ExpandedIDs: b22bf6ffb024f7ff6091f7ffc0f5f8ffd6f5f8ff40f7f8ff50f7f8fff401f9ff0a02f9ff8403f9ff24b0fcff34b0fcfffcb4fcffaeb8fcff08bffcffa4fefcffc0fefcff5613fdff8233fdff9033fdff4434fdffa66efdffbe70fdff98b0fdffbcb2fdff1cb5fdffbeb7fdffd0b7fdff54b9fdff04bdfdff64bffdff72bffdffa0c2fdffb4c4fdff34c5fdffd8c7fdff6ed0fdff8ed0fdff4495feff5695feffcc96feffd096feff7adaffffe6ddffff30e8ffff44e8ffffbee9ffffc8e9ffff9cebffffe6eeffff50f3ffffce410000e8410000de5e0100f85e01007e67010088670100546e01005e6e0100786e0100c47601006a7e010044860100b6a4010004bf010008210200262102002e210200360d0500600d0500160e05004a0e0500
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: Chicken
+        m_OriginalName: Chicken
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
+<<<<<<< HEAD
         m_UserData: 0
+=======
+<<<<<<< HEAD
+        m_UserData: 43924
+=======
+        m_UserData: 355242
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 11
@@ -559,24 +665,43 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 366
     y: 81
     width: 1087
     height: 544
+=======
+    x: 241
+    y: 52
+    width: 730
+    height: 408
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: cae4f7e286d5e458bb776a83ef66a7fc
   m_Gizmos: 1
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 168.53506, y: -47.977455, z: -113.14191}
     speed: 2
     m_Value: {x: 168.53506, y: -47.977455, z: -113.14191}
+=======
+<<<<<<< HEAD
+    m_Target: {x: 0, y: 0, z: -27.5}
+    speed: 2
+    m_Value: {x: 0, y: -1.8015811e-11, z: -27.499983}
+=======
+    m_Target: {x: 0.047311455, y: -0.37818807, z: -10.540157}
+    speed: 2
+    m_Value: {x: 0.047311455, y: -0.37818807, z: -10.540157}
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -589,7 +714,7 @@ MonoBehaviour:
   m_SceneViewState:
     showFog: 1
     showMaterialUpdate: 0
-    showSkybox: 1
+    showSkybox: 0
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -626,9 +751,21 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 699.22437
     speed: 2
     m_Value: 699.22437
+=======
+<<<<<<< HEAD
+    m_Target: 10
+    speed: 2
+    m_Value: 9.999994
+=======
+    m_Target: 5.417097
+    speed: 2
+    m_Value: 5.417097
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -729,10 +866,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 646
     width: 1446
     height: 345
+=======
+    x: 0
+    y: 481
+    width: 972
+    height: 256
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -747,20 +891,42 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Scenes
+=======
+    - Assets/Photon Unity Networking/Resources/Animations/Clothing
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Photon Unity Networking/Resources/Animations/Clothing
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Github Projects\Chicken-Farm\Chicken Farm
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs: b6390000
     m_LastClickedID: 14774
     m_ExpandedIDs: 00000000b2390000b4390000b6390000b8390000ba390000bc390000be39000000ca9a3b
+=======
+<<<<<<< HEAD
+    scrollPos: {x: 0, y: 119.99939}
+    m_SelectedIDs: 826c0000
+    m_LastClickedID: 27778
+    m_ExpandedIDs: 00000000766c0000786c00007a6c00007c6c00007e6c0000806c0000826c000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 38450000
+    m_LastClickedID: 17720
+    m_ExpandedIDs: 000000007e3c0000803c0000823c0000843c0000863c0000883c0000ec3c0000fa3c0000043d000000ca9a3b
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -788,7 +954,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000b2390000b4390000b6390000b8390000ba390000bc390000be390000
+=======
+<<<<<<< HEAD
+    m_ExpandedIDs: 00000000766c0000786c00007a6c00007c6c00007e6c0000806c0000826c0000
+=======
+    m_ExpandedIDs: 000000007e3c0000803c0000823c0000843c0000863c0000883c0000ec3c000000ca9a3b
+>>>>>>> parent of f235183... join/create game
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -865,10 +1039,21 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 646
     width: 1446
     height: 345
+=======
+    x: 0
+<<<<<<< HEAD
+    y: 503
+=======
+    y: 481
+>>>>>>> parent of f235183... join/create game
+    width: 972
+    height: 256
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &20
 MonoBehaviour:
@@ -921,10 +1106,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1455
     y: 81
     width: 456
     height: 910
+=======
+    x: 973
+    y: 52
+    width: 306
+    height: 685
+>>>>>>> 4643874fbf133901288ba9c326ca8a6589a5c765
   m_ViewDataDictionary: {fileID: 0}
   m_OpenAddComponentMenu: 0
   m_ObjectsLockedBeforeSerialization: []
