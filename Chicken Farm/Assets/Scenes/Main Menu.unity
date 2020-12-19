@@ -1295,7 +1295,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1665000394}
         m_MethodName: JoinGame
         m_Mode: 1
         m_Arguments:
@@ -1852,7 +1852,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -441.04}
+  m_AnchoredPosition: {x: 0, y: -441.04004}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624587123
@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1665000394}
         m_MethodName: CreateGame
         m_Mode: 1
         m_Arguments:
@@ -4650,7 +4650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00af99fb3a93d40d28d3a29e58283bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 0.2
+  version: 0.1
   Welcome_Menu: {fileID: 1483690381}
   Welcome_Menu_items: {fileID: 646210678}
   Character_Preview_Section: {fileID: 1720832293}
@@ -4659,9 +4659,9 @@ MonoBehaviour:
   option_Button: {fileID: 16087998}
   Create_Enter_Menu: {fileID: 1835274742}
   Start_Button: {fileID: 1541185605}
-  UsernameInput: {fileID: 0}
-  CreateGameInput: {fileID: 0}
-  JoinGameInput: {fileID: 0}
+  UsernameInput: {fileID: 128072606}
+  CreateGameInput: {fileID: 570510038}
+  JoinGameInput: {fileID: 1748684134}
 --- !u!4 &1665000395
 Transform:
   m_ObjectHideFlags: 0
