@@ -112,10 +112,17 @@ MonoBehaviour:
     y: 30
     width: 1280
     height: 706
+<<<<<<< HEAD
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
   controlID: 123
+=======
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
+  vertical: 0
+  controlID: 145106
+>>>>>>> parent of f235183... join/create game
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +147,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 124
+=======
+  controlID: 145107
+>>>>>>> parent of f235183... join/create game
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +176,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 46
+=======
+  controlID: 145108
+>>>>>>> parent of f235183... join/create game
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +235,7 @@ MonoBehaviour:
   - {fileID: 16}
   - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 3
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,8 +284,8 @@ MonoBehaviour:
     y: 0
     width: 307
     height: 706
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -512,6 +527,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 3cac0000
       m_LastClickedID: 44092
       m_ExpandedIDs: 4497ffffaaab0000b8ab0000baab0000caab00003cac000064ac000066ac000076ac000096ac0000aaac0000b0ac0000
@@ -519,13 +535,26 @@ MonoBehaviour:
         m_UserAcceptedRename: 0
         m_Name: Front Arm
         m_OriginalName: Front Arm
+=======
+      m_SelectedIDs: 78770500
+      m_LastClickedID: 358264
+      m_ExpandedIDs: b22bf6ffb024f7ff6091f7ffc0f5f8ffd6f5f8ff40f7f8ff50f7f8fff401f9ff0a02f9ff8403f9ff24b0fcff34b0fcfffcb4fcffaeb8fcff08bffcffa4fefcffc0fefcff5613fdff8233fdff9033fdff4434fdffa66efdffbe70fdff98b0fdffbcb2fdff1cb5fdffbeb7fdffd0b7fdff54b9fdff04bdfdff64bffdff72bffdffa0c2fdffb4c4fdff34c5fdffd8c7fdff6ed0fdff8ed0fdff4495feff5695feffcc96feffd096feff7adaffffe6ddffff30e8ffff44e8ffffbee9ffffc8e9ffff9cebffffe6eeffff50f3ffffce410000e8410000de5e0100f85e01007e67010088670100546e01005e6e0100786e0100c47601006a7e010044860100b6a4010004bf010008210200262102002e210200360d0500600d0500160e05004a0e0500
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: Chicken
+        m_OriginalName: Chicken
+>>>>>>> parent of f235183... join/create game
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
+<<<<<<< HEAD
         m_UserData: 43924
+=======
+        m_UserData: 355242
+>>>>>>> parent of f235183... join/create game
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -574,9 +603,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 0, y: 0, z: -27.5}
     speed: 2
     m_Value: {x: 0, y: -1.8015811e-11, z: -27.499983}
+=======
+    m_Target: {x: 0.047311455, y: -0.37818807, z: -10.540157}
+    speed: 2
+    m_Value: {x: 0.047311455, y: -0.37818807, z: -10.540157}
+>>>>>>> parent of f235183... join/create game
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -626,9 +661,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 10
     speed: 2
     m_Value: 9.999994
+=======
+    m_Target: 5.417097
+    speed: 2
+    m_Value: 5.417097
+>>>>>>> parent of f235183... join/create game
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -747,21 +788,28 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Photon Unity Networking/Resources
+    - Assets/Photon Unity Networking/Resources/Animations/Clothing
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Photon Unity Networking/Resources
+  - Assets/Photon Unity Networking/Resources/Animations/Clothing
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/account-nine38/Documents/GitHub/Chicken-Farm/Chicken
     Farm
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 119.99939}
     m_SelectedIDs: 826c0000
     m_LastClickedID: 27778
     m_ExpandedIDs: 00000000766c0000786c00007a6c00007c6c00007e6c0000806c0000826c000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 38450000
+    m_LastClickedID: 17720
+    m_ExpandedIDs: 000000007e3c0000803c0000823c0000843c0000863c0000883c0000ec3c0000fa3c0000043d000000ca9a3b
+>>>>>>> parent of f235183... join/create game
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -789,7 +837,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000766c0000786c00007a6c00007c6c00007e6c0000806c0000826c0000
+=======
+    m_ExpandedIDs: 000000007e3c0000803c0000823c0000843c0000863c0000883c0000ec3c000000ca9a3b
+>>>>>>> parent of f235183... join/create game
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -867,7 +919,11 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 503
+=======
+    y: 481
+>>>>>>> parent of f235183... join/create game
     width: 972
     height: 256
   m_ViewDataDictionary: {fileID: 0}
