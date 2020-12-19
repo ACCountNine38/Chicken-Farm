@@ -84,8 +84,8 @@ public class MenuScript : MonoBehaviour
 
             if (Character_Preview_Section.transform.localPosition.x > 0)
             {
-                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x - 10, Character_Preview_Section.transform.localPosition.y);
-                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x - 25, Welcome_Menu_items.transform.localPosition.y);
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x - 20, Character_Preview_Section.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x - 50, Welcome_Menu_items.transform.localPosition.y);
             }
 
         }
@@ -93,10 +93,10 @@ public class MenuScript : MonoBehaviour
         {
             customize_Button.GetComponentInChildren<Text>().text = "Customize";
 
-            if (Character_Preview_Section.transform.localPosition.x <= 330)
+            if (Character_Preview_Section.transform.localPosition.x < 1920 * 0.43)
             {
-                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x + 10, Character_Preview_Section.transform.localPosition.y);
-                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x + 25, Welcome_Menu_items.transform.localPosition.y);
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x + 20, Character_Preview_Section.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x + 50, Welcome_Menu_items.transform.localPosition.y);
             }
         }
     }
@@ -107,20 +107,20 @@ public class MenuScript : MonoBehaviour
 
         if (option_on)
         {
-            if (Option_Menu.transform.localPosition.y <= -10)
+            if (Option_Menu.transform.localPosition.y < 0)
             {
-                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y + 10);
-                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y + 25);
+                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y + 20);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y + 20);
             }
 
         }
         else
         {
 
-            if (Option_Menu.transform.localPosition.y > -440)
+            if (Option_Menu.transform.localPosition.y > -1080)
             {
-                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 10);
-                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y - 25);
+                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 20);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y - 20);
             }
         }
     }
@@ -132,10 +132,10 @@ public class MenuScript : MonoBehaviour
 
         if (start_on)
         {
-            if (Welcome_Menu.transform.localPosition.x <= 790)
+            if (Welcome_Menu.transform.localPosition.x < 1920)
             {
-                Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x + 10, Create_Enter_Menu.transform.localPosition.y);
-                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x + 10, Welcome_Menu.transform.localPosition.y);
+                Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x + 20, Create_Enter_Menu.transform.localPosition.y);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x + 20, Welcome_Menu.transform.localPosition.y);
             }
 
         }
@@ -143,8 +143,8 @@ public class MenuScript : MonoBehaviour
         {
             if (Welcome_Menu.transform.localPosition.x > 0)
             {
-                Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x - 10, Create_Enter_Menu.transform.localPosition.y);
-                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x - 10, Welcome_Menu.transform.localPosition.y);
+                Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x - 20, Create_Enter_Menu.transform.localPosition.y);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x - 20, Welcome_Menu.transform.localPosition.y);
             }
         }
     }
@@ -165,7 +165,6 @@ public class MenuScript : MonoBehaviour
     // method that sets the username of the player
     public void SetUsername()
     {
-        Welcome_Menu.SetActive(false);
         PhotonNetwork.playerName = UsernameInput.text;
     }
 
