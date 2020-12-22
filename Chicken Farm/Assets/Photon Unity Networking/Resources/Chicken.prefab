@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1644500318998522548
 Transform:
   m_ObjectHideFlags: 0
@@ -26,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117910140635013172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.022, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.4625, z: 1}
+  m_LocalPosition: {x: 0, y: 0.131, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4738715323466669723}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5878973111675702819
 ParticleSystem:
@@ -4788,7 +4788,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4812,6 +4812,53 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &2444013416651197909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3692135344123589108}
+  - component: {fileID: 8002693729404201479}
+  m_Layer: 0
+  m_Name: Danger Range
+  m_TagString: Chicken Sensory Range
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3692135344123589108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444013416651197909}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4738715323466669723}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8002693729404201479
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444013416651197909}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75
 --- !u!1 &4738715323466669716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4824,15 +4871,15 @@ GameObject:
   - component: {fileID: 4738715323466669720}
   - component: {fileID: 4738715323466669721}
   - component: {fileID: 4738715323466669718}
-  - component: {fileID: 2966629391566743745}
   - component: {fileID: 4738715323466669722}
   - component: {fileID: 4738715323466669727}
   - component: {fileID: 4738715323466669724}
   - component: {fileID: 4738715323466669725}
-  - component: {fileID: 3873536987725231634}
+  - component: {fileID: 8297062888257797673}
+  - component: {fileID: 2966629391566743745}
   m_Layer: 0
   m_Name: Chicken
-  m_TagString: Untagged
+  m_TagString: Chicken
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4845,9 +4892,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4738715323466669716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.136, y: 0.2952806, z: -10.219335}
+  m_LocalPosition: {x: 0, y: 0, z: -10.219335}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
+  - {fileID: 3692135344123589108}
   - {fileID: 7448455200852292419}
   - {fileID: 1644500318998522548}
   m_Father: {fileID: 0}
@@ -4902,7 +4950,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &4738715323466669721
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4916,10 +4964,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004824564, y: -0.08008782}
+  m_Offset: {x: 0, y: 0.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.065}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
@@ -4950,30 +4998,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2966629391566743745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738715323466669716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e980d6056010d483b961198d8d3a60ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photonView: {fileID: 4738715323466669727}
-  rb: {fileID: 4738715323466669718}
-  anim: {fileID: 4738715323466669722}
-  sr: {fileID: 4738715323466669720}
-  speed: 3
-  runSpeed: 5
-  status: idle
-  hunger: 50
-  type: 0
-  bloodEffect: {fileID: 4376255304598798915}
-  smokeEffect: {fileID: 5878973111675702819}
-  nametag: {fileID: 0}
 --- !u!95 &4738715323466669722
 Animator:
   serializedVersion: 3
@@ -5118,12 +5142,12 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: isMoving
   - Type: 3
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: type
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
---- !u!58 &3873536987725231634
+--- !u!58 &8297062888257797673
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5136,9 +5160,36 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.2
+--- !u!114 &2966629391566743745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738715323466669716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e980d6056010d483b961198d8d3a60ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonView: {fileID: 4738715323466669727}
+  rb: {fileID: 4738715323466669718}
+  anim: {fileID: 4738715323466669722}
+  sr: {fileID: 4738715323466669720}
+  speed: 3
+  runSpeed: 5
+  status: idle
+  hunger: 50
+  eggCooldown: 0
+  type: 0
+  collider: {fileID: 4738715323466669721}
+  bloodEffect: {fileID: 4376255304598798915}
+  smokeEffect: {fileID: 5878973111675702819}
+  egg: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5, type: 3}
+  nametag: {fileID: 0}
 --- !u!1 &5326122154800139722
 GameObject:
   m_ObjectHideFlags: 0
@@ -5156,7 +5207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7448455200852292419
 Transform:
   m_ObjectHideFlags: 0
@@ -5165,11 +5216,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5326122154800139722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.016, z: 0}
+  m_LocalPosition: {x: 0, y: 0.118, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4738715323466669723}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &4376255304598798915
 ParticleSystem:
@@ -5254,7 +5305,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.75
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5307,7 +5358,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5360,8 +5411,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
-      maxColor: {r: 0.5, g: 0, b: 0, a: 1}
+      minColor: {r: 0.990566, g: 0.40650588, b: 0.40650588, a: 1}
+      maxColor: {r: 0.5943396, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9927,7 +9978,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: -3792237794145213230
     second: farmer-hat-idle_1
+  - first:
+      213: -1739346033415586713
+    second: farmer-hat-idle_0
+  - first:
+      213: -854470733438466278
+    second: farmer-hat-idle_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,15 +118,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9c9accf9f1de1660800000000000000
-      internalID: 7358549712788167838
+      spriteID: 76c77c08ff99cd7e0800000000000000
+      internalID: -1739346033415586713
       vertices: []
       indices: 
       edges: []
@@ -133,15 +139,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d4e92081d34f5bc0800000000000000
-      internalID: -3792237794145213230
+      spriteID: a17ce66256f4424f0800000000000000
+      internalID: -854470733438466278
       vertices: []
       indices: 
       edges: []

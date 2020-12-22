@@ -16,7 +16,7 @@ MonoBehaviour:
   VoiceAppID: 
   ChatAppID: 
   HostType: 1
-  PreferredRegion: 0
+  PreferredRegion: 1
   EnabledRegions: -1
   Protocol: 0
   ServerAddress: 
@@ -46,4 +46,15 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - TaggedPlayer
+  - Butcher
+  - SetRandomHunger
+  - UpdateType
+  - RandomizeAction
+  - SpawnChicken
+  - CleanUp
+  - Disconnect
+  - Discon
+  - LayEgg
+  - SpawnEgg
+  - PickUp
   DisableAutoOpenWizard: 1

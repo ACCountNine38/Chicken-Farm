@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: -1623082946400304204
     second: ThinChickenIdle_1
+  - first:
+      213: 5271106348429633471
+    second: ThinChickenIdle_0
+  - first:
+      213: -2198101668253744083
+    second: ThinChickenIdle_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,15 +118,15 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 408a7bdaa16c82040800000000000000
-      internalID: 4623162835381757956
+      spriteID: fb7647fdb4bb62940800000000000000
+      internalID: 5271106348429633471
       vertices: []
       indices: 
       edges: []
@@ -133,15 +139,15 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b3c0d2e8a6a979e0800000000000000
-      internalID: -1623082946400304204
+      spriteID: d24ca83cd26ce71e0800000000000000
+      internalID: -2198101668253744083
       vertices: []
       indices: 
       edges: []

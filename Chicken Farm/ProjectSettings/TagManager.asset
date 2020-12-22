@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Image needed
   - need edition
+  - Cloth
+  - Chicken
+  - Chicken Sensory Range
+  - Egg
   layers:
   - Default
   - TransparentFX
