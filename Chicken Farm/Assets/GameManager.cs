@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject PlayerPrefab;
+    public Player PlayerPrefab;
     public GameObject GameCanvas;
     public GameObject SceneCamera;
     public Text PingText;

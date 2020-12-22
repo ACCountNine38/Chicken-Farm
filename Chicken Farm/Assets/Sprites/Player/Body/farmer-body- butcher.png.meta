@@ -20,6 +20,24 @@ TextureImporter:
   - first:
       213: 1779485103556081279
     second: farmer-body- butcher_5
+  - first:
+      213: -1600628267298011656
+    second: farmer-body- butcher_0
+  - first:
+      213: 7912421942946534205
+    second: farmer-body- butcher_1
+  - first:
+      213: 2731012716821932858
+    second: farmer-body- butcher_2
+  - first:
+      213: -9111582758932671432
+    second: farmer-body- butcher_3
+  - first:
+      213: 8460108444014175004
+    second: farmer-body- butcher_4
+  - first:
+      213: 6446976104396607138
+    second: farmer-body- butcher_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -61,8 +79,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.06}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -124,15 +142,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19a238257d50f8270800000000000000
-      internalID: 8254823064353843857
+      spriteID: 8f5c046421d69c9e0800000000000000
+      internalID: -1600628267298011656
       vertices: []
       indices: 
       edges: []
@@ -145,15 +163,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d7c8d8f9d9fb3690800000000000000
-      internalID: -7621223229816256559
+      spriteID: d339556d5d19ecd60800000000000000
+      internalID: 7912421942946534205
       vertices: []
       indices: 
       edges: []
@@ -166,15 +184,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2d125d591878cff0800000000000000
-      internalID: -15630548360618705
+      spriteID: a3bee3fa89186e520800000000000000
+      internalID: 2731012716821932858
       vertices: []
       indices: 
       edges: []
@@ -187,15 +205,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af3980ebd1633ee50800000000000000
-      internalID: 6837368160648729594
+      spriteID: 8349e3881c72d8180800000000000000
+      internalID: -9111582758932671432
       vertices: []
       indices: 
       edges: []
@@ -208,15 +226,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42a04bcaa7696cab0800000000000000
-      internalID: -4988134083638588892
+      spriteID: c136fb66ec7586570800000000000000
+      internalID: 8460108444014175004
       vertices: []
       indices: 
       edges: []
@@ -229,15 +247,15 @@ TextureImporter:
         y: 0
         width: 48
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f763f88064002b810800000000000000
-      internalID: 1779485103556081279
+      spriteID: 2aecdf10c92487950800000000000000
+      internalID: 6446976104396607138
       vertices: []
       indices: 
       edges: []

@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Clothing : Photon.MonoBehaviour
 {
     public Animator anim;
     public SpriteRenderer sr;
     public PhotonView photonView;
+    public int bodyID;
 
     public Player player;
+    private bool butcher;
 
     // Update is called once per frame
     void Update()
@@ -24,14 +24,37 @@ public class Clothing : Photon.MonoBehaviour
             photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
         }
 
-        // animation updates
-        if (player.anim.GetBool("isMoving"))
+        if(!butcher && player.butcher)
         {
-            anim.SetBool("isMoving", true);
+            butcher = true;
+            anim.SetBool("isMoving", false);
+            anim.SetBool("butcher", true);
+            if(bodyID == 0)
+            {
+                transform.position += new Vector3(0, -0.0001f, 0);
+            }
         }
         else
         {
-            anim.SetBool("isMoving", false);
+            if (butcher && !player.butcher)
+            {
+                butcher = false;
+                anim.SetBool("butcher", false);
+                if (bodyID == 0)
+                {
+                    transform.position -= new Vector3(0, -0.0001f, 0);
+                }
+            }
+
+            // animation updates
+            if (player.anim.GetBool("isMoving"))
+            {
+                anim.SetBool("isMoving", true);
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+            }
         }
     }
 

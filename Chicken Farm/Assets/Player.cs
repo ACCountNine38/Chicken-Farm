@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,25 +9,24 @@ public class Player : Photon.MonoBehaviour
     public Animator anim;
     public GameObject PlayerCamera;
     public SpriteRenderer sr;
+    public CircleCollider2D interactRange;
 
     public float MoveSpeed;
-    public int money;
-    private int previousMoney;
-    private Vector2 moveDirection;
+    public int money, direction = 1;
+    public bool butcher = false;
 
-    public GameObject MarketMenu;
-    private bool market = false;
-
+    public PlayerMarket market;
+    public PlayerHotbar hotbar;
+    
     public Text PlayerNameText;
     public Text PlayerMoneyText;
 
-    // hotbar stuff
-    private Item[] hotbar = new Item[5];
-    private int selected;
-    //private GameObject slot1, slot2, slot3, slot4, slot5;
-
-    // spawnable objects for testing
     public GameObject chicken;
+
+    private Vector2 moveDirection;
+
+    private bool pressed;
+    private float pressTimer;
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -39,14 +37,13 @@ public class Player : Photon.MonoBehaviour
             PlayerCamera.SetActive(true);
             PlayerNameText.text = PhotonNetwork.playerName;
             PlayerNameText.color = Color.yellow;
+            hotbar.visible = true;
         }
         else
         {
             PlayerNameText.text = photonView.owner.name;
             PlayerNameText.color = Color.white;
         }
-
-        previousMoney = 0;
     }
 
     // update is default function that is called every frame
@@ -56,83 +53,10 @@ public class Player : Photon.MonoBehaviour
         if (photonView.isMine)
         {
             CheckInput();
-            UpdateMarket();
-            //UpdateHotbar();
         }
 
     }
-
-    private void UpdateMarket()
-    {
-        if(money != previousMoney)
-        {
-            if(previousMoney < money)
-            {
-                if(previousMoney < money - 15)
-                {
-                    previousMoney += 10;
-                }
-                else
-                {
-                    previousMoney += 1;
-                }
-            }
-            else if (previousMoney > money)
-            {
-                if (previousMoney > money + 15)
-                {
-                    previousMoney -= 10;
-                }
-                else
-                {
-                    previousMoney -= 1;
-                }
-            }
-
-            PlayerMoneyText.text = "Bank: $" + previousMoney;
-        }
-
-        if (market && Input.GetKeyDown(KeyCode.P))
-        {
-            market = false;
-        }
-        else if (!market && Input.GetKeyDown(KeyCode.P))
-        {
-            market = true;
-        }
-
-        if (market)
-        {
-            if (MarketMenu.transform.localPosition.y > 0)
-            {
-                MarketMenu.transform.localPosition = new Vector3(MarketMenu.transform.localPosition.x, MarketMenu.transform.localPosition.y - 20);
-            }
-            if (!MarketMenu.activeSelf)
-            {
-                MarketMenu.SetActive(true);
-            }
-        }
-        else
-        {
-            if (MarketMenu.transform.localPosition.y < 460)
-            {
-                MarketMenu.transform.localPosition = new Vector3(MarketMenu.transform.localPosition.x, MarketMenu.transform.localPosition.y + 20);
-            }
-            if (MarketMenu.transform.localPosition.y >= 460 && MarketMenu.activeSelf)
-            {
-                MarketMenu.SetActive(false);
-            }
-        }
-    }
-
-    //private void UpdateHotbar()
-    //{
-    //    if(hotbar[0] == null)
-    //    {
-    //        slot1.SetActive(false);
-    //    }
-    //}
-
+    
     // called a set amount of times per tick, this is where all the physics happens for consistency
     private void FixedUpdate()
     {
@@ -142,7 +66,15 @@ public class Player : Photon.MonoBehaviour
     // method for user input
     private void CheckInput()
     {
-        if (!MarketMenu.activeSelf)
+        if (butcher)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+            {
+                butcher = false;
+                anim.SetBool("butcher", false);
+            }
+        }
+        else if (!market.MarketMenu.activeSelf)
         {
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveY = Input.GetAxisRaw("Vertical");
@@ -151,11 +83,13 @@ public class Player : Photon.MonoBehaviour
             // keyboard controls
             if (rb.velocity.x < 0)
             {
+                direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
             }
 
             else if (rb.velocity.x > 0)
             {
+                direction = 1;
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 
@@ -168,23 +102,48 @@ public class Player : Photon.MonoBehaviour
             {
                 anim.SetBool("isMoving", false);
             }
+
+            // spawns a chicken for testing
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                photonView.RPC("SpawnChicken", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+            }
+
+            if(Input.GetMouseButton(0))
+            {
+                interactRange.radius = 0.2f;
+                pressed = true;
+            }
+
+            if(pressed)
+            {
+                pressTimer += Time.deltaTime;
+                if(pressTimer > 0.2f)
+                {
+                    pressTimer = 0;
+                    pressed = false;
+                    interactRange.radius = 0f;
+                }
+            }
+
+            if (!butcher && Input.GetMouseButtonDown(0)
+                && hotbar.hotbar[hotbar.selected] != null && hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe")
+            {
+                butcher = true;
+                anim.SetBool("butcher", true);
+                anim.SetBool("isMoving", false);
+            }
         }
         else
         {
             anim.SetBool("isMoving", false);
-        }
-
-        // spawns a chicken for testing
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            PhotonNetwork.Instantiate(chicken.name, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity, 0);
         }
     }
 
     // method that calcualtes and moves the player
     private void Move()
     {
-        if (!MarketMenu.activeSelf)
+        if (!market.MarketMenu.activeSelf && !butcher)
         {
             rb.velocity = new Vector2(moveDirection.x * MoveSpeed, moveDirection.y * MoveSpeed);
         }
@@ -194,7 +153,38 @@ public class Player : Photon.MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Egg"))
+        {
+            if(Input.GetKeyDown(KeyCode.Space) || 
+                (pressed && collision.gameObject.GetComponent<EggScript>().selected &&
+                !collision.gameObject.GetComponent<EggScript>().isPickedUp)) {
+                if(!hotbar.IsFull())
+                {
+                    collision.gameObject.GetComponent<EggScript>().isPickedUp = true;
+                    hotbar.AddItem(Instantiate(hotbar.eggItem));
+                    collision.gameObject.GetComponent<EggScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                }
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Chicken") && collision.gameObject.GetComponent<Chicken>().selected)
+        {
+            if(pressed)
+            {
+                collision.gameObject.GetComponent<Chicken>().butcherProcess = true;
+            }
+        }
+    }
+
     // photon methods that are used to sync on different devices
+    [PunRPC]
+    private void SpawnChicken(float x, float y)
+    {
+        PhotonNetwork.InstantiateSceneObject(chicken.name, new Vector2(x, y), Quaternion.identity, 0, null);
+    }
+
     [PunRPC]
     private void FlipTrue()
     {

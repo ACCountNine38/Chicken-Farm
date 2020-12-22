@@ -28,6 +28,7 @@ MonoBehaviour:
   NetworkLogging: 1
   RunInBackground: 1
   RpcList:
+  - Butcher
   - Chat
   - ColorRpc
   - DestroyRpc
@@ -38,12 +39,18 @@ MonoBehaviour:
   - FlipTrue
   - InstantiateRpc
   - Marco
+  - PickUp
   - PickupItemInit
   - Polo
   - PunPickup
   - PunPickupSimple
   - PunRespawn
+  - RandomizeAction
   - RequestForPickupItems
   - RequestForPickupTimes
+  - SetRandomHunger
+  - SpawnChicken
+  - SpawnEgg
   - TaggedPlayer
+  - UpdateType
   DisableAutoOpenWizard: 1

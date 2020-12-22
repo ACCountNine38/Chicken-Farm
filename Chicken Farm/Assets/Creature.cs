@@ -33,6 +33,9 @@ public class Creature : MonoBehaviour
     [PunRPC]
     protected void Die()
     {
-        Destroy(this.gameObject);
+        if(photonView.isMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 }

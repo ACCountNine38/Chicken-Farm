@@ -2,21 +2,31 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp-Editor.dll:
     - PunSceneSettings
-    - ServerSettingsInspector
     Assembly-CSharp.dll:
+    - Axe
+    - CagedChicken
     - Chicken
     - Clothing
+    - Egg
+    - EggScript
     - GameManager
-    - MarketScript
     - MenuScript
     - PhotonAnimatorView
     - PhotonTransformView
     - PhotonView
     - Player
+    - PlayerHotbar
+    - PlayerMarket
     - RemoveFeed
     - ServerSettings
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -64,9 +74,9 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11248}
+      Script: {instanceID: 11256}
     - Class: 114
-      Script: {instanceID: 11252}
+      Script: {instanceID: 11260}
     - Class: 114
       Script: {instanceID: 11288}
     - Class: 114
@@ -76,7 +86,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11608}
     - Class: 114
-      Script: {instanceID: 11852}
+      Script: {instanceID: 11612}
     - Class: 114
       Script: {instanceID: 11874}
     - Class: 114
@@ -92,13 +102,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12364}
     - Class: 114
-      Script: {instanceID: 13008}
+      Script: {instanceID: 12400}
     - Class: 114
-      Script: {instanceID: 13058}
+      Script: {instanceID: 12762}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13014}
     - Class: 114
-      Script: {instanceID: 13484}
+      Script: {instanceID: 13064}
+    - Class: 114
+      Script: {instanceID: 13116}
+    - Class: 114
+      Script: {instanceID: 13122}
+    - Class: 114
+      Script: {instanceID: 13358}
+    - Class: 114
+      Script: {instanceID: 13424}
+    - Class: 114
+      Script: {instanceID: 13496}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -159,11 +179,11 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11248}
+      Script: {instanceID: 11256}
     - Class: 114
-      Script: {instanceID: 11250}
+      Script: {instanceID: 11258}
     - Class: 114
-      Script: {instanceID: 11252}
+      Script: {instanceID: 11260}
     - Class: 114
       Script: {instanceID: 11288}
     - Class: 114
@@ -171,7 +191,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11546}
     - Class: 114
-      Script: {instanceID: 11852}
+      Script: {instanceID: 11612}
     - Class: 114
       Script: {instanceID: 11932}
     - Class: 114
@@ -185,19 +205,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12364}
     - Class: 114
-      Script: {instanceID: 12534}
+      Script: {instanceID: 12400}
     - Class: 114
-      Script: {instanceID: 12704}
+      Script: {instanceID: 12536}
     - Class: 114
-      Script: {instanceID: 13004}
+      Script: {instanceID: 12706}
     - Class: 114
-      Script: {instanceID: 13008}
+      Script: {instanceID: 12762}
     - Class: 114
-      Script: {instanceID: 13058}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13014}
     - Class: 114
-      Script: {instanceID: 13484}
+      Script: {instanceID: 13064}
+    - Class: 114
+      Script: {instanceID: 13116}
+    - Class: 114
+      Script: {instanceID: 13122}
+    - Class: 114
+      Script: {instanceID: 13358}
+    - Class: 114
+      Script: {instanceID: 13424}
+    - Class: 114
+      Script: {instanceID: 13496}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -465,6 +495,12 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: 0a30eada928818982fd60890da73d2c8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CagedChicken
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -567,13 +603,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: a30a72257e86bf9ede987e0742346c95
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MarketScript
-  - hash:
-      serializedVersion: 2
-      Hash: 79e9209dc1c98ac11477ccc3f1fca469
+      Hash: 56963157b6cd939db679fd837baecdc6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -657,7 +687,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 4ebcd4d6741e9a490bf050b216abe956
+      Hash: b94e750be3dfd5b96bbf083296027b91
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Chicken
@@ -705,7 +735,7 @@ ScriptsOnlyBuild:
     className: HubGui
   - hash:
       serializedVersion: 2
-      Hash: 897b9b1edf01ad865f6ba45f7ce33e47
+      Hash: 41438898a6f0381b2adf9d4704ceb02e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -817,6 +847,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PhotonTransformView
+  - hash:
+      serializedVersion: 2
+      Hash: 0a30eada928818982fd60890da73d2c8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Axe
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -951,6 +987,12 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 0a30eada928818982fd60890da73d2c8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Egg
+  - hash:
+      serializedVersion: 2
       Hash: 0c7e76cb5b160261f9cc2569ec3db865
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1053,13 +1095,13 @@ ScriptsOnlyBuild:
     className: OnClickRequestOwnership
   - hash:
       serializedVersion: 2
-      Hash: 75e382f723f1ef0786adc8cb1f94317c
+      Hash: e435cd59dfd831493c7154f179d8b054
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuScript
   - hash:
       serializedVersion: 2
-      Hash: a8c75494423ffe926b70eaef0d19f9b1
+      Hash: 171a186ea71fb52468e9f46436da4dbc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Clothing
@@ -1111,6 +1153,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ThirdPersonNetwork
+  - hash:
+      serializedVersion: 2
+      Hash: ffff75af77f165d798ef7d5c94c7375e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerMarket
+  - hash:
+      serializedVersion: 2
+      Hash: b7242563ad5bef3e143a966416197932
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerHotbar
   - hash:
       serializedVersion: 2
       Hash: 41d3ef6836ee21c214a1a337de8b357e
@@ -1221,6 +1275,12 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
+      Hash: d5d14bcaa0670dcca9ea71b3e788d4d9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EggScript
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1311,12 +1371,6 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Item
-  - hash:
-      serializedVersion: 2
       Hash: aa88ae22474df55295327e4ee99e5a24
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1351,12 +1405,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 4ebcd4d6741e9a490bf050b216abe956
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ThinChicken
   platform: 2
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
