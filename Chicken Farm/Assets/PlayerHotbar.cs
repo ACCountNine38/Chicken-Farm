@@ -8,12 +8,12 @@ public class PlayerHotbar : MonoBehaviour
     public GameObject[] slots = new GameObject[5];
     public Text[] amounts = new Text[5];
     public Image[] amountContainers = new Image[5];
+    public GameObject[] hotbar = new GameObject[5];
     public Sprite empty;
     public bool visible;
+    public int selected = 0;
 
-    private GameObject[] hotbar = new GameObject[5];
     private float transformDestination = -31.5f;
-    private int selected = 0;
 
     // items
     public GameObject eggItem;

@@ -6,7 +6,7 @@ public class Chicken : Creature
     // base chicken status
     public float hunger, eggCooldown;
     public int type;
-    private bool isDead, canButcher;
+    public bool isDead, canButcher, selected;
 
     public BoxCollider2D collider;
     public ParticleSystem bloodEffect;
@@ -14,7 +14,7 @@ public class Chicken : Creature
     public GameObject egg;
 
     // variables for this chicken if it is named
-    private bool isNamed, butcherProcess;
+    public bool isNamed, butcherProcess;
     private string name;
     public Text nametag;
 
@@ -186,15 +186,14 @@ public class Chicken : Creature
         }
     }
 
-    // checks if collision bound is selected
-    private void OnMouseDown()
-    {
-        // checks if the current client is this device
-        if (!isDead && canButcher)
-        {
-            butcherProcess = true;
-        }
-    }
+    //// checks if collision bound is selected
+    //private void OnMouseDown()
+    //{
+    //    if (!isDead && canButcher)
+    //    {
+    //        butcherProcess = true;
+    //    }
+    //}
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -214,10 +213,13 @@ public class Chicken : Creature
 
     private void OnMouseEnter()
     {
-        sr.material.color = new Color(sr.material.color.r, sr.material.color.g, 150);
+        selected = true;
+        sr.material.color = new Color(sr.material.color.r, sr.material.color.g, sr.material.color.b - 100);
     }
+
     private void OnMouseExit()
     {
+        selected = false;
         sr.material.color = original;
     }
 

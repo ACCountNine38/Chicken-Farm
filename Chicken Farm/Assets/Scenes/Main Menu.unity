@@ -4662,6 +4662,8 @@ MonoBehaviour:
   UsernameInput: {fileID: 128072606}
   CreateGameInput: {fileID: 570510038}
   JoinGameInput: {fileID: 1748684134}
+  username_Invalid_Waring: {fileID: 1748684132}
+  roomname_Invalid_Waring: {fileID: 570510036}
 --- !u!4 &1665000395
 Transform:
   m_ObjectHideFlags: 0

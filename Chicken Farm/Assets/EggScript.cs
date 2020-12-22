@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class EggScript : MonoBehaviour
 {
+    public SpriteRenderer sr;
     public PhotonView photonView;
 
-    void Update()
-    {
+    private Color original;
+    public bool selected, isPickedUp;
 
+    public void Start()
+    {
+        original = sr.color;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnMouseEnter()
     {
-        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayerHotbar hotbar = collision.gameObject.GetComponent<PlayerHotbar>();
-            if(!hotbar.IsFull())
-            {
-                collision.gameObject.GetComponent<PlayerHotbar>().AddItem(Instantiate(hotbar.eggItem));
-                photonView.RPC("PickUp", PhotonTargets.MasterClient);
-            } 
-        }
+        selected = true;
+        sr.material.color = new Color(sr.material.color.r, sr.material.color.g, sr.material.color.b - 100);
+    }
+
+    private void OnMouseExit()
+    {
+        selected = false;
+        sr.material.color = original;
     }
 
     [PunRPC]

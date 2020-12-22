@@ -9,25 +9,24 @@ public class Player : Photon.MonoBehaviour
     public Animator anim;
     public GameObject PlayerCamera;
     public SpriteRenderer sr;
+    public CircleCollider2D interactRange;
 
     public float MoveSpeed;
     public int money, direction = 1;
     public bool butcher = false;
-    private Vector2 moveDirection;
 
     public PlayerMarket market;
     public PlayerHotbar hotbar;
     
     public Text PlayerNameText;
-
-    public static explicit operator Player(GameObject v)
-    {
-        throw new NotImplementedException();
-    }
-
     public Text PlayerMoneyText;
 
     public GameObject chicken;
+
+    private Vector2 moveDirection;
+
+    private bool pressed;
+    private float pressTimer;
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -104,16 +103,35 @@ public class Player : Photon.MonoBehaviour
                 anim.SetBool("isMoving", false);
             }
 
-            if (!butcher && Input.GetMouseButtonDown(0))
-            {
-                butcher = true;
-                anim.SetBool("butcher", true);
-                anim.SetBool("isMoving", false);
-            }
             // spawns a chicken for testing
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 photonView.RPC("SpawnChicken", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+            }
+
+            if(Input.GetMouseButton(0))
+            {
+                interactRange.radius = 0.2f;
+                pressed = true;
+            }
+
+            if(pressed)
+            {
+                pressTimer += Time.deltaTime;
+                if(pressTimer > 0.2f)
+                {
+                    pressTimer = 0;
+                    pressed = false;
+                    interactRange.radius = 0f;
+                }
+            }
+
+            if (!butcher && Input.GetMouseButtonDown(0)
+                && hotbar.hotbar[hotbar.selected] != null && hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe")
+            {
+                butcher = true;
+                anim.SetBool("butcher", true);
+                anim.SetBool("isMoving", false);
             }
         }
         else
@@ -132,6 +150,31 @@ public class Player : Photon.MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Egg"))
+        {
+            if(Input.GetKeyDown(KeyCode.Space) || 
+                (pressed && collision.gameObject.GetComponent<EggScript>().selected &&
+                !collision.gameObject.GetComponent<EggScript>().isPickedUp)) {
+                if(!hotbar.IsFull())
+                {
+                    collision.gameObject.GetComponent<EggScript>().isPickedUp = true;
+                    hotbar.AddItem(Instantiate(hotbar.eggItem));
+                    collision.gameObject.GetComponent<EggScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                }
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Chicken") && collision.gameObject.GetComponent<Chicken>().selected)
+        {
+            if(pressed)
+            {
+                collision.gameObject.GetComponent<Chicken>().butcherProcess = true;
+            }
         }
     }
 
