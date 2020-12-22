@@ -92,51 +92,51 @@ public class MenuScript : MonoBehaviour
     private void UpdateCustomizeCharacter()
     {
 
-        //if (customize_on)
-        //{
-        //    customize_Button.GetComponentInChildren<Text>().text = "Finished";
+        if (customize_on)
+        {
+            customize_Button.GetComponentInChildren<Text>().text = "Finished";
 
-        //    if (Character_Preview_Section.transform.localPosition.x > 0)
-        //    {
-        //        Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x - 20, Character_Preview_Section.transform.localPosition.y);
-        //        Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x - 50, Welcome_Menu_items.transform.localPosition.y);
-        //    }
+            if (Character_Preview_Section.transform.localPosition.x > 0)
+            {
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x - 20, Character_Preview_Section.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x - 50, Welcome_Menu_items.transform.localPosition.y);
+            }
 
-        //}
-        //else
-        //{
-        //    customize_Button.GetComponentInChildren<Text>().text = "Customize";
+        }
+        else
+        {
+            customize_Button.GetComponentInChildren<Text>().text = "Customize";
 
-        //    if (Character_Preview_Section.transform.localPosition.x < 1920 * 0.43)
-        //    {
-        //        Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x + 20, Character_Preview_Section.transform.localPosition.y);
-        //        Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x + 50, Welcome_Menu_items.transform.localPosition.y);
-        //    }
-        //}
+            if (Character_Preview_Section.transform.localPosition.x < 1920 * 0.43)
+            {
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x + 20, Character_Preview_Section.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x + 50, Welcome_Menu_items.transform.localPosition.y);
+            }
+        }
     }
 
     // turn to Create_Character_Menu with  slide effect
     private void UpdateOption()
     {
 
-        //if (option_on)
-        //{
-        //    if (Option_Menu.transform.localPosition.y < 0)
-        //    {
-        //        Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y + 20);
-        //        Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y + 20);
-        //    }
+        if (option_on)
+        {
+            if (Option_Menu.transform.localPosition.y < 0)
+            {
+                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y + 20);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y + 20);
+            }
 
-        //}
-        //else
-        //{
+        }
+        else
+        {
 
-        //    if (Option_Menu.transform.localPosition.y > -1080)
-        //    {
-        //        Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 20);
-        //        Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y - 20);
-        //    }
-        //}
+            if (Option_Menu.transform.localPosition.y > -1080)
+            {
+                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 20);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y - 20);
+            }
+        }
     }
 
 
@@ -148,7 +148,7 @@ public class MenuScript : MonoBehaviour
         {
             if (UsernameInput.text.Length >= 1)
             {
-                if (Welcome_Menu.transform.localPosition.x < 800)
+                if (Welcome_Menu.transform.localPosition.x < 1920)
                 {
                     Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x + 20, Create_Enter_Menu.transform.localPosition.y);
                     Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x + 20, Welcome_Menu.transform.localPosition.y);

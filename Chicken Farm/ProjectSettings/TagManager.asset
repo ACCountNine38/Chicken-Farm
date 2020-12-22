@@ -3,17 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
-  - Image needed
-  - need edition
   - Cloth
-  - Chicken
-  - Chicken Sensory Range
   - Egg
->>>>>>> a9e9e20ba9049b683bcba743ce519a01371ee8dc
+  - Chicken Sensory Range
+  - Chicken
   layers:
   - Default
   - TransparentFX
