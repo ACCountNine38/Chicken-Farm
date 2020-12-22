@@ -25,6 +25,14 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private GameObject username_Invalid_Waring;
     [SerializeField] private GameObject roomname_Invalid_Waring;
 
+    [SerializeField] private GameObject facial_section;
+    [SerializeField] private GameObject hats_section;
+    [SerializeField] private GameObject suit_section;
+
+    [SerializeField] private Image facial_image;
+    [SerializeField] private Image hats_image;
+    [SerializeField] private Image suit_image;
+
     private bool customize_on = false;
     private bool option_on = false;
     private bool start_on = false;
@@ -243,4 +251,21 @@ public class MenuScript : MonoBehaviour
     {
         PhotonNetwork.LoadLevel("Game");
     }
+
+    public void changeInventory(GameObject a)
+    {
+        facial_section.SetActive(false);
+        hats_section.SetActive(false);
+        suit_section.SetActive(false);
+
+        a.SetActive(true);
+    }
+
+    public void setCharacterImage(int id)
+    {
+        Sprite[] sprite = Resources.LoadAll<Sprite>("facials");
+
+        facial_image.sprite = sprite[id];
+    }
+
 }
