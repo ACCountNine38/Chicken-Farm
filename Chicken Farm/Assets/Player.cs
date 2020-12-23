@@ -81,13 +81,13 @@ public class Player : Photon.MonoBehaviour
             moveDirection = new Vector2(moveX, moveY).normalized;
 
             // keyboard controls
-            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+            if (direction != 0 && Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
             {
                 direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
             }
 
-            else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+            else if (direction != 1 && Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
             {
                 direction = 1;
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
