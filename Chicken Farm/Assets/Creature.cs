@@ -16,6 +16,8 @@ public class Creature : MonoBehaviour
     protected float statusTimer;
     protected float maxTimer;
     protected Vector3 randomDirection;
+    protected Color original;
+    protected int direction = 1;
 
     // photon methods that are used to sync on different devices
     [PunRPC]

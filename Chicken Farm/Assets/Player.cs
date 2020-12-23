@@ -81,20 +81,20 @@ public class Player : Photon.MonoBehaviour
             moveDirection = new Vector2(moveX, moveY).normalized;
 
             // keyboard controls
-            if (rb.velocity.x < 0)
+            if (direction != 0 && Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
             {
                 direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
             }
 
-            else if (rb.velocity.x > 0)
+            else if (direction != 1 && Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
             {
                 direction = 1;
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 
             // animation updates
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+            if (Mathf.Abs(rb.velocity.x) > 0.25 || Mathf.Abs(rb.velocity.y) > 0.25)
             {
                 anim.SetBool("isMoving", true);
             }
@@ -118,7 +118,7 @@ public class Player : Photon.MonoBehaviour
             if(pressed)
             {
                 pressTimer += Time.deltaTime;
-                if(pressTimer > 0.2f)
+                if(pressTimer >= 0.1f)
                 {
                     pressTimer = 0;
                     pressed = false;

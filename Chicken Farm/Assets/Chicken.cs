@@ -11,7 +11,7 @@ public class Chicken : Creature
     public BoxCollider2D collider;
     public ParticleSystem bloodEffect;
     public ParticleSystem smokeEffect;
-    public GameObject egg;
+    public GameObject egg, raw;
 
     // variables for this chicken if it is named
     public bool isNamed, butcherProcess;
@@ -19,9 +19,8 @@ public class Chicken : Creature
     public Text nametag;
 
     private float butcherTimer, eggTimer, randomHunger;
-    private Color original;
 
-    public void Start()
+    public void Awake()
     {
         original = sr.color;
         randomHunger = Random.Range(0, 100);
@@ -45,7 +44,8 @@ public class Chicken : Creature
                 Move();
             }
             
-            photonView.RPC("UpdateType", PhotonTargets.MasterClient);
+            //photonView.RPC("UpdateType", PhotonTargets.MasterClient);
+
             if (Input.GetKey(KeyCode.K))
             {
                 photonView.RPC("Butcher", PhotonTargets.AllBuffered);
@@ -99,12 +99,6 @@ public class Chicken : Creature
         }
     }
 
-    [PunRPC]
-    private void SpawnEgg(float x, float y)
-    {
-        PhotonNetwork.InstantiateSceneObject(egg.name, new Vector2(x, y + 0.001f), Quaternion.identity, 0, null);
-    }
-
     private void LayEgg()
     {
         if (type != 1)
@@ -149,12 +143,14 @@ public class Chicken : Creature
         {
             statusTimer += Time.deltaTime;
 
-            if (rb.velocity.x < 0)
+            if (direction == 1 && rb.velocity.x < 0)
             {
+                direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
             }
-            else if (rb.velocity.x > 0)
+            else if (direction == 0 && rb.velocity.x > 0)
             {
+                direction = 1;
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 
@@ -186,15 +182,6 @@ public class Chicken : Creature
         }
     }
 
-    //// checks if collision bound is selected
-    //private void OnMouseDown()
-    //{
-    //    if (!isDead && canButcher)
-    //    {
-    //        butcherProcess = true;
-    //    }
-    //}
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -223,6 +210,18 @@ public class Chicken : Creature
         sr.material.color = original;
     }
 
+    [PunRPC]
+    private void SpawnEgg(float x, float y)
+    {
+        PhotonNetwork.InstantiateSceneObject(egg.name, new Vector2(x, y + 0.001f), Quaternion.identity, 0, null);
+    }
+
+    [PunRPC]
+    private void DropMeat(float x, float y)
+    {
+        PhotonNetwork.InstantiateSceneObject(raw.name, new Vector2(x, y), Quaternion.identity, 0, null);
+    }
+
     // fate
     [PunRPC]
     public void Butcher()
@@ -234,5 +233,6 @@ public class Chicken : Creature
         isDead = true;
         sr.enabled = false;
         collider.isTrigger = true;
+        photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
     }
 }
