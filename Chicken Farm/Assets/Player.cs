@@ -118,7 +118,7 @@ public class Player : Photon.MonoBehaviour
             if(pressed)
             {
                 pressTimer += Time.deltaTime;
-                if(pressTimer > 0.2f)
+                if(pressTimer >= 0.1f)
                 {
                     pressTimer = 0;
                     pressed = false;

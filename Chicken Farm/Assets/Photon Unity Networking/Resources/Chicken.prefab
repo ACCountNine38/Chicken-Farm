@@ -4989,8 +4989,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 30
-  m_LinearDrag: 3
+  m_Mass: 50
+  m_LinearDrag: 8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -5187,10 +5187,12 @@ MonoBehaviour:
   type: 0
   isDead: 0
   canButcher: 0
+  selected: 0
   collider: {fileID: 4738715323466669721}
   bloodEffect: {fileID: 4376255304598798915}
   smokeEffect: {fileID: 5878973111675702819}
   egg: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5, type: 3}
+  raw: {fileID: 8176557815406985942, guid: a477c899337ef41e98ef3077b18aed75, type: 3}
   isNamed: 0
   butcherProcess: 0
   nametag: {fileID: 0}
