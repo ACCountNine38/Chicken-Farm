@@ -19,9 +19,8 @@ public class Chicken : Creature
     public Text nametag;
 
     private float butcherTimer, eggTimer, randomHunger;
-    private Color original;
 
-    public void Start()
+    public void Awake()
     {
         original = sr.color;
         randomHunger = Random.Range(0, 100);
@@ -45,7 +44,8 @@ public class Chicken : Creature
                 Move();
             }
             
-            photonView.RPC("UpdateType", PhotonTargets.MasterClient);
+            //photonView.RPC("UpdateType", PhotonTargets.MasterClient);
+
             if (Input.GetKey(KeyCode.K))
             {
                 photonView.RPC("Butcher", PhotonTargets.AllBuffered);
@@ -149,12 +149,14 @@ public class Chicken : Creature
         {
             statusTimer += Time.deltaTime;
 
-            if (rb.velocity.x < 0)
+            if (direction == 1 && rb.velocity.x < 0)
             {
+                direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
             }
-            else if (rb.velocity.x > 0)
+            else if (direction == 0 && rb.velocity.x > 0)
             {
+                direction = 1;
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 

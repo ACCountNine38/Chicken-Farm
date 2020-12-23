@@ -7,24 +7,28 @@ public class Clothing : Photon.MonoBehaviour
     public PhotonView photonView;
     public int bodyID;
 
-    public Player player;
+    public GameObject player;
+
     private bool butcher;
+    private int direction;
 
     // Update is called once per frame
     void Update()
     {
         // keyboard controls
-        if (player.rb.velocity.x < 0)
+        if (direction!= 0 && player.GetComponent<Player>().direction == 0)
         {
+            direction = 0;
             photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
         }
 
-        else if (player.rb.velocity.x > 0)
+        else if (direction != 1 && player.GetComponent<Player>().direction == 1)
         {
+            direction = 1;
             photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
         }
 
-        if(!butcher && player.butcher)
+        if(!butcher && player.GetComponent<Player>().butcher)
         {
             butcher = true;
             anim.SetBool("isMoving", false);
@@ -36,7 +40,7 @@ public class Clothing : Photon.MonoBehaviour
         }
         else
         {
-            if (butcher && !player.butcher)
+            if (butcher && !player.GetComponent<Player>().butcher)
             {
                 butcher = false;
                 anim.SetBool("butcher", false);
@@ -47,7 +51,7 @@ public class Clothing : Photon.MonoBehaviour
             }
 
             // animation updates
-            if (player.anim.GetBool("isMoving"))
+            if (player.GetComponent<Player>().anim.GetBool("isMoving"))
             {
                 anim.SetBool("isMoving", true);
             }
