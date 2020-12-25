@@ -34,6 +34,7 @@ MonoBehaviour:
   - DestroyRpc
   - Die
   - DoJump
+  - DropMeat
   - Flash
   - FlipFalse
   - FlipTrue
@@ -53,5 +54,9 @@ MonoBehaviour:
   - SpawnEgg
   - TaggedPlayer
   - UpdateType
-  - DropMeat
+  - PreButcher
+  - DropAxe
+  - DropCageChicken
+  - DropEgg
+  - DropCagedChicken
   DisableAutoOpenWizard: 1
