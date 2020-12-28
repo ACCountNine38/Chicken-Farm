@@ -37,6 +37,20 @@ public class MenuScript : MonoBehaviour
     private bool option_on = false;
     private bool start_on = false;
 
+    [SerializeField] private AudioSource musicAudioSource;
+    [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField] private GameObject masterSlider;
+    [SerializeField] private GameObject musicSlider;
+    [SerializeField] private GameObject sfxSlider;
+
+    private float masterVolume = 0.5f;
+    private float musicVolume = 0.5f;
+    private float sfxVolume = 0.2f;
+
+    [SerializeField] private int facial_id = 0;
+    [SerializeField] private int hat_id = 0;
+    [SerializeField] private int suit_id = 0;
+
     // Awake() is called when photon network is initiated
     private void Awake()
     {
@@ -47,6 +61,17 @@ public class MenuScript : MonoBehaviour
     private void Start()
     {
         Welcome_Menu.SetActive(true);
+
+        //initialize variables
+        facial_id = 0;
+        hat_id = 0;
+        suit_id = 0;
+        masterVolume = 0.5f;
+        musicVolume = 0.5f;
+        sfxVolume = 0.2f;
+        customize_on = false;
+        option_on = false;
+        start_on = false;
     }
 
     // OnConnectedToMaster() is a built in function in photon, this method logs the connection for each user
@@ -64,6 +89,7 @@ public class MenuScript : MonoBehaviour
         UpdateOption();
         UpdateStart();
         UpdateUserNameValidation();
+        UpdateVolume();
 
     }
 
@@ -131,7 +157,7 @@ public class MenuScript : MonoBehaviour
         else
         {
 
-            if (Option_Menu.transform.localPosition.y > -1080)
+            if (Option_Menu.transform.localPosition.y > -1080 - 1080)
             {
                 Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 20);
                 Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y - 20);
@@ -156,6 +182,7 @@ public class MenuScript : MonoBehaviour
             }
             else
             {
+                start_on = false;
                 username_Invalid_Waring.GetComponent<Text>().color = Color.yellow;
             }
 
@@ -261,11 +288,67 @@ public class MenuScript : MonoBehaviour
         a.SetActive(true);
     }
 
-    public void setCharacterImage(int id)
+    public void setFacialImage(int id)
     {
-        Sprite[] sprite = Resources.LoadAll<Sprite>("facials");
+        facial_id = id;
 
-        facial_image.sprite = sprite[id];
+        Sprite[] sprite = Resources.LoadAll<Sprite>("Icons/facials");
+
+        facial_image.sprite = sprite[facial_id];
+
+    }
+
+    public void setHatImage(int id)
+    {
+        hat_id = id;
+
+        Sprite[] sprite = Resources.LoadAll<Sprite>("Icons/hats");
+
+        hats_image.sprite = sprite[hat_id];
+
+    }
+
+    public void setSuitImage(int id)
+    {
+        suit_id = id;
+
+        Sprite[] sprite = Resources.LoadAll<Sprite>("Icons/suits");
+
+        suit_image.sprite = sprite[suit_id];
+    }
+
+    public void setRandomCharacterImages()
+    {
+        Sprite[] sprite1 = Resources.LoadAll<Sprite>("Icons/facials");
+        Sprite[] sprite2 = Resources.LoadAll<Sprite>("Icons/hats");
+        Sprite[] sprite3 = Resources.LoadAll<Sprite>("Icons/suits");
+
+        int facial_new_id = Random.Range(0, sprite1.Length - 1);
+        int hats_new_id = Random.Range(0, sprite2.Length - 1);
+        int suits_new_id = Random.Range(0, sprite3.Length - 1);
+
+        setFacialImage(facial_new_id);
+        setHatImage(hats_new_id);
+        setSuitImage(suits_new_id);
+
+    }
+
+    private void UpdateVolume()
+    {
+        musicAudioSource.volume = musicVolume * masterVolume;
+        sfxAudioSource.volume = sfxVolume * masterVolume;
+    }
+
+    public void updateALLVolume()
+    {
+        masterVolume = masterSlider.GetComponent<Slider>().value;
+        musicVolume = musicSlider.GetComponent<Slider>().value;
+        sfxVolume = sfxSlider.GetComponent<Slider>().value;
+    }
+
+    public void playMenusfx()
+    {
+        sfxAudioSource.Play();
     }
 
 }
