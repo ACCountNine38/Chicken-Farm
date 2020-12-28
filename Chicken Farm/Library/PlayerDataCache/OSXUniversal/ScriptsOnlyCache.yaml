@@ -4,20 +4,26 @@ ScriptsOnlyBuild:
     - PunSceneSettings
     Assembly-CSharp.dll:
     - Axe
+    - AxeScript
     - CagedChicken
+    - CagedChickenScript
     - Chicken
     - Clothing
-    - DragAndDrop
+    - DangerRange
     - Egg
     - EggScript
     - GameManager
+    - HouseScript
+    - ItemSlot
     - MenuScript
+    - Oven
     - PhotonAnimatorView
     - PhotonTransformView
     - PhotonView
     - Player
     - PlayerHotbar
     - PlayerMarket
+    - PlayerOven
     - RawChicken
     - RawChickenScript
     - RemoveFeed
@@ -127,7 +133,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14120}
     - Class: 114
-      Script: {instanceID: 141974}
+      Script: {instanceID: 193864}
+    - Class: 114
+      Script: {instanceID: 316268}
+    - Class: 114
+      Script: {instanceID: 316274}
+    - Class: 114
+      Script: {instanceID: 366324}
+    - Class: 114
+      Script: {instanceID: 413834}
+    - Class: 114
+      Script: {instanceID: 560262}
+    - Class: 114
+      Script: {instanceID: 911968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -252,7 +270,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14154}
     - Class: 114
-      Script: {instanceID: 141974}
+      Script: {instanceID: 193864}
+    - Class: 114
+      Script: {instanceID: 316268}
+    - Class: 114
+      Script: {instanceID: 316274}
+    - Class: 114
+      Script: {instanceID: 366324}
+    - Class: 114
+      Script: {instanceID: 560262}
+    - Class: 114
+      Script: {instanceID: 911968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -328,7 +356,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: c02c0bc9205a18c222c010212ae86fb2
+      Hash: 9e665af7d63061ee3aab193a2ab288e6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RawChickenScript
@@ -694,12 +722,6 @@ ScriptsOnlyBuild:
     className: ConnectAndJoinRandom
   - hash:
       serializedVersion: 2
-      Hash: 1f051cf315b40db5ea3471c074c1339b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraFollow
-  - hash:
-      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -712,7 +734,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 63184753f76bc7c621a2445c9090d774
+      Hash: f9a19aff0c9c10c52a99d3686504291d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Chicken
@@ -898,7 +920,7 @@ ScriptsOnlyBuild:
     className: AudioRpc
   - hash:
       serializedVersion: 2
-      Hash: 0a30eada928818982fd60890da73d2c8
+      Hash: e383ee662d6ec53c9872ea7be88659b4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RawChicken
@@ -964,7 +986,7 @@ ScriptsOnlyBuild:
     className: OnAwakePhysicsSettings
   - hash:
       serializedVersion: 2
-      Hash: 4f4c07c0bcc9ac1d067b6f16be35d008
+      Hash: b74883900b550e3d1975d986fabb3943
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Creature
@@ -1198,7 +1220,7 @@ ScriptsOnlyBuild:
     className: PlayerMarket
   - hash:
       serializedVersion: 2
-      Hash: fc9e886da68627ce3c6be2e620cd3ac4
+      Hash: 3f2c352afe0965f5c52c24a77ac2f82a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerHotbar
@@ -1312,7 +1334,7 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
-      Hash: c02c0bc9205a18c222c010212ae86fb2
+      Hash: 05c2f1255d4b12bdf9391d788b994f21
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EggScript
@@ -1450,10 +1472,58 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 2ae47c761f3f0f3bee1fce61f570e6fe
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: DragAndDrop
+    className: ItemSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 05c2f1255d4b12bdf9391d788b994f21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CagedChickenScript
+  - hash:
+      serializedVersion: 2
+      Hash: 05c2f1255d4b12bdf9391d788b994f21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AxeScript
+  - hash:
+      serializedVersion: 2
+      Hash: 05c2f1255d4b12bdf9391d788b994f21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WorldItemDefault
+  - hash:
+      serializedVersion: 2
+      Hash: 41abf6f7cf7e753e92d0a6b07f2dbea7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Oven
+  - hash:
+      serializedVersion: 2
+      Hash: 3e0614decf9ef641dcc7a4b9b8453eac
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Structure
+  - hash:
+      serializedVersion: 2
+      Hash: de188dca42422728297ad0e191736016
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HouseScript
+  - hash:
+      serializedVersion: 2
+      Hash: d91893bf0053d36be12cc44b467f8123
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DangerRange
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerOven
   platform: 2
   scenePathNames:
   - Assets/Scenes/Main Menu.unity

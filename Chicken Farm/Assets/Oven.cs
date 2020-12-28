@@ -5,6 +5,10 @@ using UnityEngine;
 public class Oven : Structure
 {
     public GameObject stored;
-    public GameObject fuel;
     public float time;
+
+    public void Update()
+    {
+        
+    }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,8 +25,7 @@ public class Player : Photon.MonoBehaviour
 
     private Vector2 moveDirection;
 
-    private bool pressed, space;
-    private float pressTimer;
+    private List<Collider2D> colliders = new List<Collider2D>();
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -78,6 +77,8 @@ public class Player : Photon.MonoBehaviour
         }
         else if (!market.visible)
         {
+            UpdateColliders();
+
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveY = Input.GetAxisRaw("Vertical");
             moveDirection = new Vector2(moveX, moveY).normalized;
@@ -109,30 +110,6 @@ public class Player : Photon.MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 photonView.RPC("SpawnChicken", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
-            }
-
-            if(Input.GetMouseButton(0))
-            {
-                interactRange.radius = 0.2f;
-                pressed = true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                interactRange.radius = 0.2f;
-                space = true;
-            }
-
-            if (pressed || space)
-            {
-                pressTimer += Time.deltaTime;
-                if(pressTimer >= 0.1f)
-                {
-                    pressTimer = 0;
-                    pressed = false;
-                    space = false;
-                    interactRange.radius = 0f;
-                }
             }
 
             if (!butcher && Input.GetMouseButtonDown(0) && CanButcher())
@@ -167,83 +144,102 @@ public class Player : Photon.MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void UpdateColliders()
     {
-        if(market.visible && !photonView.isMine)
+        if (market.visible && !photonView.isMine)
         {
             return;
         }
 
-        if (collision.gameObject.CompareTag("Egg"))
+        for (int i = 0; i < colliders.Count; i++)
         {
-            if((space || (pressed && collision.gameObject.GetComponent<EggScript>().selected)) &&
-                hotbar.CanAdd(hotbar.eggItem) && !collision.gameObject.GetComponent<EggScript>().isPickedUp)
+            if (colliders[i].gameObject.CompareTag("Egg"))
             {
-                collision.gameObject.GetComponent<EggScript>().isPickedUp = true;
-                collision.gameObject.GetComponent<EggScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
-                hotbar.AddItem(Instantiate(hotbar.eggItem));
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("Raw Chicken"))
-        {
-            if ((space || (pressed && collision.gameObject.GetComponent<RawChickenScript>().selected)) &&
-                hotbar.CanAdd(hotbar.rawChicken) && !collision.gameObject.GetComponent<RawChickenScript>().isPickedUp)
-            {
-                collision.gameObject.GetComponent<RawChickenScript>().isPickedUp = true;
-                collision.gameObject.GetComponent<RawChickenScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
-                hotbar.AddItem(Instantiate(hotbar.rawChicken));
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("Caged Chicken"))
-        {
-            if ((space || (pressed && collision.gameObject.GetComponent<CagedChickenScript>().selected)) &&
-                hotbar.CanAdd(hotbar.rawChicken) && !collision.gameObject.GetComponent<CagedChickenScript>().isPickedUp)
-            {
-                collision.gameObject.GetComponent<CagedChickenScript>().isPickedUp = true;
-                collision.gameObject.GetComponent<CagedChickenScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
-                hotbar.AddItem(Instantiate(hotbar.cagedChicken));
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("Axe"))
-        {
-            if ((space || (pressed && collision.gameObject.GetComponent<AxeScript>().selected)) &&
-                hotbar.CanAdd(hotbar.rawChicken) && !collision.gameObject.GetComponent<AxeScript>().isPickedUp)
-            {
-                collision.gameObject.GetComponent<AxeScript>().isPickedUp = true;
-                collision.gameObject.GetComponent<AxeScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
-                hotbar.AddItem(Instantiate(hotbar.axe));
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("Chicken") && collision.gameObject.GetComponent<Chicken>().IsSelected() &&
-            CanButcher())
-        {
-            if(pressed)
-            {
-                collision.gameObject.GetComponent<Chicken>().photonView.RPC("PreButcher", PhotonTargets.MasterClient);
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("Vendor") && collision.gameObject.GetComponent<Vendor>().IsSelected())
-        {
-            if (pressed)
-            {
-                if(transform.position.x < collision.gameObject.transform.position.x && collision.GetComponent<Vendor>().direction == 1)
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<EggScript>().selected)) &&
+                    hotbar.CanAdd(hotbar.eggItem) && !colliders[i].gameObject.GetComponent<EggScript>().isPickedUp)
                 {
-                    collision.GetComponent<Vendor>().direction = 0;
-                    collision.GetComponent<Vendor>().photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
+                    colliders[i].gameObject.GetComponent<EggScript>().isPickedUp = true;
+                    colliders[i].gameObject.GetComponent<EggScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                    hotbar.AddItem(Instantiate(hotbar.eggItem));
                 }
-                else if (transform.position.x > collision.gameObject.transform.position.x && collision.GetComponent<Vendor>().direction == 0)
-                {
-                    collision.GetComponent<Vendor>().direction = 1;
-                    collision.GetComponent<Vendor>().photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
-                }
-
-                market.visible = true;
             }
+
+            else if (colliders[i].gameObject.CompareTag("Raw Chicken"))
+            {
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<RawChickenScript>().selected)) &&
+                    hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<RawChickenScript>().isPickedUp)
+                {
+                    hotbar.AddChicken(colliders[i].gameObject.GetComponent<RawChickenScript>().cookedMagnitude);
+                    colliders[i].gameObject.GetComponent<RawChickenScript>().isPickedUp = true;
+                    colliders[i].gameObject.GetComponent<RawChickenScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                }
+            }
+
+            else if (colliders[i].gameObject.CompareTag("Caged Chicken"))
+            {
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<CagedChickenScript>().selected)) &&
+                    hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<CagedChickenScript>().isPickedUp)
+                {
+                    colliders[i].gameObject.GetComponent<CagedChickenScript>().isPickedUp = true;
+                    colliders[i].gameObject.GetComponent<CagedChickenScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                    hotbar.AddItem(Instantiate(hotbar.cagedChicken));
+                }
+            }
+
+            else if (colliders[i].gameObject.CompareTag("Axe"))
+            {
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<AxeScript>().selected)) &&
+                    hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<AxeScript>().isPickedUp)
+                {
+                    colliders[i].gameObject.GetComponent<AxeScript>().isPickedUp = true;
+                    colliders[i].gameObject.GetComponent<AxeScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                    hotbar.AddItem(Instantiate(hotbar.axe));
+                }
+            }
+
+            else if (colliders[i].gameObject.CompareTag("Chicken") && colliders[i].gameObject.GetComponent<Chicken>().IsSelected() &&
+                CanButcher())
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    colliders[i].gameObject.GetComponent<Chicken>().photonView.RPC("PreButcher", PhotonTargets.MasterClient);
+                }
+            }
+
+            else if (colliders[i].gameObject.CompareTag("Vendor") && colliders[i].gameObject.GetComponent<Vendor>().IsSelected())
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (transform.position.x < colliders[i].gameObject.transform.position.x && colliders[i].GetComponent<Vendor>().direction == 1)
+                    {
+                        colliders[i].GetComponent<Vendor>().direction = 0;
+                        colliders[i].GetComponent<Vendor>().photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
+                    }
+                    else if (transform.position.x > colliders[i].gameObject.transform.position.x && colliders[i].GetComponent<Vendor>().direction == 0)
+                    {
+                        colliders[i].GetComponent<Vendor>().direction = 1;
+                        colliders[i].GetComponent<Vendor>().photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
+                    }
+
+                    market.visible = true;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!colliders.Contains(collision))
+        {
+            colliders.Add(collision);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (colliders.Contains(collision))
+        {
+            colliders.Remove(collision);
         }
     }
 

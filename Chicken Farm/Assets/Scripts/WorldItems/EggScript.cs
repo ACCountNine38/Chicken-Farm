@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class EggScript : WorldItems
 {
-    private void OnMouseEnter()
+    public void Update()
     {
-        Hover();
-    }
-
-    private void OnMouseExit()
-    {
-        Unhover();
+        CheckHovering();
     }
 }

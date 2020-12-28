@@ -279,5 +279,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr: {fileID: 2901147753316843307}
   photonView: {fileID: 6331968035610431340}
+  selectBound: {fileID: 5792427585661197619}
   selected: 0
   isPickedUp: 0

@@ -19,6 +19,8 @@ public class Chicken : Creature
 
     private float butcherTimer, eggTimer, randomHunger;
 
+    public Vector3 dangerPos;
+
     public void Awake()
     {
         original = sr.color;
@@ -36,6 +38,7 @@ public class Chicken : Creature
     // Update is called once per frame
     void Update()
     {
+        CheckHovering();
         if (!isDead)
         {
             if(PhotonNetwork.isMasterClient)
@@ -80,7 +83,7 @@ public class Chicken : Creature
         {
             type = 0;
             anim.SetInteger("type", 0);
-            speed = 3;
+            speed = 2.5f;
             eggCooldown = 30;
         }
         // thicc chicken
@@ -133,22 +136,31 @@ public class Chicken : Creature
                 photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
             }
         }
-        else if (status == "move")
+        else if (status == "move" || status == "run")
         {
             statusTimer += Time.deltaTime;
 
-            if (direction == 1 && rb.velocity.x < 0)
+            if (direction == 1 && rb.velocity.x < 0.5)
             {
                 direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
             }
-            else if (direction == 0 && rb.velocity.x > 0)
+            else if (direction == 0 && rb.velocity.x > 0.5)
             {
                 direction = 1;
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 
-            rb.velocity = new Vector2(randomDirection.x * speed, randomDirection.y * speed);
+            if (status == "move")
+            {
+                rb.velocity = new Vector2(randomDirection.x * speed, randomDirection.y * speed);
+            }
+            else if (status == "run")
+            {
+                Vector3 runDirection = (rb.transform.position - dangerPos).normalized;
+                rb.velocity = new Vector2(runDirection.x * (speed + 1), runDirection.y * (speed + 1));
+            }
+
             if (statusTimer >= maxTimer)
             {
                 photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
@@ -176,6 +188,14 @@ public class Chicken : Creature
         }
     }
 
+    public void DangerDetected(Collider2D collision)
+    {
+        maxTimer = 1.0f;
+        status = "run";
+        statusTimer = 0.0f;
+        dangerPos = collision.gameObject.GetComponent<Player>().transform.position;
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -190,18 +210,6 @@ public class Chicken : Creature
         {
             canButcher = false;
         }
-    }
-
-    private void OnMouseEnter()
-    {
-        selected = true;
-        sr.material.color = new Color(sr.material.color.r, sr.material.color.g, sr.material.color.b - 100);
-    }
-
-    private void OnMouseExit()
-    {
-        selected = false;
-        sr.material.color = original;
     }
 
     [PunRPC]
