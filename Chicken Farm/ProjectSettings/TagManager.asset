@@ -8,6 +8,11 @@ TagManager:
   - Egg
   - Chicken Sensory Range
   - Chicken
+  - Image needed
+  - Raw Chicken
+  - Vendor
+  - Caged Chicken
+  - Axe
   layers:
   - Default
   - TransparentFX

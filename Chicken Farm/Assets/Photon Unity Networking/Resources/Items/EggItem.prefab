@@ -89,5 +89,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Egg
   stackable: 1
-  maxStack: 16
+  maxStack: 5
   currentStack: 0
