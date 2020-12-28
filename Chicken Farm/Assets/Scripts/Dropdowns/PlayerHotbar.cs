@@ -11,13 +11,17 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public Text[] amounts = new Text[5];
     public Image[] amountContainers = new Image[5];
     public GameObject[] hotbar = new GameObject[5];
-    public Sprite empty;
+    public Sprite empty, cooked, burnt;
     public bool visible, drag;
     public int selected = 0;
+
+    public Image[] iconLayer2 = new Image[5];
+    public Image[] iconLayer3 = new Image[5];
 
     private float transformDestination = -31.5f, dropOffsetX, dropOffsetY;
     private int draggedIndex;
     private Vector2[] originalHotbarPositions = new Vector2[5];
+    private bool dragColorUpdated;
 
     // items
     public GameObject eggItem, cagedChicken, axe, rawChicken;
@@ -27,10 +31,11 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     // Start is called before the first frame update
     private void Awake()
     {
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             originalHotbarPositions[i] = slotIcons[i].transform.localPosition;
         }
+
         AddItem(Instantiate(axe));
         AddItem(Instantiate(eggItem), 2);
         AddItem(Instantiate(cagedChicken));
@@ -52,11 +57,21 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (drag && !slots[draggedIndex].GetComponent<ItemSlot>().MouseHover())
         {
             slotIcons[draggedIndex].transform.position = Input.mousePosition;
-            slotIcons[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+            iconLayer2[draggedIndex].transform.position = Input.mousePosition;
+            iconLayer3[draggedIndex].transform.position = Input.mousePosition;
+            if(!dragColorUpdated)
+            {
+                slotIcons[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f * slotIcons[draggedIndex].GetComponent<Image>().color.a);
+                iconLayer2[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f * iconLayer2[draggedIndex].GetComponent<Image>().color.a);
+                iconLayer3[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f * iconLayer3[draggedIndex].GetComponent<Image>().color.a);
+                dragColorUpdated = true;
+            }
         }
         else
         {
             slotIcons[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
+            iconLayer2[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
+            iconLayer3[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
         }
     }
 
@@ -109,38 +124,43 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     for(int i = 0; i < hotbar[draggedIndex].GetComponent<Item>().currentStack; i++)
                     {
                         dropOffsetY = Random.Range(0, 0.2f);
-                        DropItem(hotbar[draggedIndex].GetComponent<Item>().itemName);
+                        DropItem(hotbar[draggedIndex].GetComponent<Item>());
                     }
                 }
                 else
                 {
                     dropOffsetY = Random.Range(0, 0.2f);
-                    DropItem(hotbar[draggedIndex].GetComponent<Item>().itemName);
+                    DropItem(hotbar[draggedIndex].GetComponent<Item>());
                 }
                 hotbar[draggedIndex] = null;
             }
 
             drag = false;
+            dragColorUpdated = false;
             slotIcons[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
-            slotIcons[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            iconLayer2[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
+            iconLayer3[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
+            slotIcons[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 2f * slotIcons[draggedIndex].GetComponent<Image>().color.a);
+            iconLayer2[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 2f * iconLayer2[draggedIndex].GetComponent<Image>().color.a);
+            iconLayer3[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 2f * iconLayer3[draggedIndex].GetComponent<Image>().color.a);
         }
     }
 
-    private void DropItem(string name)
+    private void DropItem(Item item)
     {
-        if(name == "Egg")
+        if(item.itemName == "Egg")
         {
             player.photonView.RPC("DropEgg", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
         }
-        else if(name == "Raw Chicken")
+        else if(item.itemName == "Raw Chicken")
         {
-            player.photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+            player.photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y, item.GetComponent<RawChicken>().cookedMagnitude);
         }
-        else if (name == "Caged Chicken")
+        else if (item.itemName == "Caged Chicken")
         {
             player.photonView.RPC("DropCagedChicken", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
         }
-        else if (name == "Axe")
+        else if (item.itemName == "Axe")
         {
             player.photonView.RPC("DropAxe", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
         }
@@ -227,6 +247,42 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     amountContainers[i].gameObject.SetActive(false);
                 }
             }
+
+            if (!drag)
+            {
+                // updates the special image layers for chicken
+                if (hotbar[i] != null && hotbar[i].GetComponent<Item>().itemName == "Raw Chicken")
+                {
+                    iconLayer2[i].sprite = cooked;
+                    iconLayer3[i].sprite = burnt;
+                    float cookedMagnitude = hotbar[i].GetComponent<RawChicken>().cookedMagnitude;
+                    if (cookedMagnitude <= 255)
+                    {
+                        Color temp = slotIcons[i].color;
+                        temp.a = (255 - cookedMagnitude) / 255f;
+                        slotIcons[i].color = temp;
+                        iconLayer2[i].color = new Color(1f, 1f, 1f, 1f);
+                    }
+                    else if (cookedMagnitude <= 510)
+                    {
+                        Color temp = iconLayer2[i].color;
+                        Color temp2 = slotIcons[i].color;
+                        temp.a = (510 - cookedMagnitude) / 255f;
+                        temp2.a = 0;
+                        iconLayer2[i].color = temp;
+                        slotIcons[i].color = temp2;
+                    }
+                }
+                else
+                {
+                    slotIcons[i].color = new Color(1f, 1f, 1f, 1f);
+                    iconLayer2[i].color = new Color(1f, 1f, 1f, 1f);
+                    iconLayer3[i].color = new Color(1f, 1f, 1f, 1f);
+                    iconLayer2[i].sprite = empty;
+                    iconLayer3[i].sprite = empty;
+                }
+            }
+            
         }
     }
 
@@ -278,6 +334,20 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         for(int i = 0; i < amount; i++)
         {
             AddItem(item);
+        }
+    }
+
+    // a spot must be avaliable in the inventory
+    public void AddChicken(float magnitude)
+    {
+        for (int i = 0; i < hotbar.Length; i++)
+        {
+            if (hotbar[i] == null)
+            {
+                hotbar[i] = Instantiate(rawChicken);
+                hotbar[i].GetComponent<RawChicken>().cookedMagnitude = magnitude;
+                break;
+            }
         }
     }
 
@@ -349,9 +419,10 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
 
     [PunRPC]
-    private void DropMeat(float x, float y)
+    private void DropMeat(float x, float y, float cookedMagnitude)
     {
-        PhotonNetwork.InstantiateSceneObject(raw.name, new Vector2(x + dropOffsetX, y), Quaternion.identity, 0, null);
+        object[] magnitude = { cookedMagnitude };
+        PhotonNetwork.InstantiateSceneObject(rawChicken.name, new Vector2(x + dropOffsetX, y), Quaternion.identity, 0, magnitude);
     }
 
     [PunRPC]

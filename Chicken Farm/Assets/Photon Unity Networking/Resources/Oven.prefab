@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8811834530268543748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.232, y: 1, z: -73.35851}
+  m_LocalPosition: {x: 0, y: 1, z: -73.35851}
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &8811834530268543757
 Rigidbody2D:
   serializedVersion: 4
@@ -235,9 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb89b0403fc514aeb8f63ea05b58bf34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 0}
-  photonView: {fileID: 0}
-  anim: {fileID: 0}
+  sr: {fileID: 8811834530268543756}
+  photonView: {fileID: 8811834530268543744}
+  anim: {fileID: 8811834530268543745}
   stored: {fileID: 0}
   fuel: {fileID: 0}
   time: 0

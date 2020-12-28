@@ -4822,13 +4822,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3692135344123589108}
   - component: {fileID: 8002693729404201479}
+  - component: {fileID: 3556683105083067484}
   m_Layer: 0
   m_Name: Danger Range
   m_TagString: Chicken Sensory Range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3692135344123589108
 Transform:
   m_ObjectHideFlags: 0
@@ -4856,9 +4857,22 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.55
+--- !u!114 &3556683105083067484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444013416651197909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea0fcd8889b14224b24a0c12662ccad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dangerRange: {fileID: 8002693729404201479}
 --- !u!1 &4738715323466669716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4871,7 +4885,7 @@ GameObject:
   - component: {fileID: 4738715323466669720}
   - component: {fileID: 4738715323466669721}
   - component: {fileID: 4738715323466669718}
-  - component: {fileID: 4127270563201112575}
+  - component: {fileID: 4067174493039212054}
   - component: {fileID: 4738715323466669722}
   - component: {fileID: 4738715323466669727}
   - component: {fileID: 4738715323466669724}
@@ -4998,8 +5012,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4127270563201112575
-CircleCollider2D:
+--- !u!61 &4067174493039212054
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5011,9 +5025,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.125}
+  m_Offset: {x: 0.0013256595, y: 0.12064049}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.065}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.11
+  m_Size: {x: 0.21659724, y: 0.22455138}
+  m_EdgeRadius: 0
 --- !u!95 &4738715323466669722
 Animator:
   serializedVersion: 3
@@ -5179,6 +5203,7 @@ MonoBehaviour:
   rb: {fileID: 4738715323466669718}
   anim: {fileID: 4738715323466669722}
   sr: {fileID: 4738715323466669720}
+  selectBound: {fileID: 4067174493039212054}
   speed: 3
   runSpeed: 5
   status: idle
@@ -5187,7 +5212,6 @@ MonoBehaviour:
   type: 0
   isDead: 0
   canButcher: 0
-  selected: 0
   collider: {fileID: 4738715323466669721}
   bloodEffect: {fileID: 4376255304598798915}
   smokeEffect: {fileID: 5878973111675702819}
@@ -5196,6 +5220,7 @@ MonoBehaviour:
   isNamed: 0
   butcherProcess: 0
   nametag: {fileID: 0}
+  dangerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &5326122154800139722
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class CagedChickenScript : WorldItems
 {
-    private void OnMouseEnter()
+    public void Update()
     {
-        Hover();
-    }
-
-    private void OnMouseExit()
-    {
-        Unhover();
+        CheckHovering();
     }
 }

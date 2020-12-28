@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class AxeScript : WorldItems
 {
-    private void OnMouseEnter()
+    public void Update()
     {
-        Hover();
-    }
-
-    private void OnMouseExit()
-    {
-        Unhover();
+        CheckHovering();
     }
 
     [PunRPC]
