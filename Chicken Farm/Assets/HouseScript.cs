@@ -16,7 +16,7 @@ public class HouseScript : MonoBehaviour
             if (roof.GetComponent<SpriteRenderer>().color.a > 50f / 255f)
             {
                 Color temp = roof.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a - 5f / 255f;
+                float tempAlpha = temp.a - 500f / 255f * Time.deltaTime;
                 if(tempAlpha < 50f / 255f)
                 {
                     tempAlpha = 50f / 255f;
@@ -31,7 +31,7 @@ public class HouseScript : MonoBehaviour
             if (roof.GetComponent<SpriteRenderer>().color.a < 1)
             {
                 Color temp = roof.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a + 5f / 255f;
+                float tempAlpha = temp.a + 500f / 255f * Time.deltaTime;
                 if (tempAlpha > 1)
                 {
                     tempAlpha = 1;
@@ -47,7 +47,7 @@ public class HouseScript : MonoBehaviour
             if (backWall.GetComponent<SpriteRenderer>().color.a > 50f / 255f)
             {
                 Color temp = backWall.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a - 5f / 255f;
+                float tempAlpha = temp.a - 500f / 255f * Time.deltaTime;
                 if (tempAlpha < 50f / 255f)
                 {
                     tempAlpha = 50f / 255f;
@@ -61,7 +61,7 @@ public class HouseScript : MonoBehaviour
             if (backWall.GetComponent<SpriteRenderer>().color.a < 1)
             {
                 Color temp = backWall.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a + 5f / 255f;
+                float tempAlpha = temp.a + 500f / 255f * Time.deltaTime;
                 if (tempAlpha > 1)
                 {
                     tempAlpha = 1;
@@ -76,7 +76,7 @@ public class HouseScript : MonoBehaviour
             if (midWall.GetComponent<SpriteRenderer>().color.a > 50f / 255f)
             {
                 Color temp = midWall.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a - 5f / 255f;
+                float tempAlpha = temp.a - 500f / 255f * Time.deltaTime;
                 if (tempAlpha < 50f / 255f)
                 {
                     tempAlpha = 50f / 255f;
@@ -90,7 +90,7 @@ public class HouseScript : MonoBehaviour
             if (midWall.GetComponent<SpriteRenderer>().color.a < 1)
             {
                 Color temp = midWall.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a + 5f / 255f;
+                float tempAlpha = temp.a + 500f / 255f * Time.deltaTime;
                 if (tempAlpha > 1)
                 {
                     tempAlpha = 1;
@@ -105,7 +105,7 @@ public class HouseScript : MonoBehaviour
             if (frontWall.GetComponent<SpriteRenderer>().color.a > 50f / 255f)
             {
                 Color temp = frontWall.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a - 5f / 255f;
+                float tempAlpha = temp.a - 500f / 255f * Time.deltaTime;
                 if (tempAlpha < 50f / 255f)
                 {
                     tempAlpha = 50f / 255f;
@@ -119,7 +119,7 @@ public class HouseScript : MonoBehaviour
             if (frontWall.GetComponent<SpriteRenderer>().color.a < 1)
             {
                 Color temp = frontWall.GetComponent<SpriteRenderer>().color;
-                float tempAlpha = temp.a + 5f / 255f;
+                float tempAlpha = temp.a + 500f / 255f * Time.deltaTime;
                 if (tempAlpha > 1)
                 {
                     tempAlpha = 1;

@@ -222,4 +222,5 @@ MonoBehaviour:
   sr: {fileID: 5691102664659417335}
   photonView: {fileID: 5691102664659417336}
   anim: {fileID: 5691102664659417330}
+  selectBound: {fileID: 5691102664659417339}
   direction: 1

@@ -10,6 +10,7 @@ public class Player : Photon.MonoBehaviour
     public GameObject PlayerCamera;
     public SpriteRenderer sr;
     public CircleCollider2D interactRange;
+    public GameObject UIMenu;
 
     public float MoveSpeed;
     public int money, direction;
@@ -17,7 +18,8 @@ public class Player : Photon.MonoBehaviour
 
     public PlayerMarket market;
     public PlayerHotbar hotbar;
-    
+    public PlayerOven oven;
+
     public Text PlayerNameText;
     public Text PlayerMoneyText;
 
@@ -39,6 +41,7 @@ public class Player : Photon.MonoBehaviour
             hotbar.visible = true;
             direction = 1;
             money = 1001;
+            UIMenu.SetActive(true);
         }
         else
         {
@@ -75,7 +78,7 @@ public class Player : Photon.MonoBehaviour
                 anim.SetBool("butcher", false);
             }
         }
-        else if (!market.visible)
+        else if (!market.visible && !oven.visible)
         {
             UpdateColliders();
 
@@ -134,7 +137,7 @@ public class Player : Photon.MonoBehaviour
     // method that calcualtes and moves the player
     private void Move()
     {
-        if (!market.MarketMenu.activeSelf && !butcher)
+        if (!market.MarketMenu.activeSelf && !oven.OvenMenu.activeSelf && !butcher)
         {
             rb.velocity = new Vector2(moveDirection.x * MoveSpeed, moveDirection.y * MoveSpeed);
         }
@@ -146,7 +149,7 @@ public class Player : Photon.MonoBehaviour
 
     private void UpdateColliders()
     {
-        if (market.visible && !photonView.isMine)
+        if (market.visible || oven.visible)
         {
             return;
         }
@@ -222,6 +225,13 @@ public class Player : Photon.MonoBehaviour
                     }
 
                     market.visible = true;
+                }
+            }
+            else if (colliders[i].gameObject.CompareTag("Oven") && colliders[i].gameObject.GetComponent<Oven>().IsSelected())
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    oven.visible = true;
                 }
             }
         }

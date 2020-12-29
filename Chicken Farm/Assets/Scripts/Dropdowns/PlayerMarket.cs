@@ -67,7 +67,7 @@ public class PlayerMarket : MonoBehaviour
         {
             if (MarketMenu.GetComponent<RectTransform>().anchoredPosition.y > -240)
             {
-                MarketMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY - 20);
+                MarketMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY - 1200 * Time.deltaTime);
             }
             if (!MarketMenu.activeSelf)
             {
@@ -78,7 +78,7 @@ public class PlayerMarket : MonoBehaviour
         {
             if (MarketMenu.GetComponent<RectTransform>().anchoredPosition.y < 240)
             {
-                MarketMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY + 20);
+                MarketMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY + 1200 * Time.deltaTime);
             }
             if (MarketMenu.GetComponent<RectTransform>().anchoredPosition.y >= 240 && MarketMenu.activeSelf)
             {

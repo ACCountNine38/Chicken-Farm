@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8811834530268543751}
   m_Layer: 0
   m_Name: Oven
-  m_TagString: Untagged
+  m_TagString: Oven
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -238,6 +238,6 @@ MonoBehaviour:
   sr: {fileID: 8811834530268543756}
   photonView: {fileID: 8811834530268543744}
   anim: {fileID: 8811834530268543745}
+  selectBound: {fileID: 8811834530268543747}
   stored: {fileID: 0}
-  fuel: {fileID: 0}
   time: 0

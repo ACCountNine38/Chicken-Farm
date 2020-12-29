@@ -12,7 +12,9 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public Image[] amountContainers = new Image[5];
     public GameObject[] hotbar = new GameObject[5];
     public Sprite empty, cooked, burnt;
-    public bool visible, drag;
+    public PlayerOven oven;
+    public GameObject ovenSlot;
+    public bool visible, drag, ovenDrag;
     public int selected = 0;
 
     public Image[] iconLayer2 = new Image[5];
@@ -67,25 +69,45 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 dragColorUpdated = true;
             }
         }
+        else if(ovenDrag)
+        {
+            oven.layer1.transform.position = Input.mousePosition;
+            oven.layer2.transform.position = Input.mousePosition;
+            oven.layer3.transform.position = Input.mousePosition;
+        }
         else
         {
             slotIcons[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
             iconLayer2[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
             iconLayer3[draggedIndex].transform.localPosition = originalHotbarPositions[draggedIndex];
+
+            if(oven.OvenMenu.activeSelf)
+            {
+                oven.layer1.transform.localPosition = oven.originalPosition;
+                oven.layer2.transform.localPosition = oven.originalPosition;
+                oven.layer3.transform.localPosition = oven.originalPosition;
+            }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!drag)
+        if (!drag && !ovenDrag)
         {
-            for (int i = 0; i < 5; i++)
+            if(ovenSlot.GetComponent<ItemSlot>().MouseHover())
             {
-                if (hotbar[i] != null && slots[i].GetComponent<ItemSlot>().MouseHover())
+                ovenDrag = true;
+            }
+            else
+            {
+                for (int i = 0; i < 5; i++)
                 {
-                    drag = true;
-                    draggedIndex = i;
-                    break;
+                    if (hotbar[i] != null && slots[i].GetComponent<ItemSlot>().MouseHover())
+                    {
+                        drag = true;
+                        draggedIndex = i;
+                        break;
+                    }
                 }
             }
         }
@@ -96,43 +118,65 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if(drag)
         {
             bool found = false;
-            for (int i = 0; i < 5; i++)
+
+            if(oven.OvenMenu.activeSelf)
             {
-                if (slots[i].GetComponent<ItemSlot>().MouseHover())
+                if (ovenSlot.GetComponent<ItemSlot>().MouseHover() && hotbar[draggedIndex].GetComponent<Item>().itemName == "Raw Chicken")
                 {
-                    found = true;
-                    GameObject temp = hotbar[i];
-                    hotbar[i] = hotbar[draggedIndex];
+                    GameObject temp;
+                    if (oven.chicken != null)
+                    {
+                        temp = oven.chicken;
+                    }
+                    else
+                    {
+                        temp = null;
+                    }
+
+                    player.photonView.RPC("SwapChicken", PhotonTargets.MasterClient, hotbar[draggedIndex]);
                     hotbar[draggedIndex] = temp;
-                    break;
                 }
             }
-
-            if(!found)
+            else
             {
-                if(player.direction == 0)
+                for (int i = 0; i < 5; i++)
                 {
-                    dropOffsetX = -0.25f;
-                }
-                else
-                {
-                    dropOffsetX = 0.25f;
+                    if (slots[i].GetComponent<ItemSlot>().MouseHover())
+                    {
+                        found = true;
+                        GameObject temp = hotbar[i];
+                        hotbar[i] = hotbar[draggedIndex];
+                        hotbar[draggedIndex] = temp;
+                        break;
+                    }
                 }
 
-                if (hotbar[draggedIndex].GetComponent<Item>().stackable)
+                if (!found)
                 {
-                    for(int i = 0; i < hotbar[draggedIndex].GetComponent<Item>().currentStack; i++)
+                    if (player.direction == 0)
+                    {
+                        dropOffsetX = -0.25f;
+                    }
+                    else
+                    {
+                        dropOffsetX = 0.25f;
+                    }
+
+                    if (hotbar[draggedIndex].GetComponent<Item>().stackable)
+                    {
+                        for (int i = 0; i < hotbar[draggedIndex].GetComponent<Item>().currentStack; i++)
+                        {
+                            dropOffsetY = Random.Range(0, 0.2f);
+                            DropItem(hotbar[draggedIndex].GetComponent<Item>());
+                        }
+                    }
+                    else
                     {
                         dropOffsetY = Random.Range(0, 0.2f);
                         DropItem(hotbar[draggedIndex].GetComponent<Item>());
                     }
+                    hotbar[draggedIndex] = null;
                 }
-                else
-                {
-                    dropOffsetY = Random.Range(0, 0.2f);
-                    DropItem(hotbar[draggedIndex].GetComponent<Item>());
-                }
-                hotbar[draggedIndex] = null;
             }
 
             drag = false;
@@ -143,6 +187,32 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             slotIcons[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 2f * slotIcons[draggedIndex].GetComponent<Image>().color.a);
             iconLayer2[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 2f * iconLayer2[draggedIndex].GetComponent<Image>().color.a);
             iconLayer3[draggedIndex].GetComponent<Image>().color = new Color(1f, 1f, 1f, 2f * iconLayer3[draggedIndex].GetComponent<Image>().color.a);
+        }
+
+        else if(ovenDrag)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (slots[i].GetComponent<ItemSlot>().MouseHover())
+                {
+                    if(hotbar[i] == null)
+                    {
+                        GameObject temp = oven.chicken;
+                        player.photonView.RPC("RemoveChicken", PhotonTargets.MasterClient);
+                        hotbar[i] = temp;
+                        break;
+                    }
+                    else if(hotbar[i].GetComponent<Item>().itemName == "Raw Chicken")
+                    {
+                        GameObject temp = oven.chicken;
+                        player.photonView.RPC("SwapChicken", PhotonTargets.MasterClient, hotbar[i]);
+                        hotbar[i] = temp;
+                        break;
+                    }
+                }
+            }
+
+            ovenDrag = false;
         }
     }
 
@@ -209,7 +279,7 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             ActivateSlot5();
         }
-
+        
         float xPos = boarder.GetComponent<RectTransform>().anchoredPosition.x;
         float yPos = boarder.GetComponent<RectTransform>().anchoredPosition.y;
         if (xPos < transformDestination - 2.5f)
@@ -410,6 +480,18 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         selected = 4;
         transformDestination = 31.5f;
+    }
+
+    [PunRPC]
+    private void RemoveChicken()
+    {
+        oven.chicken = null;
+    }
+
+    [PunRPC]
+    private void SwapChicken(GameObject chicken)
+    {
+        oven.chicken = chicken;
     }
 
     [PunRPC]
