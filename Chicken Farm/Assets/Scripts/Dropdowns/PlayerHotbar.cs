@@ -124,16 +124,16 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 if (ovenSlot.GetComponent<ItemSlot>().MouseHover() && hotbar[draggedIndex].GetComponent<Item>().itemName == "Raw Chicken")
                 {
                     GameObject temp;
-                    if (oven.chicken != null)
+                    if (oven.CurrentOven.GetComponent<Oven>().stored != null)
                     {
-                        temp = oven.chicken;
+                        temp = oven.CurrentOven.GetComponent<Oven>().stored;
                     }
                     else
                     {
                         temp = null;
                     }
 
-                    player.photonView.RPC("SwapChicken", PhotonTargets.MasterClient, hotbar[draggedIndex]);
+                    oven.CurrentOven.GetComponent<PhotonView>().RPC("SwapChicken", PhotonTargets.AllViaServer, hotbar[draggedIndex].GetComponent<RawChicken>().cookedMagnitude);
                     hotbar[draggedIndex] = temp;
                 }
             }
@@ -197,15 +197,15 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 {
                     if(hotbar[i] == null)
                     {
-                        GameObject temp = oven.chicken;
-                        player.photonView.RPC("RemoveChicken", PhotonTargets.MasterClient);
+                        GameObject temp = oven.CurrentOven.GetComponent<Oven>().stored;
+                        oven.CurrentOven.GetComponent<PhotonView>().RPC("RemoveChicken", PhotonTargets.AllViaServer);
                         hotbar[i] = temp;
                         break;
                     }
                     else if(hotbar[i].GetComponent<Item>().itemName == "Raw Chicken")
                     {
-                        GameObject temp = oven.chicken;
-                        player.photonView.RPC("SwapChicken", PhotonTargets.MasterClient, hotbar[i]);
+                        GameObject temp = oven.CurrentOven.GetComponent<Oven>().stored;
+                        oven.CurrentOven.GetComponent<PhotonView>().RPC("SwapChicken", PhotonTargets.AllViaServer, hotbar[i].GetComponent<RawChicken>().cookedMagnitude);
                         hotbar[i] = temp;
                         break;
                     }
@@ -480,18 +480,6 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         selected = 4;
         transformDestination = 31.5f;
-    }
-
-    [PunRPC]
-    private void RemoveChicken()
-    {
-        oven.chicken = null;
-    }
-
-    [PunRPC]
-    private void SwapChicken(GameObject chicken)
-    {
-        oven.chicken = chicken;
     }
 
     [PunRPC]

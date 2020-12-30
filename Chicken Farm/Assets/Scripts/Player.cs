@@ -28,6 +28,7 @@ public class Player : Photon.MonoBehaviour
     private Vector2 moveDirection;
 
     private List<Collider2D> colliders = new List<Collider2D>();
+    private bool pressed;
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -80,6 +81,15 @@ public class Player : Photon.MonoBehaviour
         }
         else if (!market.visible && !oven.visible)
         {
+            if(Input.GetMouseButtonDown(0))
+            {
+                pressed = true;
+            }
+            else
+            {
+                pressed = false;
+            }
+
             UpdateColliders();
 
             float moveX = Input.GetAxisRaw("Horizontal");
@@ -158,7 +168,7 @@ public class Player : Photon.MonoBehaviour
         {
             if (colliders[i].gameObject.CompareTag("Egg"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<EggScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<EggScript>().selected)) &&
                     hotbar.CanAdd(hotbar.eggItem) && !colliders[i].gameObject.GetComponent<EggScript>().isPickedUp)
                 {
                     colliders[i].gameObject.GetComponent<EggScript>().isPickedUp = true;
@@ -169,7 +179,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Raw Chicken"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<RawChickenScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<RawChickenScript>().selected)) &&
                     hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<RawChickenScript>().isPickedUp)
                 {
                     hotbar.AddChicken(colliders[i].gameObject.GetComponent<RawChickenScript>().cookedMagnitude);
@@ -180,7 +190,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Caged Chicken"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<CagedChickenScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<CagedChickenScript>().selected)) &&
                     hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<CagedChickenScript>().isPickedUp)
                 {
                     colliders[i].gameObject.GetComponent<CagedChickenScript>().isPickedUp = true;
@@ -191,7 +201,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Axe"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && colliders[i].gameObject.GetComponent<AxeScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<AxeScript>().selected)) &&
                     hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<AxeScript>().isPickedUp)
                 {
                     colliders[i].gameObject.GetComponent<AxeScript>().isPickedUp = true;
@@ -203,7 +213,7 @@ public class Player : Photon.MonoBehaviour
             else if (colliders[i].gameObject.CompareTag("Chicken") && colliders[i].gameObject.GetComponent<Chicken>().IsSelected() &&
                 CanButcher())
             {
-                if (Input.GetMouseButtonDown(0))
+                if (pressed)
                 {
                     colliders[i].gameObject.GetComponent<Chicken>().photonView.RPC("PreButcher", PhotonTargets.MasterClient);
                 }
@@ -211,7 +221,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Vendor") && colliders[i].gameObject.GetComponent<Vendor>().IsSelected())
             {
-                if (Input.GetMouseButtonDown(0))
+                if (pressed)
                 {
                     if (transform.position.x < colliders[i].gameObject.transform.position.x && colliders[i].GetComponent<Vendor>().direction == 1)
                     {
@@ -229,9 +239,17 @@ public class Player : Photon.MonoBehaviour
             }
             else if (colliders[i].gameObject.CompareTag("Oven") && colliders[i].gameObject.GetComponent<Oven>().IsSelected())
             {
-                if (Input.GetMouseButtonDown(0))
+                if (pressed)
                 {
+                    oven.CurrentOven = colliders[i].gameObject;
                     oven.visible = true;
+                }
+            }
+            else if (colliders[i].gameObject.CompareTag("Door") && colliders[i].gameObject.GetComponent<Door>().IsSelected())
+            {
+                if (pressed)
+                {
+                    colliders[i].gameObject.GetComponent<Door>().photonView.RPC("UpdateState", PhotonTargets.AllViaServer);
                 }
             }
         }
@@ -239,7 +257,8 @@ public class Player : Photon.MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!colliders.Contains(collision))
+        if (collision.gameObject.GetComponent<SceneObject>() != null &&
+            (!collision.isTrigger || collision.gameObject.CompareTag("Door")) && !colliders.Contains(collision))
         {
             colliders.Add(collision);
         }

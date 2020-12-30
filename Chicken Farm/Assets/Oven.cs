@@ -1,15 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Oven : Structure
 {
     public GameObject stored;
-    public float time;
+    public GameObject chickenPrefab;
+    public Light2D cookLight;
+
+    public float timer, cooldown;
+    public int mode;
+    public bool isOn;
 
     public void Update()
     {
-        if(IsHovering())
+        if(mode != 0)
+        {
+            timer += Time.deltaTime;
+            if (timer >= cooldown)
+            {
+                if (stored != null)
+                {
+                    if (stored.GetComponent<RawChicken>().cookedMagnitude < 510)
+                    {
+                        stored.GetComponent<RawChicken>().cookedMagnitude += 1;
+                    }
+                }
+                    
+                timer = 0;
+            }
+        }
+
+        if (anim.GetBool("isOn") && mode == 0)
+        {
+            anim.SetBool("isOn", false);
+        }
+        else if(!anim.GetBool("isOn") && mode != 0)
+        {
+            anim.SetBool("isOn", true);
+        }
+
+        if (IsHovering())
         {
             selected = true;
             sr.material.color = new Color(sr.material.color.r, sr.material.color.g, sr.material.color.b - 100);
@@ -18,6 +48,46 @@ public class Oven : Structure
         {
             selected = false;
             sr.material.color = original;
+        }
+    }
+
+    [PunRPC]
+    private void RemoveChicken()
+    {
+        stored = null;
+        mode = 0;
+    }
+
+    [PunRPC]
+    private void SwapChicken(float cookedMagnitude)
+    {
+        stored = Instantiate(chickenPrefab);
+        stored.GetComponent<RawChicken>().cookedMagnitude = cookedMagnitude;
+    }
+
+    [PunRPC]
+    public void ChangeSettings(int mode)
+    {
+        this.mode = mode;
+
+        if (mode == 1)
+        {
+            cooldown = 1f;
+            cookLight.intensity = 0.5f;
+        }
+        else if (mode == 2)
+        {
+            cooldown = 0.66f;
+            cookLight.intensity = 0.75f;
+        }
+        else if (mode == 3)
+        {
+            cooldown = 0.33f;
+            cookLight.intensity = 1.1f;
+        }
+        else
+        {
+            cookLight.intensity = 0;
         }
     }
 }

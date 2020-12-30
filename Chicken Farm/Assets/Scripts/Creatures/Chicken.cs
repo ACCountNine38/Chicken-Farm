@@ -63,7 +63,9 @@ public class Chicken : Creature
                 butcherTimer += Time.deltaTime;
                 if (butcherTimer >= 0.35f)
                 {
-                    photonView.RPC("Butcher", PhotonTargets.MasterClient);
+                    photonView.RPC("Butcher", PhotonTargets.AllViaServer);
+                    photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+                    butcherTimer = 0;
                 }
             }
 
@@ -251,6 +253,5 @@ public class Chicken : Creature
         isDead = true;
         sr.enabled = false;
         collider.isTrigger = true;
-        photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
     }
 }

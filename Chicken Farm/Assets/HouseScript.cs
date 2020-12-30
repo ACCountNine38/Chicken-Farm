@@ -6,6 +6,7 @@ public class HouseScript : MonoBehaviour
 {
     public GameObject roof, frontWall, backWall, midWall, sideWalls;
     public BoxCollider2D kitchen, livingRoom, backCoverage;
+    public GameObject frontDoor, backDoor;
 
     private bool entered, inKitchen, inLivingRoom, inBackCoverage;
 
@@ -23,6 +24,7 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 roof.GetComponent<SpriteRenderer>().color = temp;
+                temp.a = tempAlpha * 2;
                 sideWalls.GetComponent<SpriteRenderer>().color = temp;
             }
         }
@@ -38,6 +40,7 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 roof.GetComponent<SpriteRenderer>().color = temp;
+                temp.a = tempAlpha * 2;
                 sideWalls.GetComponent<SpriteRenderer>().color = temp;
             }
         }
@@ -54,6 +57,8 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 backWall.GetComponent<SpriteRenderer>().color = temp;
+                temp.a = tempAlpha*2;
+                backDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
         else
@@ -68,6 +73,8 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 backWall.GetComponent<SpriteRenderer>().color = temp;
+                temp.a = tempAlpha * 2;
+                backDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
 
@@ -112,6 +119,7 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 frontWall.GetComponent<SpriteRenderer>().color = temp;
+                frontDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
         else
@@ -126,6 +134,7 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 frontWall.GetComponent<SpriteRenderer>().color = temp;
+                frontDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
 

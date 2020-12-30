@@ -7,16 +7,16 @@ public class PlayerOven : MonoBehaviour
 {
     public GameObject OvenMenu;
     public Button off, small, medium, high, exit;
-    public Text instructions;
+    public Text instructions, panel;
     public Image ovenOn, ovenOff;
     public PlayerHotbar hotbar;
     public Image layer1, layer2, layer3;
     public GameObject cookSlot;
-    public GameObject chicken;
-
-    public bool visible;
+    public GameObject CurrentOven;
 
     public Vector2 originalPosition;
+    public bool visible, cooking;
+    public int mode = 0;
 
     private void Awake()
     {
@@ -26,18 +26,51 @@ public class PlayerOven : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(CurrentOven != null && CurrentOven.GetComponent<Oven>().mode != mode)
+        {
+            CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeSettings", PhotonTargets.AllViaServer, mode); 
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             ExitOven();
         }
 
-        if(chicken != null)
+        if(mode == 0)
+        {
+            ovenOn.enabled = false;
+            ovenOff.enabled = true;
+        }
+        else
+        {
+            ovenOn.enabled = true;
+            ovenOff.enabled = false;
+        }
+
+        if (mode == 0)
+        {
+            panel.text = "OFF";
+        }
+        else if(mode == 1)
+        {
+            panel.text = "LOW";
+        }
+        else if (mode == 2)
+        {
+            panel.text = "MEDIUM";
+        }
+        else if (mode == 3)
+        {
+            panel.text = "HIGH";
+        }
+
+        if (CurrentOven != null && CurrentOven.GetComponent<Oven>().stored != null)
         {
             layer1.enabled = true;
             layer2.enabled = true;
             layer3.enabled = true;
 
-            float cookedMagnitude = chicken.GetComponent<RawChicken>().cookedMagnitude;
+            float cookedMagnitude = CurrentOven.GetComponent<Oven>().stored.GetComponent<RawChicken>().cookedMagnitude;
             if (cookedMagnitude <= 255)
             {
                 Color temp = layer1.color;
@@ -94,6 +127,26 @@ public class PlayerOven : MonoBehaviour
                 cookSlot.SetActive(false);
             }
         }
+    }
+
+    public void Off()
+    {
+        mode = 0;
+    }
+
+    public void Low()
+    {
+        mode = 1;
+    }
+
+    public void Mid()
+    {
+        mode = 2;
+    }
+
+    public void High()
+    {
+        mode = 3;
     }
 
     public void ExitOven()

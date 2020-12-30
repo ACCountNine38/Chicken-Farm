@@ -4767,7 +4767,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4933,7 +4933,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5199,11 +5199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e980d6056010d483b961198d8d3a60ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 4738715323466669727}
-  rb: {fileID: 4738715323466669718}
-  anim: {fileID: 4738715323466669722}
   sr: {fileID: 4738715323466669720}
+  photonView: {fileID: 4738715323466669727}
+  anim: {fileID: 4738715323466669722}
   selectBound: {fileID: 4067174493039212054}
+  selected: 0
+  rb: {fileID: 4738715323466669718}
   speed: 3
   runSpeed: 5
   status: idle
@@ -9988,7 +9989,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

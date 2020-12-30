@@ -61,4 +61,6 @@ MonoBehaviour:
   - PutChicken
   - RemoveChicken
   - SwapChicken
+  - ChangeSettings
+  - UpdateState
   DisableAutoOpenWizard: 1

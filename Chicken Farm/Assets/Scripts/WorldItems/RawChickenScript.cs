@@ -49,6 +49,5 @@ public class RawChickenScript : WorldItems
             cooked.color = temp;
             raw.color = temp2;
         }
-        Debug.Log(raw.color.a);
     }
 }
