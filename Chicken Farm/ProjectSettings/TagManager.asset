@@ -15,6 +15,7 @@ TagManager:
   - Axe
   - Oven
   - Door
+  - Switch
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Roof
+    uniqueID: 1675597107
+    locked: 0
+  - name: UI
+    uniqueID: 2970827129
     locked: 0

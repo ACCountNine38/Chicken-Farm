@@ -252,6 +252,13 @@ public class Player : Photon.MonoBehaviour
                     colliders[i].gameObject.GetComponent<Door>().photonView.RPC("UpdateState", PhotonTargets.AllViaServer);
                 }
             }
+            else if (colliders[i].gameObject.CompareTag("Switch") && colliders[i].gameObject.GetComponent<LightSwitch>().IsSelected())
+            {
+                if (pressed)
+                {
+                    colliders[i].gameObject.GetComponent<LightSwitch>().photonView.RPC("UpdateLight", PhotonTargets.AllViaServer);
+                }
+            }
         }
     }
 

@@ -73,17 +73,17 @@ public class Oven : Structure
         if (mode == 1)
         {
             cooldown = 1f;
-            cookLight.intensity = 0.5f;
+            cookLight.intensity = 0.25f;
         }
         else if (mode == 2)
         {
             cooldown = 0.66f;
-            cookLight.intensity = 0.75f;
+            cookLight.intensity = 0.5f;
         }
         else if (mode == 3)
         {
             cooldown = 0.33f;
-            cookLight.intensity = 1.1f;
+            cookLight.intensity = 0.75f;
         }
         else
         {

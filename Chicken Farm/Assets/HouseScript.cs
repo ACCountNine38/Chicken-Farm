@@ -142,7 +142,7 @@ public class HouseScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().photonView.isMine)
+        if(!collision.isTrigger && collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().photonView.isMine)
         {
             if (livingRoom.IsTouching(collision) || kitchen.IsTouching(collision) || backCoverage.IsTouching(collision))
             {

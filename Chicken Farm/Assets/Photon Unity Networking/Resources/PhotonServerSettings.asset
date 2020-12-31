@@ -63,4 +63,7 @@ MonoBehaviour:
   - SwapChicken
   - ChangeSettings
   - UpdateState
+  - UpdateLight
+  - SetMessage
+  - SendMessage
   DisableAutoOpenWizard: 1

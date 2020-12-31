@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor.dll:
-    - PunSceneSettings
     Assembly-CSharp.dll:
     - Axe
     - AxeScript
@@ -14,8 +12,10 @@ ScriptsOnlyBuild:
     - Egg
     - EggScript
     - GameManager
+    - GlobalLight
     - HouseScript
     - ItemSlot
+    - LightSwitch
     - MenuScript
     - Oven
     - PhotonAnimatorView
@@ -57,13 +57,14 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.UI.DebugUIHandlerVector4
     - UnityEngine.Rendering.UI.UIFoldout
     Unity.RenderPipelines.Universal.Editor.dll:
+    - UnityEditor.Experimental.Rendering.Universal.Path2D.ScriptablePathInspector
     - UnityEditor.Rendering.Universal.UniversalProjectSettings
     Unity.RenderPipelines.Universal.Runtime.dll:
     - UnityEngine.Experimental.Rendering.Universal.Light2D
     - UnityEngine.Experimental.Rendering.Universal.Renderer2DData
     - UnityEngine.Rendering.Universal.PostProcessData
+    - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
-    - UnityEngine.Rendering.Universal.UniversalRenderPipelineEditorResources
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.Graphs.dll:
@@ -196,7 +197,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 326114}
     - Class: 114
+      Script: {instanceID: 390972}
+    - Class: 114
       Script: {instanceID: 392314}
+    - Class: 114
+      Script: {instanceID: 414826}
+    - Class: 114
+      Script: {instanceID: 451376}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -389,6 +396,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 392286}
     - Class: 114
+      Script: {instanceID: 392314}
+    - Class: 114
       Script: {instanceID: 392360}
     - Class: 114
       Script: {instanceID: 392364}
@@ -443,7 +452,7 @@ ScriptsOnlyBuild:
     className: SmoothSyncMovement
   - hash:
       serializedVersion: 2
-      Hash: 03cb5f943691d04927906baa46cb492e
+      Hash: f64fc76caa8d94ecd60c2358488a57c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Oven
@@ -2127,6 +2136,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerIndirectFloatField
+  - hash:
+      serializedVersion: 2
+      Hash: 111fc15c10f5c9bd3b832af954b35b8a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GlobalLight
+  - hash:
+      serializedVersion: 2
+      Hash: b9038901d906c69c913c1c30a50c34c2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LightSwitch
   platform: 2
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
