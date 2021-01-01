@@ -6,7 +6,7 @@ public class Chicken : Creature
     // base chicken status
     public float hunger, eggCooldown;
     public int type;
-    public bool isDead, canButcher;
+    public bool isDead, canButcher, eating;
 
     public BoxCollider2D collider;
     public ParticleSystem bloodEffect;
@@ -17,9 +17,10 @@ public class Chicken : Creature
     public bool isNamed, butcherProcess;
     public Text nametag;
 
-    private float butcherTimer, eggTimer, randomHunger;
+    private float hungerTimer, butcherTimer, eggTimer, randomHunger;
 
-    public Vector3 dangerPos;
+    //chicken will go after object with this tag
+    public string foodTag = "Egg";
 
     public void Awake()
     {
@@ -52,12 +53,12 @@ public class Chicken : Creature
 
         if (!isDead)
         {
-            if(PhotonNetwork.isMasterClient)
+            if (PhotonNetwork.isMasterClient)
             {
                 Move();
             }
-            
-            //photonView.RPC("UpdateType", PhotonTargets.MasterClient);
+
+            photonView.RPC("UpdateType", PhotonTargets.MasterClient);
 
             if (butcherProcess)
             {
@@ -73,26 +74,36 @@ public class Chicken : Creature
         }
         else
         {
-            if(!bloodEffect.isPlaying && !smokeEffect.isPlaying)
+            if (!bloodEffect.isPlaying && !smokeEffect.isPlaying)
             {
                 Die();
             }
         }
+
     }
 
     [PunRPC]
     private void UpdateType()
     {
+
+        hungerTimer += Time.deltaTime;
+
+        if (hungerTimer > 4)
+        {
+            hunger--;
+            hungerTimer = 0;
+        }
+
         // thin chicken
-        if(hunger <= 33)
+        if (hunger <= 33)
         {
             type = 1;
             anim.SetInteger("type", 1);
             speed = 2;
-            eggCooldown = 100;
+            eggTimer = 100;
         }
         // normal chicken
-        else if(hunger <= 66)
+        else if (hunger <= 66)
         {
             type = 0;
             anim.SetInteger("type", 0);
@@ -143,15 +154,12 @@ public class Chicken : Creature
         if (status == "idle")
         {
             LayEgg();
-            statusTimer += Time.deltaTime;
-            if (statusTimer >= maxTimer)
-            {
-                photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
-            }
+
         }
-        else if (status == "move" || status == "run")
+        else if (status == "move" || status == "run" || status == "eat")
         {
-            statusTimer += Time.deltaTime;
+
+            Debug.Log(rb.velocity);
 
             if (direction == 1 && rb.velocity.x < -0.5)
             {
@@ -166,18 +174,23 @@ public class Chicken : Creature
 
             if (status == "move")
             {
-                rb.velocity = new Vector2(randomDirection.x * speed, randomDirection.y * speed);
+                rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+            }
+            else if (status == "eat")
+            {
+                rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
             }
             else if (status == "run")
             {
-                Vector3 runDirection = (rb.transform.position - dangerPos).normalized;
-                rb.velocity = new Vector2(runDirection.x * (speed + 1), runDirection.y * (speed + 1));
+                rb.velocity = new Vector2(moveDirection.x * (speed + 1), moveDirection.y * (speed + 1));
             }
+        }
 
-            if (statusTimer >= maxTimer)
-            {
-                photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
-            }
+        statusTimer += Time.deltaTime;
+
+        if (statusTimer >= maxTimer)
+        {
+            photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
         }
     }
 
@@ -196,17 +209,41 @@ public class Chicken : Creature
         }
         else if (randomStatus == 1)
         {
-            randomDirection = Random.onUnitSphere;
+            moveDirection = Random.onUnitSphere;
             status = "move";
         }
     }
 
-    public void DangerDetected(Collider2D collision)
+    public void DangerDetected(Vector2 dangerDir)
     {
         maxTimer = 1.0f;
         status = "run";
         statusTimer = 0.0f;
-        dangerPos = collision.gameObject.GetComponent<Player>().transform.position;
+        moveDirection = - dangerDir;
+    }
+
+    public void FoodDetected(Vector2 foodPos)
+    {
+        if (hunger <= 70 && status != "run")
+        {
+            if (Vector2.Distance(transform.position, foodPos) > 1) 
+            {
+                maxTimer = 0.1f;
+                status = "eat";
+                statusTimer = 0.0f;
+                moveDirection = (foodPos - (Vector2)transform.position).normalized;
+            }
+            else
+            {
+                eat();
+            }
+        }
+    }
+
+    public void eat()
+    {
+        hunger += 20;
+        photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

@@ -20,7 +20,7 @@ public class GlobalLight : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentTime);
+        //Debug.Log(currentTime);
         if(Input.GetKeyDown(KeyCode.M))
         {
             updateCooldown /= 2;

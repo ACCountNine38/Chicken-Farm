@@ -12,7 +12,7 @@ public class Creature : SceneObject
     public string status;
     protected float statusTimer;
     protected float maxTimer;
-    protected Vector3 randomDirection;
+    protected Vector3 moveDirection;
     protected int direction = 1;
 
     [PunRPC]
