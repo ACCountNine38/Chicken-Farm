@@ -13,12 +13,12 @@ public class Door : Structure
         if (IsHovering())
         {
             selected = true;
-            sr.material.color = new Color(sr.material.color.r, sr.material.color.g, sr.material.color.b - 100);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b - 0.25f);
         }
         else
         {
             selected = false;
-            sr.material.color = original;
+            sr.color = original;
         }
 
         if(!canChange)

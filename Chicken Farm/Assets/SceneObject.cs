@@ -10,10 +10,12 @@ public class SceneObject : MonoBehaviour
     public BoxCollider2D selectBound;
 
     protected Color original;
+    protected MouseHoverPanel mouseHoverPanel;
     public bool selected;
 
     public void Awake()
     {
+        mouseHoverPanel = GameObject.Find("MouseHoverPanel").GetComponent<MouseHoverPanel>();
         original = sr.color;
     }
 
