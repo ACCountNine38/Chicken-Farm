@@ -11,6 +11,7 @@ public class Player : Photon.MonoBehaviour
     public SpriteRenderer sr;
     public CircleCollider2D interactRange;
     public GameObject UIMenu;
+    public ChatManager chat;
 
     public float MoveSpeed;
     public int money, direction;
@@ -55,7 +56,7 @@ public class Player : Photon.MonoBehaviour
     private void Update()
     {
         // if the current client is this device, then checks for user input
-        if (photonView.isMine)
+        if (photonView.isMine && !chat.GetChatInput().enabled)
         {
             CheckInput();
         }
@@ -147,7 +148,7 @@ public class Player : Photon.MonoBehaviour
     // method that calcualtes and moves the player
     private void Move()
     {
-        if (!market.MarketMenu.activeSelf && !oven.OvenMenu.activeSelf && !butcher)
+        if (!market.MarketMenu.activeSelf && !oven.OvenMenu.activeSelf && !butcher && !chat.GetChatInput().enabled)
         {
             rb.velocity = new Vector2(moveDirection.x * MoveSpeed, moveDirection.y * MoveSpeed);
         }

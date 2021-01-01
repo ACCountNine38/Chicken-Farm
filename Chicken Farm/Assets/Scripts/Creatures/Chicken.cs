@@ -23,10 +23,11 @@ public class Chicken : Creature
 
     public void Awake()
     {
+        eggCooldown = 100;
         original = sr.color;
         randomHunger = Random.Range(0, 100);
-        photonView.RPC("SetRandomHunger", PhotonTargets.MasterClient);
-        photonView.RPC("UpdateType", PhotonTargets.MasterClient);
+        photonView.RPC("SetRandomHunger", PhotonTargets.AllViaServer);
+        photonView.RPC("UpdateType", PhotonTargets.AllViaServer);
     }
 
     [PunRPC]
@@ -88,7 +89,7 @@ public class Chicken : Creature
             type = 1;
             anim.SetInteger("type", 1);
             speed = 2;
-            eggTimer = 0;
+            eggCooldown = 100;
         }
         // normal chicken
         else if(hunger <= 66)
@@ -152,7 +153,7 @@ public class Chicken : Creature
         {
             statusTimer += Time.deltaTime;
 
-            if (direction == 1 && rb.velocity.x < 0.5)
+            if (direction == 1 && rb.velocity.x < -0.5)
             {
                 direction = 0;
                 photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);

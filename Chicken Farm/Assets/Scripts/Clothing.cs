@@ -2,12 +2,11 @@
 
 public class Clothing : Photon.MonoBehaviour
 {
+    public GameObject player;
     public Animator anim;
     public SpriteRenderer sr;
     public PhotonView photonView;
     public int bodyID;
-
-    public GameObject player;
 
     private bool butcher;
     private int direction;
@@ -15,6 +14,11 @@ public class Clothing : Photon.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!photonView.isMine)
+        {
+            return;
+        }
+
         // keyboard controls
         if (direction!= 0 && player.GetComponent<Player>().direction == 0)
         {

@@ -14,13 +14,13 @@ public class HouseScript : MonoBehaviour
     {
         if (entered)
         {
-            if (roof.GetComponent<SpriteRenderer>().color.a > 50f / 255f)
+            if (roof.GetComponent<SpriteRenderer>().color.a > 0f)
             {
                 Color temp = roof.GetComponent<SpriteRenderer>().color;
                 float tempAlpha = temp.a - 500f / 255f * Time.deltaTime;
-                if(tempAlpha < 50f / 255f)
+                if(tempAlpha < 0f)
                 {
-                    tempAlpha = 50f / 255f;
+                    tempAlpha = 0f;
                 }
                 temp.a = tempAlpha;
                 roof.GetComponent<SpriteRenderer>().color = temp;

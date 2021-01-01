@@ -26,11 +26,6 @@ public class PlayerOven : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(CurrentOven != null && CurrentOven.GetComponent<Oven>().mode != mode)
-        {
-            CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeSettings", PhotonTargets.AllViaServer, mode); 
-        }
-
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             ExitOven();
@@ -108,6 +103,12 @@ public class PlayerOven : MonoBehaviour
                 OvenMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY - 1200 * Time.deltaTime);
                 cookSlot.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY - 1200 * Time.deltaTime);
             }
+            else
+            {
+                OvenMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, 0);
+                cookSlot.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, 0);
+            }
+
             if (!OvenMenu.activeSelf)
             {
                 OvenMenu.SetActive(true);
@@ -121,6 +122,12 @@ public class PlayerOven : MonoBehaviour
                 OvenMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY + 1200 * Time.deltaTime);
                 cookSlot.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY + 1200 * Time.deltaTime);
             }
+            else
+            {
+                OvenMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, 400);
+                cookSlot.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, 400);
+            }
+
             if (OvenMenu.GetComponent<RectTransform>().anchoredPosition.y >= 400 && OvenMenu.activeSelf)
             {
                 OvenMenu.SetActive(false);
@@ -132,21 +139,25 @@ public class PlayerOven : MonoBehaviour
     public void Off()
     {
         mode = 0;
+        CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeSettings", PhotonTargets.AllViaServer, mode);
     }
 
     public void Low()
     {
         mode = 1;
+        CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeSettings", PhotonTargets.AllViaServer, mode);
     }
 
     public void Mid()
     {
         mode = 2;
+        CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeSettings", PhotonTargets.AllViaServer, mode); 
     }
 
     public void High()
     {
         mode = 3;
+        CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeSettings", PhotonTargets.AllViaServer, mode);
     }
 
     public void ExitOven()

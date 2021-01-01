@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class GlobalLight : MonoBehaviour
@@ -6,18 +7,20 @@ public class GlobalLight : MonoBehaviour
     public PhotonView photonView;
     public Light2D ambientLight;
 
-    public float currentTime, updateTimer;
+    public float currentTime;
 
-    private float updateCooldown = 0.1f;
+    private float updateCooldown = 0.1f, nextActionTime = 0.0f;
 
-    public void Awake()
+    private void Awake()
     {
+        nextActionTime = Time.time;
         currentTime = 60;
         ambientLight.intensity = 1f;
     }
 
-    void Update()
+    private void Update()
     {
+        Debug.Log(currentTime);
         if(Input.GetKeyDown(KeyCode.M))
         {
             updateCooldown /= 2;
@@ -28,17 +31,23 @@ public class GlobalLight : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            ambientLight.intensity = 0;
+            ambientLight.intensity = 0.05f;
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             ambientLight.intensity = 1;
         }
 
-        updateTimer += Time.deltaTime;
-        if (updateTimer >= updateCooldown)
+        StartCoroutine("UpdateTime");
+    }
+
+    private void UpdateTime()
+    {
+        if (Time.time >= nextActionTime)
         {
-            if(currentTime == 3000)
+            nextActionTime += updateCooldown;
+
+            if (currentTime == 3000)
             {
                 currentTime = 0;
             }
@@ -49,7 +58,7 @@ public class GlobalLight : MonoBehaviour
 
             if (currentTime <= 600)
             {
-                ambientLight.intensity += 1/600f;
+                ambientLight.intensity += 1 / 600f;
                 if (ambientLight.intensity > 1f)
                 {
                     ambientLight.intensity = 1f;
@@ -58,14 +67,12 @@ public class GlobalLight : MonoBehaviour
 
             else if (currentTime >= 1500 && currentTime <= 2100)
             {
-                ambientLight.intensity -= 1/600f;
-                if (ambientLight.intensity < 0f)
+                ambientLight.intensity -= 1 / 600f;
+                if (ambientLight.intensity < 0.05f)
                 {
-                    ambientLight.intensity = 0f;
+                    ambientLight.intensity = 0.05f;
                 }
             }
-
-            updateTimer = 0;
         }
     }
 }

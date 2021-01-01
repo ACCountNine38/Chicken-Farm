@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - AxeScript
     - CagedChicken
     - CagedChickenScript
+    - ChatManager
     - Chicken
     - Clothing
     - DangerRange
@@ -65,6 +66,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.Universal.PostProcessData
     - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
+    - UnityEngine.Rendering.Universal.UniversalRenderPipelineEditorResources
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.Graphs.dll:
@@ -175,6 +177,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13338}
     - Class: 114
+      Script: {instanceID: 13384}
+    - Class: 114
       Script: {instanceID: 13440}
     - Class: 114
       Script: {instanceID: 13522}
@@ -204,6 +208,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 414826}
     - Class: 114
       Script: {instanceID: 451376}
+    - Class: 114
+      Script: {instanceID: 482076}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -358,6 +364,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 390752}
     - Class: 114
+      Script: {instanceID: 390972}
+    - Class: 114
       Script: {instanceID: 391022}
     - Class: 114
       Script: {instanceID: 391136}
@@ -401,6 +409,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 392360}
     - Class: 114
       Script: {instanceID: 392364}
+    - Class: 114
+      Script: {instanceID: 482076}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -926,7 +936,7 @@ ScriptsOnlyBuild:
     className: HubGui
   - hash:
       serializedVersion: 2
-      Hash: 30304db733b1f3d208c742a563fd6aa3
+      Hash: e5351e65905a124ea36da1974969e635
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1328,7 +1338,7 @@ ScriptsOnlyBuild:
     className: MenuScript
   - hash:
       serializedVersion: 2
-      Hash: a0e18aa28227ad833202fec0907e39b4
+      Hash: 3eb9fdb398e76598506791d8dc9d5396
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Clothing
@@ -2148,6 +2158,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LightSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 450d5d97acab6c1baa01875c3d6c735d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ChatManager
   platform: 2
   scenePathNames:
   - Assets/Scenes/Main Menu.unity

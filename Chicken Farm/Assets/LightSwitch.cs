@@ -12,6 +12,15 @@ public class LightSwitch : Structure
 
     public void Update()
     {
+        if(!isOn && houseLight.enabled)
+        {
+            houseLight.enabled = false;
+        }
+        else if(isOn && !houseLight.enabled)
+        {
+            houseLight.enabled = true;
+        }
+
         if (IsHovering())
         {
             selected = true;
@@ -31,12 +40,12 @@ public class LightSwitch : Structure
 
         if (isOn)
         {
-            houseLight.intensity = 1;
+            houseLight.enabled = true;
             sr.sprite = lightsOn;
         }
         else
         {
-            houseLight.intensity = 0;
+            houseLight.enabled = false;
             sr.sprite = lightsOff;
         }
     }
