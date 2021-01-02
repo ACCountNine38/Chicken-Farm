@@ -58,7 +58,7 @@ public class HouseScript : MonoBehaviour
                 temp.a = tempAlpha;
                 backWall.GetComponent<SpriteRenderer>().color = temp;
                 temp.a = tempAlpha*2;
-                backDoor.GetComponent<SpriteRenderer>().color = temp;
+                //backDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
         else
@@ -74,7 +74,7 @@ public class HouseScript : MonoBehaviour
                 temp.a = tempAlpha;
                 backWall.GetComponent<SpriteRenderer>().color = temp;
                 temp.a = tempAlpha * 2;
-                backDoor.GetComponent<SpriteRenderer>().color = temp;
+                //backDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
 
@@ -119,7 +119,7 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 frontWall.GetComponent<SpriteRenderer>().color = temp;
-                frontDoor.GetComponent<SpriteRenderer>().color = temp;
+                //frontDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
         else
@@ -134,7 +134,7 @@ public class HouseScript : MonoBehaviour
                 }
                 temp.a = tempAlpha;
                 frontWall.GetComponent<SpriteRenderer>().color = temp;
-                frontDoor.GetComponent<SpriteRenderer>().color = temp;
+                //frontDoor.GetComponent<SpriteRenderer>().color = temp;
             }
         }
 

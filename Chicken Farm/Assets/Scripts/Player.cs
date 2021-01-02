@@ -12,6 +12,8 @@ public class Player : Photon.MonoBehaviour
     public CircleCollider2D interactRange;
     public GameObject UIMenu;
     public ChatManager chat;
+    public GameObject hoverPanel, gameCursor;
+    public InfoPanelScript infoPanel;
 
     public float MoveSpeed;
     public int money, direction;
@@ -29,7 +31,7 @@ public class Player : Photon.MonoBehaviour
     private Vector2 moveDirection;
 
     private List<Collider2D> colliders = new List<Collider2D>();
-    private bool pressed;
+    private string hoveringObject;
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -59,6 +61,12 @@ public class Player : Photon.MonoBehaviour
         if (photonView.isMine && !chat.GetChatInput().enabled)
         {
             CheckInput();
+
+            if(infoPanel.currentObject != null
+                && (hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe" || oven.visible || market.visible))
+            {
+                infoPanel.currentObject = null;
+            }
         }
 
     }
@@ -82,14 +90,7 @@ public class Player : Photon.MonoBehaviour
         }
         else if (!market.visible && !oven.visible)
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                pressed = true;
-            }
-            else
-            {
-                pressed = false;
-            }
+            CheckHover();
 
             UpdateColliders();
 
@@ -139,6 +140,80 @@ public class Player : Photon.MonoBehaviour
         }
     }
 
+    private void CheckHover()
+    {
+        if(IsHoveringObject())
+        {
+            if(!hoverPanel.activeSelf)
+            {
+                hoverPanel.SetActive(true);
+            }
+
+            MouseHoverPanel panel = hoverPanel.GetComponent<MouseHoverPanel>();
+            if (panel.hoverInfo.text != hoveringObject)
+            {
+                if (hoveringObject == "Door")
+                {
+                    panel.hoverInfo.text = "Door";
+                    panel.leftClick.text = "Observe";
+                    panel.rightClick.text = "Open/Close";
+                }
+                else if (hoveringObject == "Switch")
+                {
+                    panel.hoverInfo.text = "Light Switch";
+                    panel.leftClick.text = "Observe";
+                    panel.rightClick.text = "Open/Close";
+                }
+                else if (hoveringObject == "Oven")
+                {
+                    panel.hoverInfo.text = "Oven";
+                    panel.leftClick.text = "Observe";
+                    panel.rightClick.text = "Open";
+                }
+                else if (hoveringObject == "Egg" || hoveringObject == "Axe" || hoveringObject == "Caged Chicken" || hoveringObject == "Raw Chicken")
+                {
+                    panel.hoverInfo.text = hoveringObject;
+                    panel.leftClick.text = "Observe";
+                    panel.rightClick.text = "Pick Up";
+                }
+                else if (hoveringObject == "Vendor")
+                {
+                    panel.hoverInfo.text = "Vendor";
+                    panel.leftClick.text = "Observe";
+                    panel.rightClick.text = "Buy/Sell";
+                }
+                else if (hoveringObject == "Chicken")
+                {
+                    panel.hoverInfo.text = "Chicken";
+                    panel.leftClick.text = "Butcher (with axe) or observe";
+                    panel.rightClick.text = "";
+                }
+            }
+
+            if(hoveringObject == "Chicken" && hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe")
+            {
+                gameCursor.GetComponent<CursorScript>().icon.sprite = gameCursor.GetComponent<CursorScript>().butcher;
+            }
+            else if(hoveringObject == "Egg" || hoveringObject == "Axe" || hoveringObject == "Caged Chicken" || hoveringObject == "Raw Chicken")
+            {
+                gameCursor.GetComponent<CursorScript>().icon.sprite = gameCursor.GetComponent<CursorScript>().pickup;
+            }
+            else
+            {
+                gameCursor.GetComponent<CursorScript>().icon.sprite = gameCursor.GetComponent<CursorScript>().hover;
+            }
+        }
+        else
+        {
+            gameCursor.GetComponent<CursorScript>().icon.sprite = gameCursor.GetComponent<CursorScript>().normal;
+
+            if (hoverPanel.GetComponent<MouseHoverPanel>().enabled)
+            {
+                hoverPanel.SetActive(false);
+            }
+        }
+    }
+
     private bool CanButcher()
     {
         return hotbar.hotbar[hotbar.selected] != null && hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe" &&
@@ -169,7 +244,7 @@ public class Player : Photon.MonoBehaviour
         {
             if (colliders[i].gameObject.CompareTag("Egg"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<EggScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(1) && colliders[i].gameObject.GetComponent<EggScript>().selected)) &&
                     hotbar.CanAdd(hotbar.eggItem) && !colliders[i].gameObject.GetComponent<EggScript>().isPickedUp)
                 {
                     colliders[i].gameObject.GetComponent<EggScript>().isPickedUp = true;
@@ -180,7 +255,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Raw Chicken"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<RawChickenScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(1) && colliders[i].gameObject.GetComponent<RawChickenScript>().selected)) &&
                     hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<RawChickenScript>().isPickedUp)
                 {
                     hotbar.AddChicken(colliders[i].gameObject.GetComponent<RawChickenScript>().cookedMagnitude);
@@ -191,7 +266,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Caged Chicken"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<CagedChickenScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(1) && colliders[i].gameObject.GetComponent<CagedChickenScript>().selected)) &&
                     hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<CagedChickenScript>().isPickedUp)
                 {
                     colliders[i].gameObject.GetComponent<CagedChickenScript>().isPickedUp = true;
@@ -202,7 +277,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Axe"))
             {
-                if ((Input.GetKeyDown(KeyCode.Space) || (pressed && colliders[i].gameObject.GetComponent<AxeScript>().selected)) &&
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(1) && colliders[i].gameObject.GetComponent<AxeScript>().selected)) &&
                     hotbar.CanAdd(hotbar.rawChicken) && !colliders[i].gameObject.GetComponent<AxeScript>().isPickedUp)
                 {
                     colliders[i].gameObject.GetComponent<AxeScript>().isPickedUp = true;
@@ -214,7 +289,7 @@ public class Player : Photon.MonoBehaviour
             else if (colliders[i].gameObject.CompareTag("Chicken") && colliders[i].gameObject.GetComponent<Chicken>().IsSelected() &&
                 CanButcher())
             {
-                if (pressed)
+                if (Input.GetMouseButtonDown(0))
                 {
                     colliders[i].gameObject.GetComponent<Chicken>().photonView.RPC("PreButcher", PhotonTargets.MasterClient);
                 }
@@ -222,7 +297,7 @@ public class Player : Photon.MonoBehaviour
 
             else if (colliders[i].gameObject.CompareTag("Vendor") && colliders[i].gameObject.GetComponent<Vendor>().IsSelected())
             {
-                if (pressed)
+                if (Input.GetMouseButtonDown(1))
                 {
                     if (transform.position.x < colliders[i].gameObject.transform.position.x && colliders[i].GetComponent<Vendor>().direction == 1)
                     {
@@ -240,7 +315,7 @@ public class Player : Photon.MonoBehaviour
             }
             else if (colliders[i].gameObject.CompareTag("Oven") && colliders[i].gameObject.GetComponent<Oven>().IsSelected())
             {
-                if (pressed)
+                if (Input.GetMouseButtonDown(1))
                 {
                     oven.CurrentOven = colliders[i].gameObject;
                     oven.visible = true;
@@ -248,19 +323,49 @@ public class Player : Photon.MonoBehaviour
             }
             else if (colliders[i].gameObject.CompareTag("Door") && colliders[i].gameObject.GetComponent<Door>().IsSelected())
             {
-                if (pressed)
+                if (Input.GetMouseButtonDown(1))
                 {
                     colliders[i].gameObject.GetComponent<Door>().photonView.RPC("UpdateState", PhotonTargets.AllViaServer);
                 }
             }
             else if (colliders[i].gameObject.CompareTag("Switch") && colliders[i].gameObject.GetComponent<LightSwitch>().IsSelected())
             {
-                if (pressed)
+                if (Input.GetMouseButtonDown(1))
                 {
                     colliders[i].gameObject.GetComponent<LightSwitch>().photonView.RPC("UpdateLight", PhotonTargets.AllViaServer);
                 }
             }
         }
+    }
+
+    protected bool IsHoveringObject()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        foreach (RaycastHit2D hit in Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity))
+        {
+            if (hit)
+            {
+                if (hit.collider.gameObject.GetComponent<SceneObject>() != null && hit.collider.gameObject.GetComponent<SceneObject>().IsSelected())
+                {
+                    hoveringObject = hit.collider.gameObject.tag;
+
+                    if(Input.GetMouseButtonDown(0))
+                    {
+                        infoPanel.currentObject = hit.collider.gameObject;
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            infoPanel.currentObject = null;
+        }
+
+        hoveringObject = "";
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

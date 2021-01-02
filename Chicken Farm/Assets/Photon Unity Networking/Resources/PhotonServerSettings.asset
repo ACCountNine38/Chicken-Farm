@@ -29,6 +29,7 @@ MonoBehaviour:
   RunInBackground: 1
   RpcList:
   - Butcher
+  - ChangeSettings
   - Chat
   - ColorRpc
   - DestroyRpc
@@ -51,19 +52,16 @@ MonoBehaviour:
   - PunPickupSimple
   - PunRespawn
   - RandomizeAction
+  - RemoveChicken
   - RequestForPickupItems
   - RequestForPickupTimes
+  - SendMessage
   - SetRandomHunger
   - SpawnChicken
   - SpawnEgg
-  - TaggedPlayer
-  - UpdateType
-  - PutChicken
-  - RemoveChicken
   - SwapChicken
-  - ChangeSettings
-  - UpdateState
+  - TaggedPlayer
   - UpdateLight
-  - SetMessage
-  - SendMessage
+  - UpdateState
+  - UpdateType
   DisableAutoOpenWizard: 1

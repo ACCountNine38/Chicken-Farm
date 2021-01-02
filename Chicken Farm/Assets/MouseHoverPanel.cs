@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseHoverPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Image leftMouse, rightMouse;
+    public Text hoverInfo, leftClick, rightClick;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if (rightClick.text == "")
+        {
+            rightMouse.enabled = false;
+        }
+        else
+        {
+            rightMouse.enabled = true;
+        }
+
+        if (leftClick.text == "")
+        {
+            leftMouse.enabled = false;
+        }
+        else
+        {
+            leftMouse.enabled = true;
+        }
     }
 }

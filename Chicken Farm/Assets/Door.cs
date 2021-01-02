@@ -10,16 +10,7 @@ public class Door : Structure
 
     public void Update()
     {
-        if (IsHovering())
-        {
-            selected = true;
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b - 0.25f);
-        }
-        else
-        {
-            selected = false;
-            sr.color = original;
-        }
+        CheckHovering();
 
         if(!canChange)
         {

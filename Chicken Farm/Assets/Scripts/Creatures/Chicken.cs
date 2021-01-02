@@ -39,16 +39,7 @@ public class Chicken : Creature
     // Update is called once per frame
     void Update()
     {
-        if (IsHovering())
-        {
-            selected = true;
-            sr.material.color = new Color(sr.material.color.r, sr.material.color.g, sr.material.color.b - 100);
-        }
-        else
-        {
-            selected = false;
-            sr.material.color = original;
-        }
+        CheckHovering();
 
         if (!isDead)
         {

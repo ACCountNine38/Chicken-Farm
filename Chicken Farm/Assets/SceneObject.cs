@@ -10,32 +10,45 @@ public class SceneObject : MonoBehaviour
     public BoxCollider2D selectBound;
 
     protected Color original;
-    protected MouseHoverPanel mouseHoverPanel;
     public bool selected;
 
     public void Awake()
     {
-        mouseHoverPanel = GameObject.Find("MouseHoverPanel").GetComponent<MouseHoverPanel>();
         original = sr.color;
+    }
+
+    protected void CheckHovering()
+    {
+        if (IsHovering())
+        {
+            selected = true;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b - 0.2f);
+        }
+        else
+        {
+            selected = false;
+            sr.color = original;
+        }
     }
 
     protected bool IsHovering()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
         foreach (RaycastHit2D hit in Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity))
         {
-            if (hit)
+            if (hit && hit.collider.gameObject.GetComponent<SceneObject>() != null)
             {
+                if (hit.collider.gameObject.GetComponent<SceneObject>() != null && hit.collider.gameObject.transform.position.y < transform.position.y)
+                {
+                    selected = false;
+                    return false;
+                }
+
                 if (hit.collider == selectBound)
                 {
                     selected = true;
                     return true;
-                }
-
-                if (hit.collider.gameObject.GetComponent<SceneObject>() != null && hit.collider.gameObject.GetComponent<SceneObject>().IsSelected())
-                {
-                    selected = false;
-                    return false;
                 }
             }
         }

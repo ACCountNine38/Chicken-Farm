@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -824,7 +824,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0044271946, y: 0.19469973}
+  m_Offset: {x: -0.0044271946, y: 0.15957448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.05}
@@ -835,7 +835,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.71114564, y: 0.462982}
+  m_Size: {x: 0.71114564, y: 0.3927315}
   m_EdgeRadius: 0
 --- !u!61 &145032460
 BoxCollider2D:
@@ -4619,7 +4619,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.06, y: 0.23020023}
+  m_Size: {x: 0.073862135, y: 0.23020023}
   m_EdgeRadius: 0
 --- !u!61 &1168047364
 BoxCollider2D:
@@ -5917,7 +5917,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00768736, y: 0.18411097}
+  m_Offset: {x: -0.03879881, y: 0.18337616}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -5928,7 +5928,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48799926, y: 0.40254945}
+  m_Size: {x: 0.42577636, y: 0.40107983}
   m_EdgeRadius: 0
 --- !u!61 &1546499904
 BoxCollider2D:
@@ -6967,10 +6967,10 @@ RectTransform:
   m_Father: {fileID: 1376353856}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 763.3, y: -438}
-  m_SizeDelta: {x: 307.61365, y: 75.49263}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -36.700012, y: 12}
+  m_SizeDelta: {x: 307.61365, y: 75.492615}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829286766
 MonoBehaviour:
@@ -8067,7 +8067,7 @@ PrefabInstance:
     - target: {fileID: 5691102664659417334, guid: 6ab4cd55dcce049d2ab0324a6a1cf525,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2125
+      value: 0.27850005
       objectReference: {fileID: 0}
     - target: {fileID: 5691102664659417334, guid: 6ab4cd55dcce049d2ab0324a6a1cf525,
         type: 3}
@@ -8169,6 +8169,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Truck Kun
       objectReference: {fileID: 0}
+    - target: {fileID: 3169776676998444698, guid: 34a11dcf1d9dc42bfa73c578aed5fa0e,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.119987726
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169776676998444698, guid: 34a11dcf1d9dc42bfa73c578aed5fa0e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.3000245
+      objectReference: {fileID: 0}
     - target: {fileID: 7181338233339327696, guid: 34a11dcf1d9dc42bfa73c578aed5fa0e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8177,7 +8187,7 @@ PrefabInstance:
     - target: {fileID: 9209814617005356214, guid: 34a11dcf1d9dc42bfa73c578aed5fa0e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65
+      value: 0.716
       objectReference: {fileID: 0}
     - target: {fileID: 9209814617005356214, guid: 34a11dcf1d9dc42bfa73c578aed5fa0e,
         type: 3}
