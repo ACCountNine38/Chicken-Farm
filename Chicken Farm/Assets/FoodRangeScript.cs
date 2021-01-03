@@ -52,15 +52,15 @@ public class FoodRangeScript : MonoBehaviour
 
             }
 
-            VisionToFood(closestFood.transform.position);
+            VisionToFood(closestFood);
         }
 
     }
 
-    private void VisionToFood(Vector3 foodPos)
+    private void VisionToFood(GameObject food)
     {
+        Vector3 foodPos = food.transform.position;
         Ray ray = new Ray(chicken.transform.position, foodPos - chicken.transform.position);
-        Debug.DrawRay(ray.origin, foodPos - chicken.transform.position, Color.white, 0.0f, false);
 
         foreach (RaycastHit2D hit in Physics2D.RaycastAll(ray.origin, ray.direction, foodRange.radius * 3))
         {
@@ -72,7 +72,7 @@ public class FoodRangeScript : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.tag == foodTag)
                 {
-                    chicken.FoodDetected(foodPos);
+                    chicken.FoodDetected(food);
                 }
                 else
                 {

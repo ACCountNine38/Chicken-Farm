@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Chicken : Creature
@@ -19,14 +20,23 @@ public class Chicken : Creature
 
     private float hungerTimer, butcherTimer, eggTimer, randomHunger;
 
+    //chicken movement
+    public float accelerationForce;
+    List<Collision2D> currentCollisions = new List<Collision2D>();
+    private float runOppositeTimer;
+    private Vector2 runOppositeDirection;
+
+
     //chicken will go after object with this tag
     public string foodTag = "Egg";
 
     public void Awake()
     {
+        acceleration = 2000;
         eggCooldown = 100;
         original = sr.color;
         randomHunger = Random.Range(0, 100);
+        accelerationForce = rb.mass * acceleration;
         photonView.RPC("SetRandomHunger", PhotonTargets.AllViaServer);
         photonView.RPC("UpdateType", PhotonTargets.AllViaServer);
     }
@@ -55,7 +65,7 @@ public class Chicken : Creature
         {
             if (PhotonNetwork.isMasterClient)
             {
-                Move();
+                UpdateMovingAnimation();
             }
 
             photonView.RPC("UpdateType", PhotonTargets.MasterClient);
@@ -99,7 +109,7 @@ public class Chicken : Creature
         {
             type = 1;
             anim.SetInteger("type", 1);
-            speed = 2;
+            maxSpeed = 2;
             eggTimer = 100;
         }
         // normal chicken
@@ -107,7 +117,7 @@ public class Chicken : Creature
         {
             type = 0;
             anim.SetInteger("type", 0);
-            speed = 2.5f;
+            maxSpeed = 2.5f;
             eggCooldown = 30;
         }
         // thicc chicken
@@ -115,7 +125,7 @@ public class Chicken : Creature
         {
             type = 2;
             anim.SetInteger("type", 2);
-            speed = 1.5f;
+            maxSpeed = 1.5f;
             eggCooldown = 20;
         }
     }
@@ -133,13 +143,12 @@ public class Chicken : Creature
         }
     }
 
-    // method that calcualtes and moves the player
-    private void Move()
+    //moves the chicken
+    private void UpdateMovingAnimation()
     {
-        CheckStatus();
 
         // animation updates
-        if (Mathf.Abs(rb.velocity.x) > 0.1 || Mathf.Abs(rb.velocity.y) > 0.1)
+        if (Mathf.Abs(rb.velocity.magnitude) > 0.1)
         {
             anim.SetBool("isMoving", true);
         }
@@ -151,6 +160,39 @@ public class Chicken : Creature
 
     private void CheckStatus()
     {
+
+        Debug.Log(currentCollisions.Count);
+
+        foreach (Collision2D col in currentCollisions)
+        {
+            if (col.contactCount > 0)
+            {
+                ContactPoint2D contact = col.GetContact(0);
+                Debug.DrawRay(contact.point, contact.normal);
+            }
+        }
+
+        Vector3 forceDirection = moveDirection;
+
+        if(currentCollisions.Count > 0)
+        {
+            if(currentCollisions[0].contactCount > 0)
+                forceDirection = Vector3.Project(forceDirection,
+                    Vector2.Perpendicular(currentCollisions[0].GetContact(0).normal)).normalized;
+
+            if (currentCollisions.Count > 1)
+            {
+                runOppositeDirection = -forceDirection;
+                runOppositeTimer = 2;
+            }
+
+            if (runOppositeTimer > 0)
+            {
+                forceDirection = runOppositeDirection;
+                runOppositeTimer -= Time.deltaTime;
+            }
+        }
+
         if (status == "idle")
         {
             LayEgg();
@@ -158,8 +200,6 @@ public class Chicken : Creature
         }
         else if (status == "move" || status == "run" || status == "eat")
         {
-
-            Debug.Log(rb.velocity);
 
             if (direction == 1 && rb.velocity.x < -0.5)
             {
@@ -172,17 +212,15 @@ public class Chicken : Creature
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 
-            if (status == "move")
+            if (status == "move" || status == "eat")
             {
-                rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
-            }
-            else if (status == "eat")
-            {
-                rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+                rb.AddForce(forceDirection * accelerationForce * Time.deltaTime);
+                //rb.velocity = (moveDirection * maxSpeed);
             }
             else if (status == "run")
             {
-                rb.velocity = new Vector2(moveDirection.x * (speed + 1), moveDirection.y * (speed + 1));
+                rb.AddForce(forceDirection * accelerationForce * Time.deltaTime * 1.2f);
+                //rb.velocity = (moveDirection * maxSpeed);
             }
         }
 
@@ -192,6 +230,18 @@ public class Chicken : Creature
         {
             photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
         }
+    }
+
+    void FixedUpdate()
+    {
+
+        if (!isDead)
+        {
+            CheckStatus();
+        }
+
+        if (rb.velocity.magnitude > maxSpeed)
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
     [PunRPC]
@@ -219,31 +269,28 @@ public class Chicken : Creature
         maxTimer = 1.0f;
         status = "run";
         statusTimer = 0.0f;
-        moveDirection = - dangerDir;
+        moveDirection = -dangerDir;
     }
 
-    public void FoodDetected(Vector2 foodPos)
+    public void FoodDetected(GameObject food)
     {
+        Vector3 foodPos = food.transform.position;
+
         if (hunger <= 70 && status != "run")
         {
-            if (Vector2.Distance(transform.position, foodPos) > 1) 
+            if (Vector3.Distance(transform.position, foodPos) > 1)
             {
                 maxTimer = 0.1f;
                 status = "eat";
                 statusTimer = 0.0f;
-                moveDirection = (foodPos - (Vector2)transform.position).normalized;
+                moveDirection = (foodPos - transform.position).normalized;
             }
             else
             {
-                eat();
+                hunger += 20;
+                PhotonNetwork.Destroy(food);
             }
         }
-    }
-
-    public void eat()
-    {
-        hunger += 20;
-        photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -260,6 +307,19 @@ public class Chicken : Creature
         {
             canButcher = false;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // Add the GameObject collided with to the list.
+        currentCollisions.Add(col);
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+
+        // Remove the GameObject collided with from the list.
+        currentCollisions.Remove(col);
     }
 
     [PunRPC]
