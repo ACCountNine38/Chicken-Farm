@@ -2,12 +2,12 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-Library/
-Temp/
-obj/
-build/
-Build.app/
-Logs/
+Chicken Farm/Library/
+Chicken Farm/Temp/
+Chicken Farm/obj/
+Chicken Farm/build/
+Chicken Farm/Build.app/
+Chicken Farm/Logs/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

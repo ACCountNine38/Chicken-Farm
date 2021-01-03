@@ -4912,6 +4912,7 @@ Transform:
   - {fileID: 3692135344123589108}
   - {fileID: 7448455200852292419}
   - {fileID: 1644500318998522548}
+  - {fileID: 536388145546572140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5213,6 +5214,7 @@ MonoBehaviour:
   type: 0
   isDead: 0
   canButcher: 0
+  eating: 0
   collider: {fileID: 4738715323466669721}
   bloodEffect: {fileID: 4376255304598798915}
   smokeEffect: {fileID: 5878973111675702819}
@@ -5221,7 +5223,7 @@ MonoBehaviour:
   isNamed: 0
   butcherProcess: 0
   nametag: {fileID: 0}
-  dangerPos: {x: 0, y: 0, z: 0}
+  foodTag: Egg
 --- !u!1 &5326122154800139722
 GameObject:
   m_ObjectHideFlags: 0
@@ -10034,3 +10036,65 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &6251927021200567164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 536388145546572140}
+  - component: {fileID: 6084086575197501371}
+  - component: {fileID: 3692708298811530421}
+  m_Layer: 0
+  m_Name: Food Range
+  m_TagString: Chicken Sensory Range
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &536388145546572140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251927021200567164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4738715323466669723}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6084086575197501371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251927021200567164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2117996571e5043975c2a994fe15d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodRange: {fileID: 3692708298811530421}
+  foodTag: Egg
+--- !u!58 &3692708298811530421
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251927021200567164}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
