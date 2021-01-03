@@ -170,9 +170,15 @@ public class Player : Photon.MonoBehaviour
                     panel.leftClick.text = "Observe";
                     panel.rightClick.text = "Open";
                 }
-                else if (hoveringObject == "Egg" || hoveringObject == "Axe" || hoveringObject == "Caged Chicken" || hoveringObject == "Raw Chicken")
+                else if (hoveringObject == "Egg" || hoveringObject == "Axe" || hoveringObject == "Caged Chicken")
                 {
                     panel.hoverInfo.text = hoveringObject;
+                    panel.leftClick.text = "Observe";
+                    panel.rightClick.text = "Pick Up";
+                }
+                else if (hoveringObject == "Raw Chicken")
+                {
+                    panel.hoverInfo.text = "Chicken";
                     panel.leftClick.text = "Observe";
                     panel.rightClick.text = "Pick Up";
                 }
