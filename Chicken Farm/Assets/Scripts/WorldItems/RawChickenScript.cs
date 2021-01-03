@@ -22,7 +22,20 @@ public class RawChickenScript : WorldItems
 
     public void Update()
     {
-        //CheckHovering();
+        if (IsHovering())
+        {
+            selected = true;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b - 0.2f, sr.color.a);
+            raw.color = new Color(raw.color.r, raw.color.g, raw.color.b - 0.2f, raw.color.a);
+            cooked.color = new Color(cooked.color.r, cooked.color.g, cooked.color.b - 0.2f, cooked.color.a);
+        }
+        else
+        {
+            selected = false;
+            sr.color = new Color(1f, 1f, 1f, sr.color.a);
+            raw.color = new Color(1f, 1f, 1f, raw.color.a);
+            cooked.color = new Color(1f, 1f, 1f, cooked.color.a);
+        }
 
         if (!updated)
         {
