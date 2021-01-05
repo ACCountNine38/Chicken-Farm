@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 81a6afec2a5422a449d17d6d287125fd
+guid: 46cc5d59885374f02af788647c19c514
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6711267874119899204
+    second: thicc-chicken-idle_0
+  - first:
+      213: 7452193147757390279
+    second: thicc-chicken-idle_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,7 +103,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: thicc-chicken-idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 448586dd296332d50800000000000000
+      internalID: 6711267874119899204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thicc-chicken-idle_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9eda93f228b6760800000000000000
+      internalID: 7452193147757390279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

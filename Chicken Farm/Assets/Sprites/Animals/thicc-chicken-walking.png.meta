@@ -1,61 +1,43 @@
 fileFormatVersion: 2
-guid: edc39f04cefc74aad84528c202c9e875
+guid: 3c50b2e2b6d1648d78a2aa979565700b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6660850666972492699
-    second: ThickMove_0
+      213: 675190908857423595
+    second: thicc-chicken-walking_0
   - first:
-      213: 3112748054134674894
-    second: ThickMove_1
+      213: 752569248498590445
+    second: thicc-chicken-walking_1
   - first:
-      213: -6148356683034669630
-    second: ThickMove_2
+      213: 2496533563447638967
+    second: thicc-chicken-walking_2
   - first:
-      213: -1156753910975114792
-    second: ThickMove_3
+      213: 8758559100579088398
+    second: thicc-chicken-walking_3
   - first:
-      213: 235004995821275037
-    second: ThickMove_4
+      213: 2227659923246340937
+    second: thicc-chicken-walking_4
   - first:
-      213: 737316368336479347
-    second: ThickMove_5
+      213: -8030121830930663691
+    second: thicc-chicken-walking_5
   - first:
-      213: -7656412318969282772
-    second: ThickMove_6
+      213: 9126904170850875005
+    second: thicc-chicken-walking_6
   - first:
-      213: -1168385846695402953
-    second: ThickMove_7
+      213: 3362938090562748981
+    second: thicc-chicken-walking_7
   - first:
-      213: -7879514127869105670
-    second: ThickMove_8
+      213: -7460824408045936320
+    second: thicc-chicken-walking_8
   - first:
-      213: 7440578213844569144
-    second: ThickMove_0
+      213: 2926985427617389418
+    second: thicc-chicken-walking_9
   - first:
-      213: 836495337889863506
-    second: ThickMove_1
+      213: 325666443921576342
+    second: thicc-chicken-walking_10
   - first:
-      213: -2309180911016099542
-    second: ThickMove_2
-  - first:
-      213: 7323459204847542015
-    second: ThickMove_3
-  - first:
-      213: -127913675927550238
-    second: ThickMove_4
-  - first:
-      213: 2708287750504389814
-    second: ThickMove_5
-  - first:
-      213: -4464319132026988550
-    second: ThickMove_6
-  - first:
-      213: -7110071181789918685
-    second: ThickMove_7
-  - first:
-      213: -2323607128382043835
-    second: ThickMove_8
+      213: -6590989752103610614
+    second: thicc-chicken-walking_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -153,7 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ThickMove_0
+      name: thicc-chicken-walking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83c47bfa67e324760800000000000000
-      internalID: 7440578213844569144
+      spriteID: be61506ed82ce5900800000000000000
+      internalID: 675190908857423595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_1
+      name: thicc-chicken-walking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -188,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 257123fe314db9b00800000000000000
-      internalID: 836495337889863506
+      spriteID: de224a58eb9a17a00800000000000000
+      internalID: 752569248498590445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_2
+      name: thicc-chicken-walking_2
       rect:
         serializedVersion: 2
         x: 64
@@ -209,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a21c5cc223424ffd0800000000000000
-      internalID: -2309180911016099542
+      spriteID: 7bbf22b7c0875a220800000000000000
+      internalID: 2496533563447638967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_3
+      name: thicc-chicken-walking_3
       rect:
         serializedVersion: 2
         x: 96
@@ -230,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffe9000785722a560800000000000000
-      internalID: 7323459204847542015
+      spriteID: e08084ed817ac8970800000000000000
+      internalID: 8758559100579088398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_4
+      name: thicc-chicken-walking_4
       rect:
         serializedVersion: 2
         x: 128
@@ -251,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e68c60803f893ef0800000000000000
-      internalID: -127913675927550238
+      spriteID: 94bd875c5ec3aee10800000000000000
+      internalID: 2227659923246340937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_5
+      name: thicc-chicken-walking_5
       rect:
         serializedVersion: 2
         x: 160
@@ -272,14 +254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bc1b562c55c59520800000000000000
-      internalID: 2708287750504389814
+      spriteID: 5f6b44c7db64f8090800000000000000
+      internalID: -8030121830930663691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_6
+      name: thicc-chicken-walking_6
       rect:
         serializedVersion: 2
         x: 192
@@ -293,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af71d83076d8b02c0800000000000000
-      internalID: -4464319132026988550
+      spriteID: d76f89aacf649ae70800000000000000
+      internalID: 9126904170850875005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_7
+      name: thicc-chicken-walking_7
       rect:
         serializedVersion: 2
         x: 224
@@ -314,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32a8ba15ee3f35d90800000000000000
-      internalID: -7110071181789918685
+      spriteID: 5328f91306e8bae20800000000000000
+      internalID: 3362938090562748981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ThickMove_8
+      name: thicc-chicken-walking_8
       rect:
         serializedVersion: 2
         x: 256
@@ -335,8 +317,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5490933b0a3e0cfd0800000000000000
-      internalID: -2323607128382043835
+      spriteID: 041abd2eab3d57890800000000000000
+      internalID: -7460824408045936320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thicc-chicken-walking_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6b11e31dbdbe9820800000000000000
+      internalID: 2926985427617389418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thicc-chicken-walking_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 691d531c7eff48400800000000000000
+      internalID: 325666443921576342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thicc-chicken-walking_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a07df93bdb91884a0800000000000000
+      internalID: -6590989752103610614
       vertices: []
       indices: 
       edges: []
