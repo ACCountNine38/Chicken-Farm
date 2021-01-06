@@ -43,9 +43,9 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private GameObject musicSlider;
     [SerializeField] private GameObject sfxSlider;
 
-    private float masterVolume = 0.5f;
-    private float musicVolume = 0.5f;
-    private float sfxVolume = 0.2f;
+    public static float masterVolume = 0.5f;
+    public static float musicVolume = 0.5f;
+    public static float sfxVolume = 0.2f;
 
     [SerializeField] private int facial_id = 0;
     [SerializeField] private int hat_id = 0;
@@ -68,7 +68,7 @@ public class MenuScript : MonoBehaviour
         suit_id = 0;
         masterVolume = 0.5f;
         musicVolume = 0.5f;
-        sfxVolume = 0.2f;
+        sfxVolume = 0.5f;
         customize_on = false;
         option_on = false;
         start_on = false;
