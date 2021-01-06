@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4738715323466669723}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5878973111675702819
 ParticleSystem:
@@ -4859,7 +4859,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.06}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.5
 --- !u!114 &3556683105083067484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4910,9 +4910,9 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 3692135344123589108}
+  - {fileID: 536388145546572140}
   - {fileID: 7448455200852292419}
   - {fileID: 1644500318998522548}
-  - {fileID: 536388145546572140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5005,7 +5005,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 50
-  m_LinearDrag: 8
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -5185,6 +5185,9 @@ MonoBehaviour:
   - Type: 3
     SynchronizeType: 1
     Name: type
+  - Type: 4
+    SynchronizeType: 0
+    Name: isEating
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -5206,8 +5209,8 @@ MonoBehaviour:
   selectBound: {fileID: 4067174493039212054}
   selected: 0
   rb: {fileID: 4738715323466669718}
-  speed: 3
-  runSpeed: 5
+  acceleration: 0
+  maxSpeed: 0
   status: idle
   hunger: 50
   eggCooldown: 0
@@ -5223,7 +5226,8 @@ MonoBehaviour:
   isNamed: 0
   butcherProcess: 0
   nametag: {fileID: 0}
-  foodTag: Egg
+  accelerationForce: 0
+  foodTag: Seed
 --- !u!1 &5326122154800139722
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,7 +5258,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4738715323466669723}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &4376255304598798915
 ParticleSystem:
@@ -10066,7 +10070,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4738715323466669723}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6084086575197501371
 MonoBehaviour:
@@ -10081,7 +10085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodRange: {fileID: 3692708298811530421}
-  foodTag: Egg
+  foodTag: Seed
 --- !u!58 &3692708298811530421
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10095,6 +10099,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   serializedVersion: 2
   m_Radius: 2

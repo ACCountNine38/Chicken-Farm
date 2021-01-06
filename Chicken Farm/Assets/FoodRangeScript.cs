@@ -35,7 +35,6 @@ public class FoodRangeScript : MonoBehaviour
 
     private void Update()
     {
-
         if (currentFoodInRange.Count > 0)
         {
             GameObject closestFood = null;
@@ -66,11 +65,11 @@ public class FoodRangeScript : MonoBehaviour
         {
             if (hit)
             {
-                if (hit.collider.gameObject.tag == "Chicken Sensory Range" || hit.collider.gameObject.tag == "Chicken")
+                if (hit.collider.gameObject.CompareTag("Chicken Sensory Range") || hit.collider.gameObject.CompareTag("Chicken"))
                 {
                     continue;
                 }
-                else if (hit.collider.gameObject.tag == foodTag)
+                else if (hit.collider.gameObject.CompareTag(foodTag))
                 {
                     chicken.FoodDetected(food);
                 }

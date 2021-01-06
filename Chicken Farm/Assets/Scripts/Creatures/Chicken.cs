@@ -26,6 +26,7 @@ public class Chicken : Creature
     private float runOppositeTimer;
     private Vector2 runOppositeDirection;
 
+    private GameObject currentFood;
 
     //chicken will go after object with this tag
     public string foodTag = "Egg";
@@ -158,6 +159,7 @@ public class Chicken : Creature
         if (Mathf.Abs(rb.velocity.magnitude) > 0.1)
         {
             anim.SetBool("isMoving", true);
+            anim.SetBool("isEating", false);
         }
         else
         {
@@ -167,8 +169,6 @@ public class Chicken : Creature
 
     private void CheckStatus()
     {
-        Debug.Log(status);
-
         Vector3 forceDirection = moveDirection;
 
         if (status == "idle")
@@ -190,10 +190,14 @@ public class Chicken : Creature
                 photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
             }
 
-            if (status == "move" || status == "eat")
+            if (status == "move")
             {
                 rb.AddForce(forceDirection * accelerationForce * Time.deltaTime);
                 //rb.velocity = (moveDirection * maxSpeed);
+            }
+            else if(status == "eat")
+            {
+                rb.velocity = moveDirection * maxSpeed;
             }
             else if (status == "run")
             {
@@ -225,14 +229,22 @@ public class Chicken : Creature
 
         if (statusTimer >= maxTimer)
         {
+            if(status == "eating")
+            {
+                if(currentFood != null)
+                {
+                    hunger += 5;
+                    PhotonNetwork.Destroy(currentFood);
+                    currentFood = null;
+                }
+            }
             photonView.RPC("RandomizeAction", PhotonTargets.MasterClient);
             //photonView.RPC("RandomizeAction", PhotonTargets.AllViaClients);
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-
         if (!isDead)
         {
             CheckStatus();
@@ -277,19 +289,26 @@ public class Chicken : Creature
     {
         Vector3 foodPos = food.transform.position;
 
-        if (hunger <= 70 && status != "run" && status != "chaos")
+        if (status != "run" && status != "chaos")
         {
-            if (Vector3.Distance(transform.position, foodPos) > 1)
+            if (Vector3.Distance(transform.position, foodPos) > 0.25f)
             {
-                maxTimer = 0.1f;
                 status = "eat";
+                maxTimer = 2f;
                 statusTimer = 0.0f;
                 moveDirection = (foodPos - transform.position).normalized;
             }
             else
             {
-                hunger += 20;
-                PhotonNetwork.Destroy(food);
+                if(!anim.GetBool("isEating"))
+                {
+                    maxTimer = Random.Range(2f, 5f);
+                    statusTimer = 0.0f;
+                    status = "eating";
+                    anim.SetBool("isMoving", false);
+                    anim.SetBool("isEating", true);
+                    currentFood = food;
+                }
             }
         }
     }

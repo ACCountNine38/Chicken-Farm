@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 46cc5d59885374f02af788647c19c514
+guid: d92253904f98d42188972e79ad9cc23e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6711267874119899204
-    second: thicc-chicken-idle_0
+      213: 7399468391442226572
+    second: thin-chicken-pecking_0
   - first:
-      213: 7452193147757390279
-    second: thicc-chicken-idle_1
+      213: -7368439585225086690
+    second: thin-chicken-pecking_1
+  - first:
+      213: -6395631403739406453
+    second: thin-chicken-pecking_2
+  - first:
+      213: -1706395208285729452
+    second: thin-chicken-pecking_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,7 +111,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thicc-chicken-idle_0
+      name: thin-chicken-pecking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +119,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.065}
+      pivot: {x: 0.5, y: 0.065}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 448586dd296332d50800000000000000
-      internalID: 6711267874119899204
+      spriteID: c8d15a64c4130b660800000000000000
+      internalID: 7399468391442226572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thicc-chicken-idle_1
+      name: thin-chicken-pecking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,14 +140,56 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.06}
+      pivot: {x: 0.5, y: 0.065}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c9eda93f228b6760800000000000000
-      internalID: 7452193147757390279
+      spriteID: e196bb5ac3b0eb990800000000000000
+      internalID: -7368439585225086690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thin-chicken-pecking_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f97c1bf172e37a0800000000000000
+      internalID: -6395631403739406453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thin-chicken-pecking_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d43b3599aa158e0800000000000000
+      internalID: -1706395208285729452
       vertices: []
       indices: 
       edges: []

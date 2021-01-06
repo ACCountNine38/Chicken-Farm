@@ -16,6 +16,7 @@ TagManager:
   - Oven
   - Door
   - Switch
+  - Seed
   layers:
   - Default
   - TransparentFX
