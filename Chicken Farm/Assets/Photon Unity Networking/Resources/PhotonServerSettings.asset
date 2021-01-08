@@ -64,4 +64,8 @@ MonoBehaviour:
   - UpdateLight
   - UpdateState
   - UpdateType
+  - Eat
+  - ToBones
+  - ToBonesLeft
+  - Starve
   DisableAutoOpenWizard: 1

@@ -15,6 +15,9 @@ public class Player : Photon.MonoBehaviour
     public GameObject hoverPanel, gameCursor;
     public InfoPanelScript infoPanel;
 
+    // image used for when player drags an item like food bag
+    public Image interactImage;
+
     public float MoveSpeed;
     public int money, direction;
     public bool butcher = false;
@@ -331,14 +334,14 @@ public class Player : Photon.MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(1))
                 {
-                    colliders[i].gameObject.GetComponent<Door>().photonView.RPC("UpdateState", PhotonTargets.AllViaServer);
+                    colliders[i].gameObject.GetComponent<Door>().photonView.RPC("UpdateState", PhotonTargets.AllBufferedViaServer);
                 }
             }
             else if (colliders[i].gameObject.CompareTag("Switch") && colliders[i].gameObject.GetComponent<LightSwitch>().IsSelected())
             {
                 if (Input.GetMouseButtonDown(1))
                 {
-                    colliders[i].gameObject.GetComponent<LightSwitch>().photonView.RPC("UpdateLight", PhotonTargets.AllViaServer);
+                    colliders[i].gameObject.GetComponent<LightSwitch>().photonView.RPC("UpdateLight", PhotonTargets.AllBufferedViaServer);
                 }
             }
         }

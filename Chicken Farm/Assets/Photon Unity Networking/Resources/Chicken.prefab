@@ -5223,6 +5223,10 @@ MonoBehaviour:
   smokeEffect: {fileID: 5878973111675702819}
   egg: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5, type: 3}
   raw: {fileID: 8176557815406985942, guid: a477c899337ef41e98ef3077b18aed75, type: 3}
+  bonesLeft: {fileID: 3720574283479667589, guid: 687dd0fdf74ec4805ac78fadeae16569,
+    type: 3}
+  bonesRight: {fileID: 4954150023413080165, guid: 07c7ee8c9c751466e822756f2e7909d1,
+    type: 3}
   isNamed: 0
   butcherProcess: 0
   nametag: {fileID: 0}

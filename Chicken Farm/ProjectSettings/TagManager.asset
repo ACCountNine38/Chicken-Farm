@@ -17,6 +17,7 @@ TagManager:
   - Door
   - Switch
   - Seed
+  - Dead Chicken
   layers:
   - Default
   - TransparentFX
