@@ -18,6 +18,7 @@ TagManager:
   - Switch
   - Seed
   - Dead Chicken
+  - Feed Bag
   layers:
   - Default
   - TransparentFX

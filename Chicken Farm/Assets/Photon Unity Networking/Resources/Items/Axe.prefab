@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 909354870983182967}
   - component: {fileID: 444420337205536040}
   - component: {fileID: 791413555031912065}
-  - component: {fileID: 5069140162818427644}
+  - component: {fileID: 1433153696668399237}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5069140162818427644
+--- !u!114 &1433153696668399237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5156173931421004241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1a701813dbd44829c55ace47bddc47, type: 3}
+  m_Script: {fileID: 11500000, guid: 731a9c5f628ae414d91990cf2de6ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Axe

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CagedChicken : Item
+public class FeedItemScript : WorldItems
 {
-    public override void OnClick()
+    public void Update()
     {
-
+        CheckHovering();
     }
 }

@@ -26,9 +26,9 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private bool dragColorUpdated;
 
     // items
-    public GameObject eggItem, cagedChicken, axe, rawChicken;
+    public GameObject eggItem, cagedChicken, axe, rawChicken, feedBag;
     // world items
-    public GameObject egg, raw, cageChickenWorld, burriedAxe;
+    public GameObject egg, raw, cageChickenWorld, burriedAxe, chickenFeed;
 
     // Start is called before the first frame update
     private void Awake()
@@ -39,8 +39,8 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
 
         AddItem(Instantiate(axe));
-        AddItem(Instantiate(eggItem), 2);
         AddItem(Instantiate(cagedChicken));
+        AddItem(Instantiate(feedBag));
     }
 
     // Update is called once per frame
@@ -233,6 +233,10 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         else if (item.itemName == "Axe")
         {
             player.photonView.RPC("DropAxe", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+        }
+        else if (item.itemName == "Chicken Feed")
+        {
+            player.photonView.RPC("DropFeedBag", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
         }
     }
 
@@ -505,5 +509,11 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private void DropAxe(float x, float y)
     {
         PhotonNetwork.InstantiateSceneObject(burriedAxe.name, new Vector2(x + dropOffsetX, y), Quaternion.identity, 0, null);
+    }
+
+    [PunRPC]
+    private void DropFeedBag(float x, float y)
+    {
+        PhotonNetwork.InstantiateSceneObject(chickenFeed.name, new Vector2(x + dropOffsetX, y), Quaternion.identity, 0, null);
     }
 }

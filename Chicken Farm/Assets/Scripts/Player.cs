@@ -295,6 +295,17 @@ public class Player : Photon.MonoBehaviour
                 }
             }
 
+            else if (colliders[i].gameObject.CompareTag("Feed Bag"))
+            {
+                if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(1) && colliders[i].gameObject.GetComponent<FeedItemScript>().selected)) &&
+                    hotbar.CanAdd(hotbar.feedBag) && !colliders[i].gameObject.GetComponent<FeedItemScript>().isPickedUp)
+                {
+                    colliders[i].gameObject.GetComponent<FeedItemScript>().isPickedUp = true;
+                    colliders[i].gameObject.GetComponent<FeedItemScript>().photonView.RPC("PickUp", PhotonTargets.MasterClient);
+                    hotbar.AddItem(Instantiate(hotbar.feedBag));
+                }
+            }
+
             else if (colliders[i].gameObject.CompareTag("Chicken") && colliders[i].gameObject.GetComponent<Chicken>().IsSelected() &&
                 CanButcher())
             {

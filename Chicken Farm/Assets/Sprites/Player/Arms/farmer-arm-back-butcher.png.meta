@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: 36ba6dac8c1e54c1d897281b7311a123
+guid: e8b84326a8583405182be669afbc6b4a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4889920908692213550
-    second: farmer-arm-back- butcher_0
+      213: 124980440531197321
+    second: farmer-arm-back-butcher_0
   - first:
-      213: 228723254234594223
-    second: farmer-arm-back- butcher_1
+      213: 7809806663000773951
+    second: farmer-arm-back-butcher_1
   - first:
-      213: -5539488459812619711
-    second: farmer-arm-back- butcher_2
+      213: -2764668743083445703
+    second: farmer-arm-back-butcher_2
   - first:
-      213: 560191379876679426
-    second: farmer-arm-back- butcher_3
+      213: -7174947969808914873
+    second: farmer-arm-back-butcher_3
   - first:
-      213: -111865666516825243
-    second: farmer-arm-back- butcher_4
+      213: 1109632406963421437
+    second: farmer-arm-back-butcher_4
   - first:
-      213: -8492060279568459995
-    second: farmer-arm-back- butcher_5
+      213: -1746623637834685379
+    second: farmer-arm-back-butcher_5
   - first:
-      213: 8487836790835599540
-    second: farmer-arm-back- butcher_0
+      213: -1939751923957396021
+    second: farmer-arm-back-butcher_0
   - first:
-      213: -3049077977033132554
-    second: farmer-arm-back- butcher_1
+      213: 3897606397351316503
+    second: farmer-arm-back-butcher_1
   - first:
-      213: 5444992982075442597
-    second: farmer-arm-back- butcher_2
+      213: 8027956451033069812
+    second: farmer-arm-back-butcher_2
   - first:
-      213: 169378086689995872
-    second: farmer-arm-back- butcher_3
+      213: -3464058145531488299
+    second: farmer-arm-back-butcher_3
   - first:
-      213: 6030270394519998747
-    second: farmer-arm-back- butcher_4
+      213: 5687252452679662470
+    second: farmer-arm-back-butcher_4
   - first:
-      213: 2519200791114073040
-    second: farmer-arm-back- butcher_5
+      213: -5640320386977899214
+    second: farmer-arm-back-butcher_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -135,7 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: farmer-arm-back- butcher_0
+      name: farmer-arm-back-butcher_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b85f3d379adac570800000000000000
-      internalID: 8487836790835599540
+      spriteID: bcd832407ed9415e0800000000000000
+      internalID: -1939751923957396021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer-arm-back- butcher_1
+      name: farmer-arm-back-butcher_1
       rect:
         serializedVersion: 2
         x: 48
@@ -170,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f5397e0cbf7fa5d0800000000000000
-      internalID: -3049077977033132554
+      spriteID: 71c4a643e54171630800000000000000
+      internalID: 3897606397351316503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer-arm-back- butcher_2
+      name: farmer-arm-back-butcher_2
       rect:
         serializedVersion: 2
         x: 96
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a50a15b440809b40800000000000000
-      internalID: 5444992982075442597
+      spriteID: 4f8b128bbd7096f60800000000000000
+      internalID: 8027956451033069812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer-arm-back- butcher_3
+      name: farmer-arm-back-butcher_3
       rect:
         serializedVersion: 2
         x: 144
@@ -212,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06c74e1f870c95200800000000000000
-      internalID: 169378086689995872
+      spriteID: 5d71c4258713defc0800000000000000
+      internalID: -3464058145531488299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer-arm-back- butcher_4
+      name: farmer-arm-back-butcher_4
       rect:
         serializedVersion: 2
         x: 192
@@ -233,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b115bec59f2dfa350800000000000000
-      internalID: 6030270394519998747
+      spriteID: 68bb0fd29fd2dee40800000000000000
+      internalID: 5687252452679662470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer-arm-back- butcher_5
+      name: farmer-arm-back-butcher_5
       rect:
         serializedVersion: 2
         x: 240
@@ -254,8 +254,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d3cc30b5cff5f220800000000000000
-      internalID: 2519200791114073040
+      spriteID: 23dd9c2ed7e89b1b0800000000000000
+      internalID: -5640320386977899214
       vertices: []
       indices: 
       edges: []

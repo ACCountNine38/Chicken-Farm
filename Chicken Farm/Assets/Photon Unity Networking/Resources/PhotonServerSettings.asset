@@ -68,4 +68,5 @@ MonoBehaviour:
   - ToBones
   - ToBonesLeft
   - Starve
+  - DropFeedBag
   DisableAutoOpenWizard: 1

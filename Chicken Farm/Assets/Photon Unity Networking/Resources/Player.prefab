@@ -2155,7 +2155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &447421391830176563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5538,11 +5538,14 @@ MonoBehaviour:
   axe: {fileID: 5156173931421004241, guid: c95ef1dab5ae54b618abbb61200059cc, type: 3}
   rawChicken: {fileID: 4926283374237043722, guid: 0ee742519a2564014a58d4af7b137df1,
     type: 3}
+  feedBag: {fileID: 7281259044217805834, guid: 187b20b0ee0ab4c278c2d9915048ea3c, type: 3}
   egg: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5, type: 3}
   raw: {fileID: 8176557815406985942, guid: a477c899337ef41e98ef3077b18aed75, type: 3}
   cageChickenWorld: {fileID: 8846215292125780017, guid: 65adc758819074eaf8e9fc2ec9667339,
     type: 3}
   burriedAxe: {fileID: 7327708365916867731, guid: 1044f8cef7b12417f935f1983ba75315,
+    type: 3}
+  chickenFeed: {fileID: 5866564517980658583, guid: 847d58b0901294eb78d991983720c646,
     type: 3}
 --- !u!114 &7352732317241680510
 MonoBehaviour:

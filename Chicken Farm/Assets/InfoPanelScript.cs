@@ -129,6 +129,12 @@ public class InfoPanelScript : MonoBehaviour
                 title.text = "Caged Chicken";
                 info.text = "Should free it before it dies...";
             }
+            else if (currentObject.CompareTag("Feed Bag"))
+            {
+                icon.sprite = currentObject.GetComponent<WorldItems>().sr.sprite;
+                title.text = "Chicken Feed";
+                info.text = "Use this to feed your chickens";
+            }
         }
 
         UpdatePosition();
