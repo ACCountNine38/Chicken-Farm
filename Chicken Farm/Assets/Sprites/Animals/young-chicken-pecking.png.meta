@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 37908bfffc9624c4e89169e45e15059c
+guid: 69d982305165b47339c6cd5f1543269e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2797643309757773079
-    second: young-chicken-walking_0
+      213: -1670900772300829322
+    second: young-chicken-pecking_0
   - first:
-      213: 4400735829558549747
-    second: young-chicken-walking_1
+      213: -702296560554250587
+    second: young-chicken-pecking_1
+  - first:
+      213: 4313865307306390562
+    second: young-chicken-pecking_0
+  - first:
+      213: -7567474391804521122
+    second: young-chicken-pecking_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,7 +111,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: young-chicken-walking_0
+      name: young-chicken-pecking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7153c5684c933d620800000000000000
-      internalID: 2797643309757773079
+      spriteID: 224f0e224adeddb30800000000000000
+      internalID: 4313865307306390562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: young-chicken-walking_1
+      name: young-chicken-pecking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,8 +146,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fcdb2fbbed821d30800000000000000
-      internalID: 4400735829558549747
+      spriteID: e5550a5822eeaf690800000000000000
+      internalID: -7567474391804521122
       vertices: []
       indices: 
       edges: []

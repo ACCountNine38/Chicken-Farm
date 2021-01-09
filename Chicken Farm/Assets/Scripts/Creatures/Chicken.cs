@@ -27,12 +27,44 @@ public class Chicken : Creature
     private GameObject currentFood;
     private Vector3 currentFoodPos;
 
-    private bool young;
-
+    public bool young;
+    private float age;
+    
     //chicken will go after object with this tag
     public string foodTag = "Egg";
 
     public void Awake()
+    {
+        StartYoung();
+    }
+
+    public void StartYoung()
+    {
+        hunger = 50;
+        young = true;
+        anim.SetBool("isYoung", true);
+        collider.offset = new Vector2(collider.offset.x, 0.035f);
+        collider.size = new Vector2(0.15f, 0.15f);
+        selectBound.offset = new Vector2(0, 0.08f);
+
+        rb.mass = 10f;
+        maxSpeed = 1.5f;
+
+        acceleration = 2000;
+        eggCooldown = 100;
+        original = sr.color;
+    }
+
+    public void StartNormal()
+    {
+        hunger = 50;
+
+        acceleration = 2000;
+        eggCooldown = 100;
+        original = sr.color;
+    }
+
+    public void StartRandom()
     {
         status = "run";
         acceleration = 2000;
@@ -53,6 +85,18 @@ public class Chicken : Creature
     // Update is called once per frame
     void Update()
     {
+        age += Time.deltaTime;
+        if(age >= 5f && young)
+        {
+            young = false;
+            anim.SetBool("isYoung", false);
+            collider.offset = new Vector2(collider.offset.x, 0.06f);
+            collider.size = new Vector2(0.2f, 0.1f);
+            selectBound.offset = new Vector2(0, 0.12f);
+            selectBound.size = new Vector2(0.2f, 0.22f);
+            photonView.RPC("UpdateType", PhotonTargets.AllBufferedViaServer);
+        }
+
         CheckHovering();
 
         if (!isDead)
@@ -76,7 +120,7 @@ public class Chicken : Creature
                 }
             }
 
-            if(type != CurrentType())
+            if(CurrentType() != -1 && type != CurrentType())
                 photonView.RPC("UpdateType", PhotonTargets.MasterClient);
 
             if (butcherProcess)
@@ -85,7 +129,10 @@ public class Chicken : Creature
                 if (butcherTimer >= 0.35f)
                 {
                     photonView.RPC("Butcher", PhotonTargets.AllBufferedViaServer);
-                    photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+                    if (!young)
+                    {
+                        photonView.RPC("DropMeat", PhotonTargets.MasterClient, transform.position.x, transform.position.y);
+                    }
                     butcherTimer = 0;
                 }
             }
@@ -103,6 +150,11 @@ public class Chicken : Creature
 
     private int CurrentType()
     {
+        if(young)
+        {
+            return -1;
+        }
+
         if(hunger <= 33)
         {
             return 1;
@@ -121,7 +173,7 @@ public class Chicken : Creature
     private void UpdateType()
     {
         // thin chicken
-        if (hunger <= 33)
+        if (hunger < 30)
         {
             type = 1;
             anim.SetInteger("type", 1);
@@ -130,7 +182,7 @@ public class Chicken : Creature
             rb.mass = 35;
         }
         // normal chicken
-        else if (hunger <= 66)
+        else if (hunger <= 70)
         {
             type = 0;
             anim.SetInteger("type", 0);
@@ -151,6 +203,9 @@ public class Chicken : Creature
 
     private void LayEgg()
     {
+        if (young)
+            return;
+
         if (type != 1)
         {
             eggTimer += Time.deltaTime;
@@ -202,6 +257,7 @@ public class Chicken : Creature
         }
         else if (status == "eat")
         {
+            UpdateDirection();
             rb.velocity = moveDirection * maxSpeed;
         }
         else if (status == "run")
@@ -253,7 +309,15 @@ public class Chicken : Creature
                 eatTimer += Time.deltaTime;
                 if (eatTimer >= 1f)
                 {
-                    hunger += 1f;
+                    if(young)
+                    {
+                        hunger += 1.25f;
+                    }
+                    else
+                    {
+                        hunger += 1f;
+                    }
+                    
                     if (hunger > 100)
                     {
                         hunger = 100;
@@ -275,12 +339,12 @@ public class Chicken : Creature
 
     private void UpdateDirection()
     {
-        if (direction == 1 && rb.velocity.x < -0.3)
+        if (direction == 1 && rb.velocity.x < -0.2)
         {
             direction = 0;
             photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
         }
-        else if (direction == 0 && rb.velocity.x > 0.3)
+        else if (direction == 0 && rb.velocity.x > 0.2)
         {
             direction = 1;
             photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
