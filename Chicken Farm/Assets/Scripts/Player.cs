@@ -14,7 +14,6 @@ public class Player : Photon.MonoBehaviour
     public ChatManager chat;
     public GameObject hoverPanel, gameCursor;
     public InfoPanelScript infoPanel;
-
     // image used for when player drags an item like food bag
     public Image interactImage;
 
@@ -29,12 +28,14 @@ public class Player : Photon.MonoBehaviour
     public Text PlayerNameText;
     public Text PlayerMoneyText;
 
-    public GameObject chicken;
+    public GameObject chicken, feed;
 
     private Vector2 moveDirection;
 
     private List<Collider2D> colliders = new List<Collider2D>();
     private string hoveringObject;
+    // object used for temporary structure placement
+    private GameObject PlaceChicken, PlaceFeed;
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -49,6 +50,11 @@ public class Player : Photon.MonoBehaviour
             direction = 1;
             money = 1001;
             UIMenu.SetActive(true);
+
+            PlaceChicken = GameObject.Find("PlaceChicken").gameObject;
+            PlaceChicken.SetActive(false);
+            PlaceFeed = GameObject.Find("PlaceFeed").gameObject;
+            PlaceFeed.SetActive(false);
         }
         else
         {
@@ -66,14 +72,100 @@ public class Player : Photon.MonoBehaviour
             CheckInput();
 
             if(infoPanel.currentObject != null
-                && (hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe" || oven.visible || market.visible))
+                && (hotbar.hotbar[hotbar.selected] != null && !hotbar.hotbar[hotbar.selected].GetComponent<Item>().canObserve || oven.visible || market.visible))
             {
                 infoPanel.currentObject = null;
             }
+
+            StructurePlacement();
         }
 
     }
-    
+
+    private void StructurePlacement()
+    {
+        if (hotbar.drag || hotbar.hotbar[hotbar.selected] == null || oven.visible || market.visible)
+        {
+            PlaceChicken.SetActive(false);
+            PlaceFeed.SetActive(false);
+        }
+        else if (hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Caged Chicken")
+        {
+            PlaceChicken.SetActive(true);
+            PlaceChicken.transform.position = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+
+            PlaceFeed.SetActive(false);
+
+            if (PlaceChicken.GetComponent<ObjectPlacement>().colliders.Count == 0 && Vector2.Distance(transform.position, PlaceChicken.transform.position) <= 2f)
+            {
+                Color temp = PlaceChicken.GetComponent<SpriteRenderer>().color;
+                temp.r = 1f; temp.g = 1f; temp.b = 1f;
+                PlaceChicken.GetComponent<SpriteRenderer>().color = temp;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    for (int i = 0; i < hotbar.slots.Length; i++)
+                    {
+                        if (hotbar.slots[i].GetComponent<ItemSlot>().MouseHover())
+                        {
+                            return;
+                        }
+                    }
+                    hotbar.hotbar[hotbar.selected] = null;
+                    photonView.RPC("SpawnCagedChicken", PhotonTargets.MasterClient, PlaceChicken.transform.position.x, PlaceChicken.transform.position.y);
+                }
+            }
+            else
+            {
+                Color temp = PlaceChicken.GetComponent<SpriteRenderer>().color;
+                temp.r = 1f; temp.g = 0.5f; temp.b = 0.5f;
+                PlaceChicken.GetComponent<SpriteRenderer>().color = temp;
+            }
+        }
+        else if (hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Chicken Feed")
+        {
+            PlaceFeed.SetActive(true);
+            PlaceFeed.transform.position = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+
+            PlaceChicken.SetActive(false);
+
+            if (PlaceFeed.GetComponent<ObjectPlacement>().colliders.Count == 0 && Vector2.Distance(transform.position, PlaceFeed.transform.position) <= 2f)
+            {
+                Color temp = PlaceFeed.GetComponent<SpriteRenderer>().color;
+                temp.r = 1f; temp.g = 1f; temp.b = 1f;
+                PlaceFeed.GetComponent<SpriteRenderer>().color = temp;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (hotbar.slots[i].GetComponent<ItemSlot>().MouseHover())
+                        {
+                            return;
+                        }
+                    }
+                    hotbar.hotbar[hotbar.selected].GetComponent<Item>().currentStack -= 1;
+                    if (hotbar.hotbar[hotbar.selected].GetComponent<Item>().currentStack <= 0)
+                    {
+                        hotbar.hotbar[hotbar.selected] = null;
+                    }
+                    photonView.RPC("SpawnFeed", PhotonTargets.MasterClient, PlaceFeed.transform.position.x, PlaceFeed.transform.position.y);
+                }
+            }
+            else
+            {
+                Color temp = PlaceFeed.GetComponent<SpriteRenderer>().color;
+                temp.r = 0.5f; temp.g = 0f; temp.b = 0f;
+                PlaceFeed.GetComponent<SpriteRenderer>().color = temp;
+            }
+        }
+        else
+        {
+            PlaceChicken.SetActive(false);
+            PlaceFeed.SetActive(false);
+        }
+    }
+
     // called a set amount of times per tick, this is where all the physics happens for consistency
     private void FixedUpdate()
     {
@@ -173,7 +265,7 @@ public class Player : Photon.MonoBehaviour
                     panel.leftClick.text = "Observe";
                     panel.rightClick.text = "Open";
                 }
-                else if (hoveringObject == "Egg" || hoveringObject == "Axe" || hoveringObject == "Caged Chicken")
+                else if (hoveringObject == "Egg" || hoveringObject == "Axe" || hoveringObject == "Caged Chicken" || hoveringObject == "Feed Bag")
                 {
                     panel.hoverInfo.text = hoveringObject;
                     panel.leftClick.text = "Observe";
@@ -199,7 +291,7 @@ public class Player : Photon.MonoBehaviour
                 }
             }
 
-            if(hoveringObject == "Chicken" && hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe")
+            if(hoveringObject == "Chicken" && hotbar.hotbar[hotbar.selected] != null && hotbar.hotbar[hotbar.selected].GetComponent<Item>().itemName == "Axe")
             {
                 gameCursor.GetComponent<CursorScript>().icon.sprite = gameCursor.GetComponent<CursorScript>().butcher;
             }
@@ -409,7 +501,21 @@ public class Player : Photon.MonoBehaviour
     [PunRPC]
     private void SpawnChicken(float x, float y)
     {
-        PhotonNetwork.InstantiateSceneObject(chicken.name, new Vector2(x, y), Quaternion.identity, 0, null);
+        object[] obj = { 0 };
+        PhotonNetwork.InstantiateSceneObject(chicken.name, new Vector2(x, y), Quaternion.identity, 0, obj);
+    }
+
+    [PunRPC]
+    private void SpawnCagedChicken(float x, float y)
+    {
+        object[] obj = { 1 };
+        PhotonNetwork.InstantiateSceneObject(chicken.name, new Vector2(x, y), Quaternion.identity, 0, obj);
+    }
+
+    [PunRPC]
+    private void SpawnFeed(float x, float y)
+    {
+        PhotonNetwork.InstantiateSceneObject(feed.name, new Vector2(x, y), Quaternion.identity, 0, null);
     }
 
     [PunRPC]

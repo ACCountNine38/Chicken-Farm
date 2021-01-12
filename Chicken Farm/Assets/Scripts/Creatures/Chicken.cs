@@ -35,7 +35,25 @@ public class Chicken : Creature
 
     public void Awake()
     {
-        StartYoung();
+        object[] data = photonView.instantiationData;
+        if (data != null && data[0] != null)
+        {
+            int startType = (int)data[0];
+
+            if(startType == 0)
+            {
+                StartYoung();
+            }
+            else if(startType == 1)
+            {
+                photonView.RPC("Spawn", PhotonTargets.AllBufferedViaServer);
+                StartNormal();
+            }
+            else
+            {
+                StartRandom();
+            }
+        }
     }
 
     public void StartYoung()
@@ -480,6 +498,13 @@ public class Chicken : Creature
     public void PreButcher()
     {
         butcherProcess = true;
+    }
+
+    [PunRPC]
+    public void Spawn()
+    {
+        smokeEffect.gameObject.SetActive(true);
+        smokeEffect.Play();
     }
 
     // fate

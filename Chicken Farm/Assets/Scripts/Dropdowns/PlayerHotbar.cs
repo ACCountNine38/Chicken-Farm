@@ -283,6 +283,14 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             ActivateSlot5();
         }
+
+        for(int i = 0; i < hotbar.Length; i++)
+        {
+            if(Input.GetMouseButtonDown(0) && slots[i].GetComponent<ItemSlot>().MouseHover())
+            {
+                ActivateSlot(i);
+            }
+        }
         
         float xPos = boarder.GetComponent<RectTransform>().anchoredPosition.x;
         float yPos = boarder.GetComponent<RectTransform>().anchoredPosition.y;
@@ -454,6 +462,30 @@ public class PlayerHotbar : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
 
         return canAdd;
+    }
+
+    public void ActivateSlot(int i)
+    {
+        if (i == 0)
+        {
+            ActivateSlot1();
+        }
+        else if (i == 1)
+        {
+            ActivateSlot2();
+        }
+        else if (i == 2)
+        {
+            ActivateSlot3();
+        }
+        else if (i == 3)
+        {
+            ActivateSlot4();
+        }
+        else if (i == 4)
+        {
+            ActivateSlot5();
+        }
     }
 
     public void ActivateSlot1()

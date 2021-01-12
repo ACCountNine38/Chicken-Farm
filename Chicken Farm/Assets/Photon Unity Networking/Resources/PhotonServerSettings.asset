@@ -69,4 +69,7 @@ MonoBehaviour:
   - ToBonesLeft
   - Starve
   - DropFeedBag
+  - SpawnFeed
+  - SpawnCagedChicken
+  - Spawn
   DisableAutoOpenWizard: 1

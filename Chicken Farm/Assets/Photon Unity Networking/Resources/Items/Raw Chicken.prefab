@@ -89,5 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Raw Chicken
   stackable: 0
+  canObserve: 1
   maxStack: 0
   currentStack: 0
+  cookedMagnitude: 0
