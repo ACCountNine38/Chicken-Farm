@@ -503,6 +503,7 @@ public class Player : Photon.MonoBehaviour
                 {
                     uiManager.oven.CurrentOven = colliders[i].gameObject.GetComponent<Oven>();
                     uiManager.oven.visible = true;
+                    FindObjectOfType<AudioManager>().Play("oven");
                 }
             }
             else if (colliders[i].gameObject.CompareTag("Door") && colliders[i].gameObject.GetComponent<Door>().IsSelected())

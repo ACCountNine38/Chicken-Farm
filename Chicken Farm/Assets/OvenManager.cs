@@ -59,6 +59,21 @@ public class OvenManager : MonoBehaviour
                 dial.image.sprite = high;
             }
         }
+
+        if (CurrentOven != null && CurrentOven.stored != null)
+        {
+            if (instructions.enabled)
+            {
+                instructions.enabled = false;
+            }
+        }
+        else
+        {
+            if (!instructions.enabled)
+            {
+                instructions.enabled = true;
+            }
+        }
     }
 
     public void NextLevel()

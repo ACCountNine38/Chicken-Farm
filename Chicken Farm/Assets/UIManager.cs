@@ -147,12 +147,28 @@ public class UIManager : MonoBehaviour
             if (AuctionSlot.item.stackable)
             {
                 nameText = AuctionSlot.item.itemName + " x" + AuctionSlot.item.currentStack;
-                priceText = "Price x     : " + (AuctionSlot.item.sellPrice * AuctionSlot.item.currentStack);
+                priceText = "Price x     : " + AuctionSlot.item.sellPrice * AuctionSlot.item.currentStack;
             }
             else
             {
+                int sellPrice;
+                if (AuctionSlot.item.itemName == "Raw Chicken")
+                {
+                    if (AuctionSlot.item.cookedMagnitude <= 255)
+                    {
+                        sellPrice = AuctionSlot.item.sellPrice + (int)(AuctionSlot.item.cookedMagnitude / 10);
+                    }
+                    else
+                    {
+                        sellPrice = 35 - (int)((AuctionSlot.item.cookedMagnitude - 255) / 7.5f);
+                    }
+                }
+                else
+                {
+                    sellPrice = AuctionSlot.item.sellPrice;
+                }
                 nameText = AuctionSlot.item.itemName;
-                priceText = "Price x     : " + AuctionSlot.item.sellPrice;
+                priceText = "Price x     : " + sellPrice;
             }
             
             if (AuctionSlotNameText.text != nameText)
@@ -345,7 +361,21 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                sellPrice = AuctionSlot.item.sellPrice;
+                if (AuctionSlot.item.itemName == "Raw Chicken")
+                {
+                    if (AuctionSlot.item.cookedMagnitude <= 255)
+                    {
+                        sellPrice = AuctionSlot.item.sellPrice + (int)(AuctionSlot.item.cookedMagnitude / 10);
+                    }
+                    else
+                    {
+                        sellPrice = 35 - (int)((AuctionSlot.item.cookedMagnitude - 255) / 7.5f);
+                    }
+                }
+                else
+                {
+                    sellPrice = AuctionSlot.item.sellPrice;
+                }
             }
             player.money += sellPrice;
             AuctionSlot.item = null;
@@ -501,5 +531,6 @@ public class UIManager : MonoBehaviour
     {
         oven.visible = false;
         oven.CurrentOven = null;
+        FindObjectOfType<AudioManager>().Play("oven");
     }
 }

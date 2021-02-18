@@ -57,7 +57,7 @@ public class Hotbar : MonoBehaviour
 
             if (!dragColorUpdated)
             {
-                slots[draggedIndex].ChangeColor(new Color(1f, 1f, 1f, 0.5f * slots[draggedIndex].layer1.GetComponent<Image>().color.a));
+                slots[draggedIndex].ScaleAlpha(0.5f);
                 dragColorUpdated = true;
             }
         }
@@ -99,12 +99,14 @@ public class Hotbar : MonoBehaviour
                         Item temp = slots[i].item;
                         slots[i].item = slots[draggedIndex].item;
                         slots[draggedIndex].item = temp;
+                        slots[i].ChangeColor(Color.white);
                     }
                     else 
                     {
                         Item temp = slots[i].item;
                         slots[i].item = slots[draggedIndex].item;
                         slots[draggedIndex].item = temp;
+                        slots[i].ChangeColor(Color.white);
                         if (draggedIndex == OVEN_INDEX)
                         {
                             player.uiManager.oven.CurrentOven.photonView.RPC("RemoveChicken", PhotonTargets.AllViaServer);

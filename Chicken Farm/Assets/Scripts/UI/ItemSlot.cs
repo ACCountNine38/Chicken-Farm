@@ -7,7 +7,9 @@ public class ItemSlot : MonoBehaviour
     public Image layer1, layer2, layer3;
     public GameObject amountHolder;
     public Text amount;
+    public Image hoverImage;
 
+    [HideInInspector]
     public Item item;
     private RectTransform bounds;
     private bool inBound;
@@ -100,7 +102,14 @@ public class ItemSlot : MonoBehaviour
     {
         layer1.color = color;
         layer2.color = color;
-        //layer3.color = color;
+        layer3.color = color;
+    }
+
+    public void ScaleAlpha(float scale)
+    {
+        layer1.color = new Color (layer1.color.r, layer1.color.g, layer1.color.b, layer1.color.a * scale);
+        layer2.color = new Color(layer2.color.r, layer2.color.g, layer2.color.b, layer2.color.a * scale);
+        layer3.color = new Color(layer3.color.r, layer3.color.g, layer3.color.b, layer3.color.a * scale);
     }
 
     public bool MouseHover()
@@ -115,10 +124,18 @@ public class ItemSlot : MonoBehaviour
             {
                 FindObjectOfType<AudioManager>().Play("slot hover");
                 inBound = true;
+                if (hoverImage != null)
+                {
+                    hoverImage.enabled = true;
+                }
             }
             return true;
         }
 
+        if (hoverImage != null)
+        {
+            hoverImage.enabled = false;
+        }
         inBound = false;
         return false;
     }
