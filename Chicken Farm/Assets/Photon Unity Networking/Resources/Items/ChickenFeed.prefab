@@ -87,7 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731a9c5f628ae414d91990cf2de6ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WorldItem: {fileID: 5866564517980658583, guid: 847d58b0901294eb78d991983720c646,
+    type: 3}
   itemName: Chicken Feed
   stackable: 1
-  maxStack: 8
+  canObserve: 0
+  maxStack: 5
   currentStack: 0
+  sellPrice: 1
+  cookedMagnitude: 0

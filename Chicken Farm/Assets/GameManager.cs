@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public Player PlayerPrefab;
     public GameObject GameCanvas;
-    public GameObject SceneCamera;
+    //public GameObject SceneCamera;
     public Text PingText;
 
     public GameObject OptionsMenu;
@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
         PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity, 0);
 
         GameCanvas.SetActive(false);
-        SceneCamera.SetActive(false);
     }
 
     public void LeaveRoom()

@@ -1,5 +1,13 @@
 ﻿
 public class RawChicken : Item
 {
-    public float cookedMagnitude;
+    public float GetCookedMagitude()
+    {
+        return cookedMagnitude;
+    }
+
+    public void SetCookedMagitude(float amount)
+    {
+        cookedMagnitude = amount;
+    }
 }

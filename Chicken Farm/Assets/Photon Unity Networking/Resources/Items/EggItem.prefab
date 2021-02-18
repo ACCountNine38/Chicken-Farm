@@ -87,8 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731a9c5f628ae414d91990cf2de6ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WorldItem: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5,
+    type: 3}
   itemName: Egg
   stackable: 1
   canObserve: 1
   maxStack: 5
   currentStack: 0
+  sellPrice: 2
+  cookedMagnitude: 0

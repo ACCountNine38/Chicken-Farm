@@ -19,6 +19,7 @@ TagManager:
   - Seed
   - Dead Chicken
   - Feed Bag
+  - ScreenShake
   layers:
   - Default
   - TransparentFX

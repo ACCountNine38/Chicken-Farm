@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 687660149257683438}
   - component: {fileID: 9031622130837468601}
   - component: {fileID: 6434053850429064169}
-  - component: {fileID: -9158317855450569390}
+  - component: {fileID: -6264943934526384858}
   m_Layer: 0
   m_Name: Raw Chicken
   m_TagString: Raw Chicken
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-9158317855450569390
+--- !u!114 &-6264943934526384858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,12 +84,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4926283374237043722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5a65380434b431bb2fcb01f723d2f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 731a9c5f628ae414d91990cf2de6ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WorldItem: {fileID: 8176557815406985942, guid: a477c899337ef41e98ef3077b18aed75,
+    type: 3}
   itemName: Raw Chicken
   stackable: 0
   canObserve: 1
   maxStack: 0
   currentStack: 0
+  sellPrice: 10
   cookedMagnitude: 0

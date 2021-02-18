@@ -87,7 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731a9c5f628ae414d91990cf2de6ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WorldItem: {fileID: 7327708365916867731, guid: 1044f8cef7b12417f935f1983ba75315,
+    type: 3}
   itemName: Axe
   stackable: 0
+  canObserve: 0
   maxStack: 0
   currentStack: 0
+  sellPrice: 5
+  cookedMagnitude: 0

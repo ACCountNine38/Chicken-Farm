@@ -72,4 +72,7 @@ MonoBehaviour:
   - SpawnFeed
   - SpawnCagedChicken
   - Spawn
+  - PlayWorldAudio
+  - DropToOven
+  - ChangeMode
   DisableAutoOpenWizard: 1

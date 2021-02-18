@@ -511,6 +511,20 @@ public class Chicken : Creature
     [PunRPC]
     public void Butcher()
     {
+        FindObjectOfType<AudioManager>().Play("axe hit");
+        int randSound = Random.Range(0, 3);
+        if (randSound == 0)
+        {
+            FindObjectOfType<AudioManager>().Play("butcher1");
+        }
+        else if (randSound == 1)
+        {
+            FindObjectOfType<AudioManager>().Play("butcher2");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("butcher3");
+        }
         bloodEffect.gameObject.SetActive(true);
         smokeEffect.gameObject.SetActive(true);
         bloodEffect.Play();

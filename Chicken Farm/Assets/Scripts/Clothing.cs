@@ -8,7 +8,7 @@ public class Clothing : Photon.MonoBehaviour
     public PhotonView photonView;
     public int bodyID;
 
-    private bool butcher;
+    private bool butcher, feeding;
     private int direction;
 
     // Update is called once per frame
@@ -42,12 +42,32 @@ public class Clothing : Photon.MonoBehaviour
                 transform.position += new Vector3(0, -0.0001f, 0);
             }
         }
+        else if (!feeding && player.GetComponent<Player>().feeding)
+        {
+            feeding = true;
+            anim.SetBool("isMoving", false);
+            anim.SetBool("feeding", true);
+            if (bodyID == 0)
+            {
+                transform.position += new Vector3(0, -0.0001f, 0);
+            }
+        }
         else
         {
             if (butcher && !player.GetComponent<Player>().butcher)
             {
                 butcher = false;
                 anim.SetBool("butcher", false);
+                if (bodyID == 0)
+                {
+                    transform.position -= new Vector3(0, -0.0001f, 0);
+                }
+            }
+
+            if (feeding && !player.GetComponent<Player>().feeding)
+            {
+                feeding = false;
+                anim.SetBool("feeding", false);
                 if (bodyID == 0)
                 {
                     transform.position -= new Vector3(0, -0.0001f, 0);
