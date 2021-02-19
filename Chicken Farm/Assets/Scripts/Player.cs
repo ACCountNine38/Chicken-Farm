@@ -67,7 +67,6 @@ public class Player : Photon.MonoBehaviour
             PlaceChicken.SetActive(false);
             PlaceFeed = GameObject.Find("PlaceFeed").gameObject;
             PlaceFeed.SetActive(false);
-
         }
         else
         {
@@ -398,7 +397,8 @@ public class Player : Photon.MonoBehaviour
 
     public bool InterfaceOpen()
     {
-        if(uiManager.marketVisible || uiManager.auctionVisible || uiManager.speechVisible || uiManager.oven.visible)
+        if(photonView.isMine &&
+            (uiManager.marketVisible || uiManager.auctionVisible || uiManager.speechVisible || uiManager.ovenVisible))
         {
             return true;
         }
@@ -501,8 +501,8 @@ public class Player : Photon.MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(1))
                 {
-                    uiManager.oven.CurrentOven = colliders[i].gameObject.GetComponent<Oven>();
-                    uiManager.oven.visible = true;
+                    uiManager.OvenMenu.GetComponent<OvenManager>().CurrentOven = colliders[i].gameObject.GetComponent<Oven>();
+                    uiManager.ovenVisible = true;
                     FindObjectOfType<AudioManager>().Play("oven");
                 }
             }

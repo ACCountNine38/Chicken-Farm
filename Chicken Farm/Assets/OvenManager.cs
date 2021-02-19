@@ -14,7 +14,7 @@ public class OvenManager : MonoBehaviour
     [HideInInspector]
     public Vector2 originalPosition;
     [HideInInspector]
-    public bool visible, cooking;
+    public bool cooking;
     [HideInInspector]
     public int mode = 0;
 
@@ -108,11 +108,6 @@ public class OvenManager : MonoBehaviour
         }
 
         // updates all other user's oven
-        CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeMode", PhotonTargets.AllViaServer, mode);
-    }
-
-    public void ExitOven()
-    {
-        visible = false;
+        CurrentOven.GetComponent<Oven>().photonView.RPC("ChangeMode", PhotonTargets.AllBuffered, mode);
     }
 }

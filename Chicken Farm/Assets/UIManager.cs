@@ -6,11 +6,10 @@ public class UIManager : MonoBehaviour
     [HideInInspector]
     public Player player;
 
-    public bool marketVisible, speechVisible, auctionVisible;
+    public bool marketVisible, speechVisible, auctionVisible, ovenVisible;
 
     // Oven UI
     public GameObject OvenMenu;
-    public OvenManager oven;
 
     // Market UI
     private GameObject MarketMenu, VendorSpeech;
@@ -40,7 +39,6 @@ public class UIManager : MonoBehaviour
         AuctionInstruction = GameObject.Find("Auction Instruction").GetComponent<Text>();
         AuctionCoinIcon = GameObject.Find("Auction Coin Icon").GetComponent<Image>();
         OvenMenu = GameObject.Find("Oven Menu").gameObject;
-        oven = OvenMenu.GetComponent<OvenManager>();
 
         AddToMarket(eggOption);
         AddToMarket(cagedChickenOption);
@@ -284,7 +282,7 @@ public class UIManager : MonoBehaviour
         float anchorX = OvenMenu.GetComponent<RectTransform>().anchoredPosition.x;
         float anchorY = OvenMenu.GetComponent<RectTransform>().anchoredPosition.y;
 
-        if (oven.visible)
+        if (ovenVisible)
         {
             if (OvenMenu.GetComponent<RectTransform>().anchoredPosition.y > 0)
             {
@@ -317,11 +315,11 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (oven.CurrentOven != null)
+        if (OvenMenu.GetComponent<OvenManager>().CurrentOven != null)
         {
-            if (oven.CurrentOven.stored != null && player.hotbar.slots[player.hotbar.OVEN_INDEX] != null && player.hotbar.slots[player.hotbar.OVEN_INDEX].item != null)
+            if (OvenMenu.GetComponent<OvenManager>().CurrentOven.stored != null && player.hotbar.slots[player.hotbar.OVEN_INDEX] != null && player.hotbar.slots[player.hotbar.OVEN_INDEX].item != null)
             {
-                player.hotbar.slots[player.hotbar.OVEN_INDEX].item.cookedMagnitude = oven.CurrentOven.stored.GetComponent<Item>().cookedMagnitude;
+                player.hotbar.slots[player.hotbar.OVEN_INDEX].item.cookedMagnitude = OvenMenu.GetComponent<OvenManager>().CurrentOven.stored.GetComponent<Item>().cookedMagnitude;
             }
         }
     }
@@ -529,8 +527,8 @@ public class UIManager : MonoBehaviour
 
     public void ExitOven()
     {
-        oven.visible = false;
-        oven.CurrentOven = null;
+        ovenVisible = false;
+        OvenMenu.GetComponent<OvenManager>().CurrentOven = null;
         FindObjectOfType<AudioManager>().Play("oven");
     }
 }

@@ -95,7 +95,7 @@ public class Hotbar : MonoBehaviour
                     }
                     else if (i == OVEN_INDEX && slots[draggedIndex].item.itemName == "Raw Chicken")
                     {
-                        player.uiManager.oven.CurrentOven.photonView.RPC("SwapChicken", PhotonTargets.AllViaServer, slots[draggedIndex].item.cookedMagnitude);
+                        player.uiManager.OvenMenu.GetComponent<OvenManager>().CurrentOven.photonView.RPC("SwapChicken", PhotonTargets.AllBufferedViaServer, slots[draggedIndex].item.cookedMagnitude);
                         Item temp = slots[i].item;
                         slots[i].item = slots[draggedIndex].item;
                         slots[draggedIndex].item = temp;
@@ -109,7 +109,7 @@ public class Hotbar : MonoBehaviour
                         slots[i].ChangeColor(Color.white);
                         if (draggedIndex == OVEN_INDEX)
                         {
-                            player.uiManager.oven.CurrentOven.photonView.RPC("RemoveChicken", PhotonTargets.AllViaServer);
+                            player.uiManager.OvenMenu.GetComponent<OvenManager>().CurrentOven.photonView.RPC("RemoveChicken", PhotonTargets.AllBufferedViaServer);
                         }
                     }
                 }
