@@ -317,9 +317,13 @@ public class UIManager : MonoBehaviour
 
         if (OvenMenu.GetComponent<OvenManager>().CurrentOven != null)
         {
-            if (OvenMenu.GetComponent<OvenManager>().CurrentOven.stored != null && player.hotbar.slots[player.hotbar.OVEN_INDEX] != null && player.hotbar.slots[player.hotbar.OVEN_INDEX].item != null)
+            if (OvenMenu.GetComponent<OvenManager>().CurrentOven.stored != null)
             {
                 player.hotbar.slots[player.hotbar.OVEN_INDEX].item.cookedMagnitude = OvenMenu.GetComponent<OvenManager>().CurrentOven.stored.GetComponent<Item>().cookedMagnitude;
+            }
+            if (OvenMenu.GetComponent<OvenManager>().CurrentOven.mode != OvenMenu.GetComponent<OvenManager>().mode)
+            {
+                OvenMenu.GetComponent<OvenManager>().mode = OvenMenu.GetComponent<OvenManager>().CurrentOven.mode;
             }
         }
     }
