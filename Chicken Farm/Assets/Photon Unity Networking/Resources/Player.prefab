@@ -1759,7 +1759,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: butcher
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: feeding
   m_SynchronizeLayers:
   - SynchronizeType: 0
