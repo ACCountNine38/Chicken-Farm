@@ -6,10 +6,10 @@ public class UIManager : MonoBehaviour
     [HideInInspector]
     public Player player;
 
-    public bool marketVisible, speechVisible, auctionVisible, ovenVisible;
+    public bool marketVisible, speechVisible, auctionVisible, ovenVisible, fridgeVisible;
 
     // Oven UI
-    public GameObject OvenMenu;
+    public GameObject OvenMenu, FridgeMenu;
 
     // Market UI
     private GameObject MarketMenu, VendorSpeech;
@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         AuctionInstruction = GameObject.Find("Auction Instruction").GetComponent<Text>();
         AuctionCoinIcon = GameObject.Find("Auction Coin Icon").GetComponent<Image>();
         OvenMenu = GameObject.Find("Oven Menu").gameObject;
+        FridgeMenu = GameObject.Find("Fridge Menu").gameObject;
 
         AddToMarket(eggOption);
         AddToMarket(cagedChickenOption);
@@ -57,6 +58,7 @@ public class UIManager : MonoBehaviour
             UpdateMarket();
             UpdateAuction();
             UpdateOven();
+            UpdateFridge();
         }
     }
 
@@ -328,6 +330,61 @@ public class UIManager : MonoBehaviour
             if (OvenMenu.GetComponent<OvenManager>().CurrentOven.mode != OvenMenu.GetComponent<OvenManager>().mode)
             {
                 OvenMenu.GetComponent<OvenManager>().mode = OvenMenu.GetComponent<OvenManager>().CurrentOven.mode;
+            }
+        }
+    }
+
+    private void UpdateFridge()
+    {
+        float anchorX = FridgeMenu.GetComponent<RectTransform>().anchoredPosition.x;
+        float anchorY = FridgeMenu.GetComponent<RectTransform>().anchoredPosition.y;
+
+        if (fridgeVisible)
+        {
+            if (FridgeMenu.GetComponent<RectTransform>().anchoredPosition.y > -215)
+            {
+                FridgeMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY - 1200 * Time.deltaTime);
+            }
+            else
+            {
+                FridgeMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, -215);
+            }
+
+            if (!FridgeMenu.activeSelf)
+            {
+                FridgeMenu.SetActive(true);
+            }
+        }
+        else
+        {
+            if (FridgeMenu.GetComponent<RectTransform>().anchoredPosition.y < 215)
+            {
+                FridgeMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, anchorY + 1200 * Time.deltaTime);
+            }
+            else
+            {
+                FridgeMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(anchorX, 215);
+            }
+
+            if (FridgeMenu.GetComponent<RectTransform>().anchoredPosition.y >= 215 && OvenMenu.activeSelf)
+            {
+                FridgeMenu.SetActive(false);
+            }
+        }
+
+        if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge != null)
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                int currentIndex = player.hotbar.FRIDGE_START_INDEX + i;
+                if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[currentIndex] == null)
+                {
+                    player.hotbar.slots[currentIndex].item = null;
+                }
+                else if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[currentIndex] != player.hotbar.slots[currentIndex].item)
+                {
+                    player.hotbar.slots[currentIndex].item = OvenMenu.GetComponent<FridgeManager>().CurrentFridge.stored[currentIndex].GetComponent<Item>();
+                }
             }
         }
     }

@@ -8,7 +8,7 @@ public class Hotbar : MonoBehaviour
     public GameObject boarder;
     public Sprite empty, cooked, burnt;
 
-    public ItemSlot[] slots = new ItemSlot[7];
+    public ItemSlot[] slots = new ItemSlot[22];
 
     public bool visible, drag;
     public int selected, draggedIndex;
@@ -18,7 +18,7 @@ public class Hotbar : MonoBehaviour
     [HideInInspector]
     public bool dragColorUpdated;
     [HideInInspector]
-    public int HOTBAR_LENGTH = 5, AUCTION_INDEX = 5, OVEN_INDEX = 6;
+    public int HOTBAR_LENGTH = 5, AUCTION_INDEX = 5, OVEN_INDEX = 6, FRIDGE_START_INDEX = 7;
 
     // items
     public GameObject eggItem, cagedChicken, axe, rawChicken, feedBag;

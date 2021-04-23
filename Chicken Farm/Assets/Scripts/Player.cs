@@ -398,7 +398,7 @@ public class Player : Photon.MonoBehaviour
     public bool InterfaceOpen()
     {
         if(photonView.isMine &&
-            (uiManager.marketVisible || uiManager.auctionVisible || uiManager.speechVisible || uiManager.ovenVisible))
+            (uiManager.marketVisible || uiManager.auctionVisible || uiManager.speechVisible || uiManager.ovenVisible || uiManager.fridgeVisible))
         {
             return true;
         }
@@ -503,6 +503,15 @@ public class Player : Photon.MonoBehaviour
                 {
                     uiManager.OvenMenu.GetComponent<OvenManager>().CurrentOven = colliders[i].gameObject.GetComponent<Oven>();
                     uiManager.ovenVisible = true;
+                    FindObjectOfType<AudioManager>().Play("oven");
+                }
+            }
+            else if (colliders[i].gameObject.CompareTag("Fridge") && colliders[i].gameObject.GetComponent<Fridge>().IsSelected())
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    uiManager.OvenMenu.GetComponent<FridgeManager>().CurrentFridge = colliders[i].gameObject.GetComponent<Fridge>();
+                    uiManager.fridgeVisible = true;
                     FindObjectOfType<AudioManager>().Play("oven");
                 }
             }
