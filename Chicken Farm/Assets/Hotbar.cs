@@ -8,7 +8,7 @@ public class Hotbar : MonoBehaviour
     public GameObject boarder;
     public Sprite empty, cooked, burnt;
 
-    public ItemSlot[] slots = new ItemSlot[22];
+    public ItemSlot[] slots;
 
     public bool visible, drag;
     public int selected, draggedIndex;
@@ -21,11 +21,19 @@ public class Hotbar : MonoBehaviour
     public int HOTBAR_LENGTH = 5, AUCTION_INDEX = 5, OVEN_INDEX = 6, FRIDGE_START_INDEX = 7;
 
     // items
+    [HideInInspector]
+    public GameObject[] itemList = new GameObject[5];
     public GameObject eggItem, cagedChicken, axe, rawChicken, feedBag;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        itemList[eggItem.GetComponent<Item>().id] = eggItem;
+        itemList[cagedChicken.GetComponent<Item>().id] = cagedChicken;
+        itemList[axe.GetComponent<Item>().id] = axe;
+        itemList[rawChicken.GetComponent<Item>().id] = rawChicken;
+        itemList[feedBag.GetComponent<Item>().id] = feedBag;
+
         AddItem(Instantiate(axe));
         AddItem(Instantiate(cagedChicken));
         AddItem(Instantiate(feedBag), 5);
@@ -101,6 +109,27 @@ public class Hotbar : MonoBehaviour
                         slots[draggedIndex].item = temp;
                         slots[i].ChangeColor(Color.white);
                     }
+                    else if (i >= FRIDGE_START_INDEX && i < FRIDGE_START_INDEX + 15)
+                    {
+                        player.uiManager.FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.photonView.RPC("SwapItem", PhotonTargets.AllBuffered,
+                            slots[draggedIndex].item.id, i - FRIDGE_START_INDEX, slots[draggedIndex].item.currentStack, slots[draggedIndex].item.cookedMagnitude);
+                        if (draggedIndex >= FRIDGE_START_INDEX && draggedIndex < FRIDGE_START_INDEX + 15)
+                        {
+                            if (slots[i].item == null)
+                            {
+                                player.uiManager.FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.photonView.RPC("RemoveItem", PhotonTargets.AllBuffered, draggedIndex - FRIDGE_START_INDEX);
+                            }
+                            else
+                            {
+                                player.uiManager.FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.photonView.RPC("SwapItem", PhotonTargets.AllBuffered,
+                                    slots[i].item.id, draggedIndex - FRIDGE_START_INDEX, slots[i].item.currentStack, slots[i].item.cookedMagnitude);
+                            }
+                        }
+                        Item temp = slots[i].item;
+                        slots[i].item = slots[draggedIndex].item;
+                        slots[draggedIndex].item = temp;
+                        slots[i].ChangeColor(Color.white);
+                    }
                     else 
                     {
                         Item temp = slots[i].item;
@@ -110,6 +139,10 @@ public class Hotbar : MonoBehaviour
                         if (draggedIndex == OVEN_INDEX)
                         {
                             player.uiManager.OvenMenu.GetComponent<OvenManager>().CurrentOven.photonView.RPC("RemoveChicken", PhotonTargets.AllBuffered);
+                        }
+                        else if (draggedIndex >= FRIDGE_START_INDEX && draggedIndex < FRIDGE_START_INDEX + 15)
+                        {
+                            player.uiManager.FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.photonView.RPC("RemoveItem", PhotonTargets.AllBuffered, draggedIndex - FRIDGE_START_INDEX);
                         }
                     }
                 }

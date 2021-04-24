@@ -510,7 +510,7 @@ public class Player : Photon.MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(1))
                 {
-                    uiManager.OvenMenu.GetComponent<FridgeManager>().CurrentFridge = colliders[i].gameObject.GetComponent<Fridge>();
+                    uiManager.FridgeMenu.GetComponent<FridgeManager>().CurrentFridge = colliders[i].gameObject.GetComponent<Fridge>();
                     uiManager.fridgeVisible = true;
                     FindObjectOfType<AudioManager>().Play("oven");
                 }

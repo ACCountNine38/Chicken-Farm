@@ -95,4 +95,5 @@ MonoBehaviour:
   maxStack: 5
   currentStack: 0
   sellPrice: 2
+  id: 3
   cookedMagnitude: 0

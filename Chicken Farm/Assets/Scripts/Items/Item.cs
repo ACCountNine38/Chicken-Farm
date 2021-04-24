@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     public bool stackable, canObserve;
     public int maxStack, currentStack;
     public int sellPrice;
+    public int id;
 
     [HideInInspector]
     public float cookedMagnitude;

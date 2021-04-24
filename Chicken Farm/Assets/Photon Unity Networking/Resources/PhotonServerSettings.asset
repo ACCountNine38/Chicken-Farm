@@ -75,4 +75,6 @@ MonoBehaviour:
   - PlayWorldAudio
   - DropToOven
   - ChangeMode
+  - RemoveItem
+  - SwapItem
   DisableAutoOpenWizard: 1

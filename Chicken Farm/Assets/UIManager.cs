@@ -377,13 +377,13 @@ public class UIManager : MonoBehaviour
             for (int i = 0; i < 15; i++)
             {
                 int currentIndex = player.hotbar.FRIDGE_START_INDEX + i;
-                if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[currentIndex] == null)
+                if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[i] == null)
                 {
                     player.hotbar.slots[currentIndex].item = null;
                 }
-                else if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[currentIndex] != player.hotbar.slots[currentIndex].item)
+                else if (FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[i] != player.hotbar.slots[currentIndex].item)
                 {
-                    player.hotbar.slots[currentIndex].item = OvenMenu.GetComponent<FridgeManager>().CurrentFridge.stored[currentIndex].GetComponent<Item>();
+                    player.hotbar.slots[currentIndex].item = FridgeMenu.GetComponent<FridgeManager>().CurrentFridge.stored[i].GetComponent<Item>();
                 }
             }
         }
@@ -594,6 +594,13 @@ public class UIManager : MonoBehaviour
     {
         ovenVisible = false;
         OvenMenu.GetComponent<OvenManager>().CurrentOven = null;
+        FindObjectOfType<AudioManager>().Play("oven");
+    }
+
+    public void ExitFridge()
+    {
+        fridgeVisible = false;
+        FridgeMenu.GetComponent<FridgeManager>().CurrentFridge = null;
         FindObjectOfType<AudioManager>().Play("oven");
     }
 }
