@@ -64,4 +64,17 @@ MonoBehaviour:
   - UpdateLight
   - UpdateState
   - UpdateType
+  - Eat
+  - ToBones
+  - ToBonesLeft
+  - Starve
+  - DropFeedBag
+  - SpawnFeed
+  - SpawnCagedChicken
+  - Spawn
+  - PlayWorldAudio
+  - DropToOven
+  - ChangeMode
+  - RemoveItem
+  - SwapItem
   DisableAutoOpenWizard: 1

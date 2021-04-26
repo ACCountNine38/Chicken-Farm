@@ -36,19 +36,28 @@ public class InfoPanelScript : MonoBehaviour
             if (currentObject.CompareTag("Chicken"))
             {
                 Chicken chicken = currentObject.GetComponent<Chicken>();
-                title.text = "Chicken";
-                if (chicken.type == 0)
+                
+                if(chicken.young)
                 {
+                    title.text = "Young Chicken";
+                    info.text = "This chicken is a big smol...";
+                    icon.sprite = normalChicken;
+                }
+                else if (chicken.type == 0)
+                {
+                    title.text = "Normal Chicken";
                     info.text = "This chicken looks fine";
                     icon.sprite = normalChicken;
                 }
                 else if(chicken.type == 1)
                 {
+                    title.text = "Thin Chicken";
                     info.text = "This chicken is looking a bit thin";
                     icon.sprite = thinChicken;
                 }
                 else if (chicken.type == 2)
                 {
+                    title.text = "Thicc Chicken";
                     info.text = "This chicken is looking too thicc";
                     icon.sprite = thiccChicken;
                 }
@@ -128,6 +137,12 @@ public class InfoPanelScript : MonoBehaviour
                 icon.sprite = currentObject.GetComponent<WorldItems>().sr.sprite;
                 title.text = "Caged Chicken";
                 info.text = "Should free it before it dies...";
+            }
+            else if (currentObject.CompareTag("Feed Bag"))
+            {
+                icon.sprite = currentObject.GetComponent<WorldItems>().sr.sprite;
+                title.text = "Chicken Feed";
+                info.text = "Use this to feed your chickens";
             }
         }
 

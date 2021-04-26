@@ -20,9 +20,9 @@ public class Oven : Structure
             {
                 if (stored != null)
                 {
-                    if (stored.GetComponent<RawChicken>().cookedMagnitude < 510)
+                    if (stored.GetComponent<Item>().cookedMagnitude < 510)
                     {
-                        stored.GetComponent<RawChicken>().cookedMagnitude += 1;
+                        stored.GetComponent<Item>().cookedMagnitude += 1;
                     }
                 }
                     
@@ -46,18 +46,17 @@ public class Oven : Structure
     private void RemoveChicken()
     {
         stored = null;
-        mode = 0;
     }
 
     [PunRPC]
     private void SwapChicken(float cookedMagnitude)
     {
         stored = Instantiate(chickenPrefab);
-        stored.GetComponent<RawChicken>().cookedMagnitude = cookedMagnitude;
+        stored.GetComponent<Item>().cookedMagnitude = cookedMagnitude;
     }
 
     [PunRPC]
-    public void ChangeSettings(int mode)
+    public void ChangeMode(int mode)
     {
         this.mode = mode;
 

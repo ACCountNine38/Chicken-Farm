@@ -4990,7 +4990,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21192962, y: 0.10192947}
+  m_Size: {x: 0.2, y: 0.1}
   m_EdgeRadius: 0
 --- !u!50 &4738715323466669718
 Rigidbody2D:
@@ -5026,7 +5026,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0013256595, y: 0.12064049}
+  m_Offset: {x: 0, y: 0.12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.065}
@@ -5037,7 +5037,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21659724, y: 0.22455138}
+  m_Size: {x: 0.2, y: 0.22}
   m_EdgeRadius: 0
 --- !u!95 &4738715323466669722
 Animator:
@@ -5188,6 +5188,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: isEating
+  - Type: 4
+    SynchronizeType: 0
+    Name: isYoung
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -5223,6 +5226,10 @@ MonoBehaviour:
   smokeEffect: {fileID: 5878973111675702819}
   egg: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5, type: 3}
   raw: {fileID: 8176557815406985942, guid: a477c899337ef41e98ef3077b18aed75, type: 3}
+  bonesLeft: {fileID: 3720574283479667589, guid: 687dd0fdf74ec4805ac78fadeae16569,
+    type: 3}
+  bonesRight: {fileID: 4954150023413080165, guid: 07c7ee8c9c751466e822756f2e7909d1,
+    type: 3}
   isNamed: 0
   butcherProcess: 0
   nametag: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1939000653972490918}
   - component: {fileID: 6235993441230186487}
   - component: {fileID: 3994423814587884260}
-  - component: {fileID: 1909119993481838953}
+  - component: {fileID: 5463746868710961339}
   m_Layer: 0
   m_Name: EggItem
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1909119993481838953
+--- !u!114 &5463746868710961339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,10 +84,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3075024031797178831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff5b9c5a6c856449da3cd9391e96e92c, type: 3}
+  m_Script: {fileID: 11500000, guid: 731a9c5f628ae414d91990cf2de6ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WorldItem: {fileID: 944887298242748130, guid: 282bbb221be214e0e84bfc7d069ee8f5,
+    type: 3}
   itemName: Egg
   stackable: 1
+  canObserve: 1
   maxStack: 5
   currentStack: 0
+  sellPrice: 2
+  id: 3
+  cookedMagnitude: 0

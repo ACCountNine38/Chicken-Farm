@@ -17,6 +17,10 @@ TagManager:
   - Door
   - Switch
   - Seed
+  - Dead Chicken
+  - Feed Bag
+  - ScreenShake
+  - Fridge
   layers:
   - Default
   - TransparentFX
