@@ -7,8 +7,11 @@ public class MenuScript : MonoBehaviour
 {
     // variables that are displayed on the Inspector
     [SerializeField] private string version = "0.1";
+    [SerializeField] private int golbalCurrencyNumber= 0;
     [SerializeField] private GameObject Welcome_Menu;
     [SerializeField] private GameObject Welcome_Menu_items; // does not contain character preview items
+
+    [SerializeField] private GameObject CurrencyControl_items;
 
     [SerializeField] private GameObject Character_Preview_Section;
     [SerializeField] private GameObject customize_Button;
@@ -87,13 +90,18 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
+        UpdateCoin();
         UpdateCustomizeCharacter();
         UpdateOption();
         UpdateStart();
         UpdateUserNameValidation();
         UpdateVolume();
 
+    }
+
+    private void UpdateCoin()
+    {
+        CurrencyControl_items.GetComponentInChildren<Text>().text = golbalCurrencyNumber.ToString();
     }
 
     // method that controls actions
@@ -125,14 +133,14 @@ public class MenuScript : MonoBehaviour
         {
             customize_Button.GetComponentInChildren<Text>().text = "Finished";
 
-            if (Character_Preview_Section.transform.localPosition.x > 0)
+            if (Character_Preview_Section.transform.localPosition.y > 0)
             {
-                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x - 20, Character_Preview_Section.transform.localPosition.y);
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x, Character_Preview_Section.transform.localPosition.y-20);
                 Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y + 20);
             }
             else
             {
-                Character_Preview_Section.transform.localPosition = new Vector3(0, Character_Preview_Section.transform.localPosition.y);
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x, 0);
                 Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, 2 * screen_size_height);
             }
 
@@ -142,14 +150,14 @@ public class MenuScript : MonoBehaviour
         {
             customize_Button.GetComponentInChildren<Text>().text = "Customize";
 
-            if (Character_Preview_Section.transform.localPosition.x < screen_size_width)
+            if (Character_Preview_Section.transform.localPosition.y < screen_size_height)
             {
-                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x + 20, Character_Preview_Section.transform.localPosition.y);
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x, Character_Preview_Section.transform.localPosition.y + 20);
                 Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y - 20);
             }
             else
             {
-                Character_Preview_Section.transform.localPosition = new Vector3(screen_size_width, Character_Preview_Section.transform.localPosition.y);
+                Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x, screen_size_height);
                 Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, 0);
             }
         }
@@ -197,7 +205,7 @@ public class MenuScript : MonoBehaviour
         {
             if (UsernameInput.text.Length >= 1)
             {
-                if (Welcome_Menu.transform.localPosition.x < 1920)
+                if (Welcome_Menu.transform.localPosition.x < screen_size_width)
                 {
                     Create_Enter_Menu.transform.localPosition = new Vector3(Create_Enter_Menu.transform.localPosition.x + 20, Create_Enter_Menu.transform.localPosition.y);
                     Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x + 20, Welcome_Menu.transform.localPosition.y);

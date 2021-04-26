@@ -29,7 +29,7 @@ MonoBehaviour:
   RunInBackground: 1
   RpcList:
   - Butcher
-  - ChangeSettings
+  - ChangeMode
   - Chat
   - ColorRpc
   - DestroyRpc
@@ -38,7 +38,9 @@ MonoBehaviour:
   - DropAxe
   - DropCagedChicken
   - DropEgg
+  - DropFeedBag
   - DropMeat
+  - Eat
   - Flash
   - FlipFalse
   - FlipTrue
@@ -46,6 +48,7 @@ MonoBehaviour:
   - Marco
   - PickUp
   - PickupItemInit
+  - PlayWorldAudio
   - Polo
   - PreButcher
   - PunPickup
@@ -53,28 +56,22 @@ MonoBehaviour:
   - PunRespawn
   - RandomizeAction
   - RemoveChicken
+  - RemoveItem
   - RequestForPickupItems
   - RequestForPickupTimes
   - SendMessage
   - SetRandomHunger
+  - Spawn
+  - SpawnCagedChicken
   - SpawnChicken
   - SpawnEgg
+  - SpawnFeed
+  - Starve
   - SwapChicken
+  - SwapItem
   - TaggedPlayer
+  - ToBones
   - UpdateLight
   - UpdateState
   - UpdateType
-  - Eat
-  - ToBones
-  - ToBonesLeft
-  - Starve
-  - DropFeedBag
-  - SpawnFeed
-  - SpawnCagedChicken
-  - Spawn
-  - PlayWorldAudio
-  - DropToOven
-  - ChangeMode
-  - RemoveItem
-  - SwapItem
   DisableAutoOpenWizard: 1
