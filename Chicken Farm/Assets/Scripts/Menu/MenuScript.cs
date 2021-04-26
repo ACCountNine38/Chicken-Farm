@@ -51,6 +51,9 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private int hat_id = 0;
     [SerializeField] private int suit_id = 0;
 
+    private int screen_size_height = 1080;
+    private int screen_size_width = 1920;
+
     // Awake() is called when photon network is initiated
     private void Awake()
     {
@@ -125,18 +128,29 @@ public class MenuScript : MonoBehaviour
             if (Character_Preview_Section.transform.localPosition.x > 0)
             {
                 Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x - 20, Character_Preview_Section.transform.localPosition.y);
-                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x - 50, Welcome_Menu_items.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y + 20);
             }
+            else
+            {
+                Character_Preview_Section.transform.localPosition = new Vector3(0, Character_Preview_Section.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, 2 * screen_size_height);
+            }
+
 
         }
         else
         {
             customize_Button.GetComponentInChildren<Text>().text = "Customize";
 
-            if (Character_Preview_Section.transform.localPosition.x < 1920 * 0.43)
+            if (Character_Preview_Section.transform.localPosition.x < screen_size_width)
             {
                 Character_Preview_Section.transform.localPosition = new Vector3(Character_Preview_Section.transform.localPosition.x + 20, Character_Preview_Section.transform.localPosition.y);
-                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x + 50, Welcome_Menu_items.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, Welcome_Menu_items.transform.localPosition.y - 20);
+            }
+            else
+            {
+                Character_Preview_Section.transform.localPosition = new Vector3(screen_size_width, Character_Preview_Section.transform.localPosition.y);
+                Welcome_Menu_items.transform.localPosition = new Vector3(Welcome_Menu_items.transform.localPosition.x, 0);
             }
         }
     }
@@ -152,19 +166,28 @@ public class MenuScript : MonoBehaviour
                 Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y + 20);
                 Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y + 20);
             }
+            else
+            {
+                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, 0);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, 2 * screen_size_height);
+            }
 
         }
         else
         {
 
-            if (Option_Menu.transform.localPosition.y > -1080 - 1080)
+            if (Option_Menu.transform.localPosition.y > 2 * -screen_size_height)
             {
                 Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, Option_Menu.transform.localPosition.y - 20);
                 Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, Welcome_Menu.transform.localPosition.y - 20);
             }
+            else
+            {
+                Option_Menu.transform.localPosition = new Vector3(Option_Menu.transform.localPosition.x, 2 * -screen_size_height);
+                Welcome_Menu.transform.localPosition = new Vector3(Welcome_Menu.transform.localPosition.x, 0);
+            }
         }
     }
-
 
     // turn to Create_Enter_Menu with slide effect
     private void UpdateStart()
