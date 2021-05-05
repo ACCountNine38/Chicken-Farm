@@ -23,7 +23,6 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private GameObject Start_Button;
 
     [SerializeField] private InputField UsernameInput;
-    [SerializeField] private InputField CreateGameInput;
     [SerializeField] private InputField JoinGameInput;
     [SerializeField] private GameObject username_Invalid_Waring;
     [SerializeField] private GameObject roomname_Invalid_Waring;
@@ -56,6 +55,7 @@ public class MenuScript : MonoBehaviour
 
     private int screen_size_height = 1080;
     private int screen_size_width = 1920;
+    private int MAX_LENGTH_ID = 9; // This is ONLY for randonization of ID
 
     // Awake() is called when photon network is initiated
     private void Awake()
@@ -243,19 +243,6 @@ public class MenuScript : MonoBehaviour
     }
 
     // check the name input is vaild
-    private bool checkCreateRoomNameValidation()
-    {
-        if (CreateGameInput.text.Length >= 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // check the name input is vaild
     private bool checkEnterRoomNameValidation()
     {
         if (JoinGameInput.text.Length >= 1)
@@ -274,19 +261,30 @@ public class MenuScript : MonoBehaviour
         PhotonNetwork.playerName = UsernameInput.text;
     }
 
-    // method that enables the user to host, given the server ip
-    public void CreateGame()
+    //method that create a string of MAX_LENGTH_ID digits with random characters from 0-9 and a-Z
+    private string randomID()
     {
-        if (checkCreateRoomNameValidation())
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        var nums = "0123456789";
+        var stringChars = new char[MAX_LENGTH_ID];
+
+        for (int i = 0; i < MAX_LENGTH_ID; i++)
         {
-            roomname_Invalid_Waring.SetActive(false);
-            PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() { maxPlayers = 5 }, null);
-        }
-        else
-        {
-            roomname_Invalid_Waring.SetActive(true);
+            stringChars[i] = Random.Range(0, 2) == 1 ? chars[Random.Range(0, chars.Length)] : nums[Random.Range(0, nums.Length)];
+            
         }
 
+        var finalString = new string(stringChars);
+
+        return finalString;
+    }
+
+    // method that enables create a single-player game
+    public void SinglePlayerGame()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.maxPlayers = 1;
+        PhotonNetwork.CreateRoom(randomID(), roomOptions, TypedLobby.Default);
     }
 
     // method that enables the user to join a room
