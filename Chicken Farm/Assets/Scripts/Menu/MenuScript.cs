@@ -279,6 +279,14 @@ public class MenuScript : MonoBehaviour
         return finalString;
     }
 
+    public void CreateGame()
+    {
+        string roomId = randomID();
+        Debug.Log(roomId);
+        roomname_Invalid_Waring.SetActive(false);
+        PhotonNetwork.CreateRoom(roomId, new RoomOptions() { maxPlayers = 5 }, null);
+    }
+
     // method that enables create a single-player game
     public void SinglePlayerGame()
     {
