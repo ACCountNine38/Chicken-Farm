@@ -19,6 +19,7 @@ Jason Li (Graphics Artist)
 Alex Sene (Music Producer).
 
 # Preview
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image1.png)
 ![](Chicken-Farm/Preview/image1.png)
 ![](Chicken-Farm/Preview/image2.png)
 ![](ChickenFarm/Preview/image3.png)
