@@ -20,11 +20,10 @@ Alex Sene (Music Producer).
 
 # Preview
 ![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image1.png)
-![](Chicken-Farm/Preview/image1.png)
-![](Chicken-Farm/Preview/image2.png)
-![](ChickenFarm/Preview/image3.png)
-![](ChickenFarm/Preview/image4.png)
-![](ChickenFarm/Preview/image5.png)
-![](ChickenFarm/Preview/image6.png)
-![](ChickenFarm/Preview/image7.png)
-![](ChickenFarm/Preview/image8.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image2.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image3.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image4.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image5.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image6.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image7.png)
+![alt text](https://github.com/ACCount-Nine38/Chicken-Farm/blob/main/Chicken%20Farm/Preview/image8.png)
