@@ -17,3 +17,13 @@ Charles Shang (Developer)
 Kelvin Peng (Developer and Graphics Artist)
 Jason Li (Graphics Artist)
 Alex Sene (Music Producer).
+
+# Preview
+![](ChickenFarm/images/preview/image1.png)
+![](ChickenFarm/images/preview/image2.png)
+![](ChickenFarm/images/preview/image3.png)
+![](ChickenFarm/images/preview/image4.png)
+![](ChickenFarm/images/preview/image5.png)
+![](ChickenFarm/images/preview/image6.png)
+![](ChickenFarm/images/preview/image7.png)
+![](ChickenFarm/images/preview/image8.png)
